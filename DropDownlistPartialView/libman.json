@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/Scripts/jquery/"
+    },
+    {
+      "library": "jquery@1.8.2",
+      "destination": "wwwroot/Scripts/jquery/"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post,
+   new
+   {
+       id = "OrderLaptopFormID"
+   }))
+{
+        <fieldset>
+            <legend>Make an order</legend>
+            <div>
+                <label for="Manufacturers">Manufacturer</label>
+            </div>
+            <select id="ManufacturersID" name="Manufacturers">
+             @*    <option value="0">--Select----</option>
+            <option value="1">Apple</option> *@
+            </select>
+            <div id="categoryDiv">
+                <label for="Categories">Category</label>
+                <select id="CategoryID" name="Categories">
+                    <option value="0">--Select----</option>
+                </select>
+            </div>
+            <div id="divLaptops"></div>
+        </fieldset>
+        <input type="submit" value="Return" id="SubmitID" />
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="@Url.Content("~/Scripts/GetManufacturer.js")"></script>
+<script src="@Url.Content("~/Scripts/manufacturerCategory.js")"></script>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DropDownlistPartialView.Models.Laptop>
+
+<table style="background-color:ghostwhite">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>$ @item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

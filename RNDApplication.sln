@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreprocedureCrudUsingSepa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudOperationUsionPartialView", "CrudOperationUsionPartialView\CrudOperationUsionPartialView.csproj", "{F9B6B538-8B82-4DC8-A83B-F87A85D8038A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropDownlistPartialView", "DropDownlistPartialView\DropDownlistPartialView.csproj", "{822ADA2E-4DAC-477B-86D7-79EAD4977B6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F9B6B538-8B82-4DC8-A83B-F87A85D8038A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9B6B538-8B82-4DC8-A83B-F87A85D8038A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9B6B538-8B82-4DC8-A83B-F87A85D8038A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{822ADA2E-4DAC-477B-86D7-79EAD4977B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822ADA2E-4DAC-477B-86D7-79EAD4977B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822ADA2E-4DAC-477B-86D7-79EAD4977B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822ADA2E-4DAC-477B-86D7-79EAD4977B6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
