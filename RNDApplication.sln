@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonAppliction", "JsonAppli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudUsingModalPopup", "CrudUsingModalPopup\CrudUsingModalPopup.csproj", "{90CEF9C9-42B1-4D86-BB0A-654E737C30E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreprocedureCrudUsingSeparateConsting", "StoreprocedureCrudUsingSeparateConsting\StoreprocedureCrudUsingSeparateConsting.csproj", "{D80CA8C0-6B48-47DB-8102-FF2901CB685F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{90CEF9C9-42B1-4D86-BB0A-654E737C30E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90CEF9C9-42B1-4D86-BB0A-654E737C30E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90CEF9C9-42B1-4D86-BB0A-654E737C30E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D80CA8C0-6B48-47DB-8102-FF2901CB685F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80CA8C0-6B48-47DB-8102-FF2901CB685F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80CA8C0-6B48-47DB-8102-FF2901CB685F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80CA8C0-6B48-47DB-8102-FF2901CB685F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
