@@ -1,0 +1,29 @@
+﻿@model CrudOperationUsionPartialView.Models.Product
+<div class="modal fade" id="deleteProduct-@Model.Product_ID" tabindex="-1" aria-labelledby="addProductLabel" aria-modal="true"
+     role="dialog" @* class="modal fade" id="addProduct" data-backdrop="false" role="dialog" *@>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="addProductLabel">Delete Product</h1>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Delete" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                   
+                    <div class="form-group">
+                        <input type="hidden" asp-for="Product_ID" />
+                       <p> Are You sure want to delete???</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
