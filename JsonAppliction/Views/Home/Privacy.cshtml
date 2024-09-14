@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <h2>Creating an Object from a JSON String</h2>
+    <p id="demo"></p>
+
+    <h2>Parsing a JSON Array.</h2>
+    <p>Data written as an JSON array will be parsed into a JavaScript array.</p>
+    <p id="dem"></p>
+
+    <h2>Convert a string into a date object.</h2>
+    <p id="dmo"></p>
+    <script>
+        const txt = '{"name":"John", "age":30, "city":"New York"}'
+        const obj = JSON.parse(txt);
+        document.getElementById("demo").innerHTML = obj.name + ", " + obj.age + ", " + obj.city;
+    </script>
+
+
+    <script>
+        const text = '[ "Ford", "BMW", "Audi", "Fiat" ]';
+        const myArr = JSON.parse(text);
+        document.getElementById("dem").innerHTML = myArr[3];
+    </script>
+
+
+    <script>
+        const texts = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+        const objt = JSON.parse(texts);
+        objt.birth = new Date(objt.birth);
+        document.getElementById("dmo").innerHTML = objt.name + ", " + objt.birth;
+    </script>
+    <h2>Convert a string into a date object.</h2>
+
+    <p id="demo1"></p>
+
+    <script>
+        const text1 = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+        const obj1 = JSON.parse(text1, function (key, value) {
+            if (key == "birth") {
+                return new Date(value);
+            } else {
+                return value;
+            }
+        });
+        document.getElementById("demo1").innerHTML = obj1.name + ", " + obj1.birth;
+    </script>
+
+    <h2>Convert a string into a function.</h2>
+    <p id="demo2"></p>
+
+    <script>
+        const text2 = '{"name":"John", "age":"function() {return 30;}", "city":"New York"}';
+        const obj2 = JSON.parse(text2);
+        obj2.age = eval("(" + obj2.age + ")");
+        document.getElementById("demo2").innerHTML = obj2.name + ", " + obj2.age();
+    </script>
+    <h2>Create a JSON string from a JavaScript object.</h2>
+    <p id="demo3"></p>
+
+    <script>
+        const obj3 = { name: "John", age: 30, city: "New York" };
+        const myJSON = JSON.stringify(obj3);
+        document.getElementById("demo3").innerHTML = myJSON;
+    </script>
+    <h2>Create a JSON string from a JavaScript array.</h2>
+    <p id="demo4"></p>
+
+    <script>
+        const arr4 = ["John", "Peter", "Sally", "Jane"];
+        const myJSON4 = JSON.stringify(arr4);
+        document.getElementById("demo4").innerHTML = myJSON4;
+    </script>
+
+    <h2>Store and retrieve data from local storage.</h2>
+    <p id="demo5"></p>
+
+    <script>
+        // Storing data:
+        const myObj5 = { name: "John", age: 31, city: "New York" };
+        const myJSON5 = JSON.stringify(myObj5);
+        localStorage.setItem("testJSON5", myJSON5);
+
+        // Retrieving data:
+        let text5 = localStorage.getItem("testJSON5");
+        let obj5 = JSON.parse(text5);
+        document.getElementById("demo5").innerHTML = obj5.name;
+    </script>
+
+    <h2>JSON.stringify() converts date objects into strings.</h2>
+    <p id="demo6"></p>
+
+    <script>
+        const obj6 = { name: "John", today: new Date(), city: "New York" };
+        const myJSON6 = JSON.stringify(obj6);
+        document.getElementById("demo6").innerHTML = myJSON6;
+    </script>
+
+
+    <h2>JSON.stringify() will remove any functions from an object.</h2>
+    <p id="demo7"></p>
+
+    <script>
+        const obj7 = { name: "John", age: function () { return 30; }, city: "New York" };
+        const myJSON7 = JSON.stringify(obj7);
+        document.getElementById("demo7").innerHTML = myJSON7;
+    </script>
+
+    <h2>JSON.stringify() will remove any functions from an object.</h2>
+
+    <p>Convert functions into strings to keep them in the JSON object.</p>
+
+    <p id="demo8"></p>
+
+    <script>
+        const obj8 = { name: "John", age: function () { return 30; }, city: "New York" };
+        obj8.age = obj8.age.toString();
+        const myJSON8 = JSON.stringify(obj8);
+        document.getElementById("demo8").innerHTML = myJSON8;
+    </script>
+
+    <h2>Creating an Object from a JSON Literal</h2>
+    <p id="demo9"></p>
+
+    <script>
+        const myObj9 = { "name": "John", "age": 30, "car": null };
+        document.getElementById("demo9").innerHTML = myObj9.name;
+    </script>
+    <h2>Creating an Object Parsing JSON</h2>
+    <p id="demo10"></p>
+
+    <script>
+        const myJSON10 = '{"name":"John", "age":30, "car":null}';
+        const myObj10 = JSON.parse(myJSON10);
+        document.getElementById("demo10").innerHTML = myObj10.name;
+    </script>
+
+    <h2>Looping Object Properties</h2>
+    <p id="demo11"></p>
+
+    <script>
+        const myJSON11 = '{"name":"John", "age":30, "car":null}';
+        const myObj11 = JSON.parse(myJSON11);
+
+        let text11 = "";
+        for (const x in myObj11) {
+            text11 += x + ", ";
+        }
+        document.getElementById("demo11").innerHTML = text11;
+    </script>
+    <h2>Looping JavaScript Object Values</h2>
+    <p id="demo12"></p>
+
+    <script>
+        const myJSON12 = '{"name":"Jhn", "age":30, "car":null}';
+        const myObj12 = JSON.parse(myJSON12);
+
+        let text12 = "";
+        for (const x12 in myObj12) {
+            text12 += myObj12[x12] + ", ";
+        }
+        document.getElementById("demo12").innerHTML = text12;
+    </script>
+
+    <h2>Creating an Array from a Literal</h2>
+    <p id="demo13"></p>
+
+    <script>
+        const myArray13 = ["Ford", "BMW", "Fiat"];
+        document.getElementById("demo13").innerHTML = myArray13;
+    </script>
+    <h2>Creating an Array from JSON</h2>
+    <p id="demo14"></p>
+
+    <script>
+        const myJSON14 = '["Ford", "BMW", "Fiat"]';
+        const myArray14 = JSON.parse(myJSON14);
+        document.getElementById("demo14").innerHTML = myArray14;
+    </script>
+    <h1>Access an Array by Index</h1>
+    <p id="demo15"></p>
+
+    <script>
+        const myJSON15 = '["Ford", "BMW", "Fiat"]';
+        const myArray15 = JSON.parse(myJSON15);
+        document.getElementById("demo15").innerHTML = myArray15[1];
+    </script>
+
+    <h2>Access Array Values</h2>
+    <p id="demo16"></p>
+
+    <script>
+        const myJSON16 = '{"name":"John", "age":30, "cars":["Ford", "BMW", "Fiat"]}';
+        const myObj16 = JSON.parse(myJSON16);
+        document.getElementById("demo16").innerHTML = myObj16.cars[0];
+    </script>
+    <h2>Looping an Array</h2>
+    <p id="demo17"></p>
+
+    <script>
+        const myJSON17 = '{"name":"John", "age":30, "cars":["Ford", "BMW", "Fiat"]}';
+        const myObj17 = JSON.parse(myJSON17);
+
+        let text17 = "";
+        for (let i in myObj17.cars) {
+            text17 += myObj17.cars[i] + ", ";
+        }
+
+        document.getElementById("demo17").innerHTML = text17;
+    </script>
+    <h2>Looping an Array</h2>
+    <p id="demo18"></p>
+
+    <script>
+        const myJSON18 = '{"name":"John", "age":30, "cars":["Ford", "BMW", "Fiat"]}';
+        const myObj18 = JSON.parse(myJSON18);
+
+        let text18 = "";
+        for (let i = 0; i < myObj18.cars.length; i++) {
+            text18 += myObj18.cars[i] + ", ";
+        }
+
+        document.getElementById("demo18").innerHTML = text18;
+
+    </script>
+    <h2>Convert a JavaScript object into a JSON string, and send it to the server.</h2>
+    <script>
+        const myObj19 = { name: "John", age: 31, city: "New York" };
+        const myJSON19 = JSON.stringify(myObj19);
+       // window.location = "Index.cshtml?x=" + myJSON19;
+    </script>
+
+    <h2>Convert a JSON string into a JavaScript object.</h2>
+
+    <p id="demo20"></p>
+
+    <script>
+        const myJSON20 = '{"name":"John", "age":31, "city":"New York"}';
+        const myObj20 = JSON.parse(myJSON);
+        document.getElementById("demo20").innerHTML = myObj20.name;
+    </script>
+ @*    <h2>Fetch a JSON file with XMLHttpRequest</h2>
+    <p id="demo"></p>
+
+    <script>
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            const myObj = JSON.parse(this.responseText);
+            document.getElementById("demo").innerHTML = myObj.name;
+        }
+        xmlhttp.open("GET", "json_demo.txt");
+        xmlhttp.send();
+    </script> *@
+    @* <h2>Make a table based on JSON data.</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        const dbParam = JSON.stringify({ table: "customers", limit: 20 });
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            const myObj = JSON.parse(this.responseText);
+            let text = "<table border='1'>"
+            for (let x in myObj) {
+                text += "<tr><td>" + myObj[x].name + "</td></tr>";
+            }
+            text += "</table>"
+            document.getElementById("demo").innerHTML = text;
+        }
+        xmlhttp.open("POST", "json_demo_html_table.php");
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("x=" + dbParam);
+    </script> *@
+</body>
+
+</html>

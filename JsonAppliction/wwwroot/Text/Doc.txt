@@ -1,0 +1,79 @@
+﻿Json
+*******************
+What is json?
+--------------
+==> JSON stands for JavaScript Object Notation
+==>JSON is a lightweight data-interchange format
+==>JSON is plain text written in JavaScript object notation
+==>JSON is used to send data between computers
+==>JSON is language independent *
+Why Use JSON?
+You can receive pure text from a server and use it as a JavaScript object.
+You can send a JavaScript object to a server in pure text format.
+You can work with data as JavaScript objects, with no complicated parsing and translations.
+--JSON.parse()--json string to javaScript object
+--JSON.stringify()--javascript object to json string
+
+JSON Syntax Rules
+-----------------
+JSON syntax is derived from JavaScript object notation syntax:
+
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+JSON Values
+------------
+In JSON, values must be one of the following data types:
+a string
+a number
+an object
+an array
+a boolean
+null
+In JavaScript values can be all of the above, plus any other valid JavaScript expression, including:
+a function
+a date
+undefined
+In JSON, string values must be written with double quotes:{"name":"John"}----JavaScript:{name:'John'}
+
+JavaScript Arrays as JSON
+--------------------
+The same way JavaScript objects can be written as JSON, JavaScript arrays can also be written as JSON.
+JSON Files
+--------------------
+The file type for JSON files is ".json"
+The MIME type for JSON text is "application/json";
+---------------------------------------------
+ JSON is Like XML Because
+ ************************************
+Both JSON and XML are "self describing" (human readable)
+Both JSON and XML are hierarchical (values within values)
+Both JSON and XML can be parsed and used by lots of programming languages
+Both JSON and XML can be fetched with an XMLHttpRequest
+---------------
+JSON is Unlike XML Because
+*********************************
+JSON doesn't use end tag
+JSON is shorter
+JSON is quicker to read and write
+JSON can use arrays
+----------------------------
+Valid Data Types
+********************************
+In JSON, values must be one of the following data types:
+a string
+a number
+an object (JSON object)
+an array
+a boolean
+null
+-----------------
+JSON.parse()
+***************************
+A common use of JSON is to exchange data to/from a web server.
+
+When receiving data from a web server, the data is always a string.
+
+Parse the data with JSON.parse(), and the data becomes a JavaScript object.
+---------------------------
