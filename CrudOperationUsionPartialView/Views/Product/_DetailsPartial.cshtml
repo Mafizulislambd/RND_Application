@@ -1,0 +1,48 @@
+﻿@model CrudOperationUsionPartialView.Models.Product
+
+<div class="modal fade" id="detailsProduct-@Model.Product_ID" tabindex="-1" aria-labelledby="detailsProductLabel" aria-modal="true"
+     role="dialog" @* class="modal fade" id="addProduct" data-backdrop="false" role="dialog" *@>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="detailsProductLabel">Product Infomatino</h1>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Product_ID)
+                    </dt>
+                    <dt class="col-sm-9">
+                        @Html.DisplayFor(model => model.Product_ID)
+                    </dt>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Product_Name)
+
+                    </dt>
+                    <dt class="col-sm-9">
+                        @Html.DisplayFor(model => model.Product_Name)
+                    </dt>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dt class="col-sm-9">
+                        @Html.DisplayFor(model => model.Price)
+                    </dt>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Quantity)
+
+                    </dt>
+                    <dt class="col-sm-9">
+                        @Html.DisplayFor(model => model.Quantity)
+                    </dt>
+                </dl>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
