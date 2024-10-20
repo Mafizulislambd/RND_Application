@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrudOperationUsionPartialVi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DropDownlistPartialView", "DropDownlistPartialView\DropDownlistPartialView.csproj", "{822ADA2E-4DAC-477B-86D7-79EAD4977B6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudOperationUsingDapper", "CrudOperationUsingDapper\CrudOperationUsingDapper.csproj", "{D3BCFB04-A992-4C13-8091-390BC2F5F67A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrudOperationUsingDapper", "CrudOperationUsingDapper\CrudOperationUsingDapper.csproj", "{D3BCFB04-A992-4C13-8091-390BC2F5F67A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorTesting", "BlazorTesting\BlazorTesting.csproj", "{16F56C2C-8B60-411E-B10E-FE415A411B4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D3BCFB04-A992-4C13-8091-390BC2F5F67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3BCFB04-A992-4C13-8091-390BC2F5F67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3BCFB04-A992-4C13-8091-390BC2F5F67A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F56C2C-8B60-411E-B10E-FE415A411B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F56C2C-8B60-411E-B10E-FE415A411B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F56C2C-8B60-411E-B10E-FE415A411B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F56C2C-8B60-411E-B10E-FE415A411B4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
