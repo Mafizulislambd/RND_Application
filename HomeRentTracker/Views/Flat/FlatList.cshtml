@@ -1,0 +1,41 @@
+﻿@using HomeRentTracker.Models.FlatEntity
+@model IEnumerable<Flat>
+
+@{
+    ViewData["Title"] = "Flats List";
+}
+
+<h1 class="header-style">Flats List</h1>
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Flat No</th>
+            <th>Owner</th>
+            <th>Rent</th>
+            <th>Rent Paid By</th>
+            <th>Rent Receive</th>
+            <th>Receive Date</th>
+            <th>Rent Month</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FlatNo</td>
+                <td>@item.FlatOwener</td>
+                <td>@item.FlatRent</td>
+                <td>@item.RentPaidBy</td>
+                <td>@(item.RentReceive ? "Yes" : "No")</td>
+                <td>@item.ReceiveDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.RentMonth.ToString("yyyy-MM")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FlatId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.FlatId" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.FlatId" class="btn btn-sm btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
