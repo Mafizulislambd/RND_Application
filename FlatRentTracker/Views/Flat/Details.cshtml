@@ -1,0 +1,44 @@
+﻿@model Flat
+
+@{
+    ViewData["Title"] = "Flat Details";
+}
+
+<h1>Flat Details</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Flat No:</dt>
+            <dd class="col-sm-8">@Model.FlatNo</dd>
+
+            <dt class="col-sm-4">Owner:</dt>
+            <dd class="col-sm-8">@Model.FlatOwener</dd>
+
+            <dt class="col-sm-4">Rent:</dt>
+            <dd class="col-sm-8">@Model.FlatRent</dd>
+
+            <dt class="col-sm-4">Rent Paid By:</dt>
+            <dd class="col-sm-8">@Model.RentPaidBy</dd>
+        </dl>
+    </div>
+
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Rent Received?</dt>
+            <dd class="col-sm-8">@(Model.RentReceive ? "Yes" : "No")</dd>
+
+            <dt class="col-sm-4">Receiver Name:</dt>
+            <dd class="col-sm-8">@Model.RentReceiverName</dd>
+
+            <dt class="col-sm-4">Receive Date:</dt>
+            <dd class="col-sm-8">@Model.ReceiveDate.ToString("yyyy-MM-dd")</dd>
+
+            <dt class="col-sm-4">Rent Month:</dt>
+            <dd class="col-sm-8">@Model.RentMonth.ToString("yyyy-MM")</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.FlatId" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
