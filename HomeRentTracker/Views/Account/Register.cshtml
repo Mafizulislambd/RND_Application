@@ -1,0 +1,243 @@
+﻿@model UserRegistration
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserFirstName"></label>
+        <input asp-for="UserFirstName" class="form-control" id="UserFirstName" />
+        <span asp-validation-for="UserFirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserMiddleName"></label>
+        <input asp-for="UserMiddleName" class="form-control" id="UserMiddleName" />
+        <span asp-validation-for="UserMiddleName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserLastName"></label>
+        <input asp-for="UserLastName" class="form-control" id="UserLastName" />
+        <span asp-validation-for="UserLastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" id="FullName" readonly />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserEmail"></label>
+        <input asp-for="UserEmail" class="form-control" />
+        <span asp-validation-for="UserEmail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserPhone"></label>
+        <input asp-for="UserPhone" class="form-control" />
+        <span asp-validation-for="UserPhone" class="text-danger"></span>
+    </div>
+
+   @*  <div class="form-group">
+        <label asp-for="UserPassword"></label>
+        <input asp-for="UserPassword" type="password" class="form-control" />
+        <span asp-validation-for="UserPassword" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div> *@
+    <div class="form-group">
+        <label asp-for="UserPassword"></label>
+        <input asp-for="UserPassword" type="password" id="UserPassword" class="form-control" />
+        <span asp-validation-for="UserPassword" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" id="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } *@
+
+@*     <script>
+        window.addEventListener('load', function () {
+            const firstNameInput = document.getElementById('UserFirstName');
+            const middleNameInput = document.getElementById('UserMiddleName');
+            const lastNameInput = document.getElementById('UserLastName');
+            const fullNameInput = document.getElementById('FullName');
+
+            if (!firstNameInput || !middleNameInput || !lastNameInput || !fullNameInput) {
+                console.warn("One or more input fields not found in the DOM.");
+                return;
+            }
+                    console.log("firstNameInput", firstNameInput);
+        console.log("middleNameInput", middleNameInput);
+        console.log("lastNameInput", lastNameInput);
+        console.log("fullNameInput", fullNameInput);
+            function updateFullName() {
+                const first = firstNameInput.value.trim();
+                const middle = middleNameInput.value.trim();
+                const last = lastNameInput.value.trim();
+
+                const fullName = [first, middle, last].filter(Boolean).join(' ');
+                fullNameInput.value = fullName;
+            }
+
+            firstNameInput.addEventListener('input', updateFullName);
+            middleNameInput.addEventListener('input', updateFullName);
+            lastNameInput.addEventListener('input', updateFullName);
+        });
+    </script>
+} *@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const firstNameInput = document.getElementById('UserFirstName');
+            const middleNameInput = document.getElementById('UserMiddleName');
+            const lastNameInput = document.getElementById('UserLastName');
+            const fullNameInput = document.getElementById('FullName');
+
+            if (!firstNameInput || !middleNameInput || !lastNameInput || !fullNameInput) {
+                console.warn("Missing input field(s):", {
+                    firstNameInput,
+                    middleNameInput,
+                    lastNameInput,
+                    fullNameInput
+                });
+                return;
+            }
+
+            function updateFullName() {
+                const first = firstNameInput.value.trim();
+                const middle = middleNameInput.value.trim();
+                const last = lastNameInput.value.trim();
+
+                const fullName = [first, middle, last].filter(Boolean).join(' ');
+                fullNameInput.value = fullName;
+            }
+
+            firstNameInput.addEventListener('input', updateFullName);
+            middleNameInput.addEventListener('input', updateFullName);
+            lastNameInput.addEventListener('input', updateFullName);
+        });
+        //     document.addEventListener('DOMContentLoaded', function () {
+        //     const password = document.getElementById('UserPassword');
+        //     const confirm = document.getElementById('ConfirmPassword');
+        //     const message = document.getElementById('passwordMatchMessage');
+
+        //     function checkMatch() {
+        //         if (!password || !confirm || !message) return;
+        //         if (password.value && confirm.value) {
+        //             console.log("Test");
+        //             if (password.value === confirm.value) {
+        //                 message.textContent = "Passwords match ✔️";
+        //                 message.classList.remove("text-danger");
+        //                 message.classList.add("text-success");
+        //             } else {
+        //                 message.textContent = "Passwords do not match ✘";
+        //                 message.classList.remove("text-success");
+        //                 message.classList.add("text-danger");
+        //             }
+        //         } else {
+        //             message.textContent = "";
+        //         }
+        //     }
+
+        //     password.addEventListener('input', checkMatch);
+        //     confirm.addEventListener('input', checkMatch);
+        // });
+          document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('UserPassword');
+            const confirmInput = document.getElementById('ConfirmPassword');
+
+            // Create message element
+            const message = document.createElement('small');
+            message.id = "passwordMatchMessage";
+            message.classList.add("form-text");
+            confirmInput.parentElement.appendChild(message);
+
+            function checkPasswordMatch() {
+                const password = passwordInput?.value.trim();
+                const confirm = confirmInput?.value.trim();
+                console.log("Test");
+                if (!password || !confirm) {
+                    message.textContent = "";
+                    return;
+                }
+
+                if (password === confirm) {
+                    message.textContent = "Passwords match ✔️";
+                    message.classList.remove("text-danger");
+                    message.classList.add("text-success");
+                } else {
+                     debugger;
+                    message.textContent = "Passwords do not match ✘";
+                    message.classList.remove("text-success");
+                    message.classList.add("text-danger");
+                }
+            }
+
+            if (passwordInput && confirmInput) {
+                passwordInput.addEventListener('input', checkPasswordMatch);
+                confirmInput.addEventListener('input', checkPasswordMatch);
+            } else {
+                console.warn("Password inputs not found in DOM");
+            }
+        });
+    </script>
+}
+
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // const firstNameInput = document.getElementById('firstName');
+        // const middleNameInput = document.getElementById('middleName');
+        // const lastNameInput = document.getElementById('lastName');
+        // const fullNameInput = document.getElementById('fullName');
+                const firstNameInput = document.getElementById('UserFirstName');
+        const middleNameInput = document.getElementById('UserMiddleName');
+        const lastNameInput = document.getElementById('UserLastName');
+        const fullNameInput = document.getElementById('FullName');
+
+        function updateFullName() {
+            // const first = firstNameInput?.value.trim();
+            // const middle = middleNameInput?.value.trim();
+            // const last = lastNameInput?.value.trim();
+
+            // // Combine names with space, skip empty parts
+            // const fullName = [first, middle, last].filter(name => name).join(' ');
+            // fullNameInput.value = fullName;
+                 const first = firstNameInput?.value.trim() || '';
+        const middle = middleNameInput?.value.trim() || '';
+        const last = lastNameInput?.value.trim() || '';
+
+        const fullName = [first, middle, last].filter(name => name).join(' ');
+        if (fullNameInput) {
+            fullNameInput.value = fullName;
+        }
+        }
+
+        firstNameInput.addEventListener('input', updateFullName);
+        middleNameInput.addEventListener('input', updateFullName);
+        lastNameInput.addEventListener('input', updateFullName);
+    </script>
+} *@

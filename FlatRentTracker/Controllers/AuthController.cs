@@ -10,10 +10,10 @@ namespace FlatRentTracker.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IUserRepository _repo;
+        private readonly IUserServices _repo;
         private readonly IConfiguration _config;
 
-        public AuthController(IUserRepository repo, IConfiguration config)
+        public AuthController(IUserServices repo, IConfiguration config)
         {
             _repo = repo;
             _config = config;

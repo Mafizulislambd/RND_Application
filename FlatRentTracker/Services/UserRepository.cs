@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace FlatRentTracker.Services
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserServices
     {
         private readonly DapperContext _context;
 

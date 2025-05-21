@@ -24,7 +24,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews(); // or AddRazorPages()
 builder.Services.AddScoped<DapperContext>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserServices, UserRepository>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

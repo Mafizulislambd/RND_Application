@@ -138,7 +138,14 @@
                             </li>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <li class="nav-item dropdown">
+                                <span>Welcome, @User.Identity.Name!</span>
+                                <a href="/Account/Logout">Logout</a>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a href="/Admin">Admin Panel</a>
+                                }
+                                @*   <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Hello, @User.Identity.Name
                                     </a>
@@ -149,18 +156,21 @@
                                         <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
                                     </ul>
                                 </li>
+                            *@
                             }
                             else
                             {
-                                <li class="nav-item">
+                                  <li class="nav-item">
                                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
 
-                                    @*                                     <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                                @*                                     <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
  *@                                </li>
-
+                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Register">Register</a></li>
+                                
+                             
                             }
                         </ul>
-                       
+
                     </ul>
                 </div>
 
