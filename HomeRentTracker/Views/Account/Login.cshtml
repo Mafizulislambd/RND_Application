@@ -1,13 +1,14 @@
-﻿@model LoginViewModel
+﻿@using HomeRentTracker.Models.LoginEntity
+@model LoginViewModel
 
 <form asp-action="Login" method="post">
     <div>
-        <label asp-for="Username"></label>
-        <input asp-for="Username" />
+        <label asp-for="userName"></label>
+        <input asp-for="userName" />
     </div>
     <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" />
+        <label asp-for="userPassword"></label>
+        <input asp-for="userPassword" type="password" />
     </div>
     <button type="submit">Login</button>
 </form>

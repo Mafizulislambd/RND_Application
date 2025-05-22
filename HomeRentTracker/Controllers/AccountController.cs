@@ -26,21 +26,20 @@ namespace HomeRentTracker.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(Models.LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                UserRegistration user = await _userManager.FindByNameAsync(model.Username);
-                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+                UserRegistration user = await _userManager.FindByNameAsync(model.userName);
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.userPassword))
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     HttpContext.Session.SetString("Username", user.UserName);
                     HttpContext.Session.SetString("FullName", user.FullName);
-                    return RedirectToAction("Index", "Home");
+                    return Ok(new { message = "Success" });
                 }
 
-                ViewBag.Error = "Invalid credentials";
-                return View();
+                return BadRequest("Invalid credentials");
 
                 //var user = _userService.ValidateUser(model.Username, model.Password);
                 //if (user != null)
@@ -95,17 +94,8 @@ namespace HomeRentTracker.Controllers
             }
 
             return View(model);
-        }
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            Response.Cookies.Delete("UserId");
-            return RedirectToAction("Login");
-        }
-        public IActionResult LoginNew()
-        {
-            return View();
-        }
+        }     
+      
         [HttpPost]
         public async Task<IActionResult> LoginNew(string username, string password)
         {
@@ -113,7 +103,7 @@ namespace HomeRentTracker.Controllers
             if (user != null && await _userManager.CheckPasswordAsync(user, password))
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
             }
 
             ViewBag.Error = "Invalid credentials";
@@ -121,27 +111,16 @@ namespace HomeRentTracker.Controllers
 
         }
 
-        public async Task<IActionResult> LogoutNew()
+        public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login");
-        }
-        public IActionResult RegisterNew() => View();
+            HttpContext.Session.Clear();
+            Response.Cookies.Delete("UserId");
+            //   return        NoContent();
+            return Ok();
 
-        [HttpPost]
-        public async Task<IActionResult> RegisterNew(string username, string password,string email)
-        {
-            var user = new UserRegistration { Id = Guid.NewGuid().ToString(), UserName = username ,Email=email};
-            var result = await _userManager.CreateAsync(user, password);
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
-            }
-
-            ViewBag.Errors = result.Errors;
-            return View();
         }
+       
 
     }
 }

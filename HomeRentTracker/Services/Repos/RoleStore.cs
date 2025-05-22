@@ -49,7 +49,7 @@ namespace HomeRentTracker.Services.Repos
 
         public void Dispose()
         {
-            
+            GC.SuppressFinalize(this);
         }
 
         public Task<IdentityRole?> FindByIdAsync(string roleId, CancellationToken cancellationToken)

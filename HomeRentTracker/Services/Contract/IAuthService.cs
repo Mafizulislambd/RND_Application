@@ -4,6 +4,6 @@ namespace HomeRentTracker.Services.Contract
 {
     public interface IAuthService
     {
-        Task<LoginModel?> LoginAsync(string username, string password);
+        Task<LoginViewModel?> LoginAsync(string username, string password);
     }
 }

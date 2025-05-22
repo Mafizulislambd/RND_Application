@@ -61,6 +61,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     opt.User.RequireUniqueEmail = false;
 });
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

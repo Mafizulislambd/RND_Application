@@ -13,7 +13,7 @@ namespace FlatRentTracker.Controllers
             _userRepository = userRepository;
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
                 return PartialView("_LoginModal", model); // return modal with validation
@@ -29,7 +29,7 @@ namespace FlatRentTracker.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return PartialView("_LoginModal", new LoginModel());
+            return PartialView("_LoginModal", new LoginViewModel());
         }
     }
 }
