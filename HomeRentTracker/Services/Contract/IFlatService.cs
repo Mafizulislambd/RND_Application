@@ -1,6 +1,6 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
 
-namespace HomeRentTracker.Services
+namespace HomeRentTracker.Services.Contract
 {
     public interface IFlatService
     {

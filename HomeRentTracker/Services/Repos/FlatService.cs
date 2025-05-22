@@ -1,8 +1,9 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
+using HomeRentTracker.Services.Contract;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace HomeRentTracker.Services
+namespace HomeRentTracker.Services.Repos
 {
     public class FlatService : IFlatService
     {

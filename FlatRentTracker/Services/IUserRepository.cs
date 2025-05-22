@@ -2,7 +2,7 @@
 
 namespace FlatRentTracker.Services
 {
-    public interface IUserRepository
+    public interface IUserServices
     {
         Task<UserLoginResult> CheckLoginAsync(UserLoginRequest request);
     }

@@ -5,9 +5,11 @@ namespace HomeRentTracker.Models.LoginEntity
     public class LoginViewModel
     {
         [Required]
-        public string userID { get; set; }
+        public string userName { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string userPassword { get; set; } 
+        public bool RememberMe { get; set; }
     }
 }

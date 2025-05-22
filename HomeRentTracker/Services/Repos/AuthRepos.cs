@@ -1,0 +1,129 @@
+﻿using Dapper;
+using HomeRentTracker.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace HomeRentTracker.Services.Repos
+{
+    public class AuthRepos : IUserStore<UserRegistration>, IUserPasswordStore<UserRegistration>
+    {
+        private readonly string _connectionString;
+        private readonly IConfiguration _config;
+
+
+        public AuthRepos(IConfiguration configuration, IConfiguration config)
+        {
+            _connectionString = configuration.GetConnectionString("AppConnection");
+            _config = config;
+        }
+        private IDbConnection Connection => new SqlConnection(_config.GetConnectionString("AppConnection"));
+        public async Task<UserRegistration?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        {
+            using var conn = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("[sp_GetUserInofByUsername]", conn)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@UserName", normalizedUserName);
+            await conn.OpenAsync(cancellationToken);
+            var reader = await cmd.ExecuteReaderAsync(cancellationToken);
+
+            if (await reader.ReadAsync())
+            {
+                return new UserRegistration
+                {
+                    Id = reader["UserId"].ToString(),
+                    UserName = reader["UserName"].ToString(),
+                    NormalizedUserName = reader["UserName"].ToString(),
+                    PasswordHash = reader["UserPassword"].ToString(),
+                    UserFirstName = reader["UserFirstName"].ToString(),
+                    UserMiddleName = reader["UserMiddleName"].ToString(),
+                    UserLastName = reader["UserLastName"].ToString(),
+                    FullName = reader["UserFullName"].ToString(),
+                    Email = reader["userEmail"].ToString(),
+                    PhoneNumber = reader["UserPhone"].ToString(),
+                };
+            }
+
+            return null;
+        }
+        //Same as above but with a different method name with dapper
+        public async Task<IdentityUser> FindByNameAsyncByDepper(string normalizedUserName, CancellationToken cancellationToken)
+        {
+            using var conn = Connection;
+            return await conn.QuerySingleOrDefaultAsync<UserRegistration>(
+                "sp_GetUserByUsername",
+                new { UserName = normalizedUserName },
+                commandType: CommandType.StoredProcedure);
+        }
+        public async Task<IdentityResult> CreateAsync(UserRegistration user, CancellationToken cancellationToken)
+        {
+            //using var conn = Connection;
+            //await conn.ExecuteAsync("sp_CreateUser", new
+            //{
+            //    user.Id,
+            //    user.UserName,
+            //    user.PasswordHash,
+            //    user.Email,
+
+
+            //}, commandType: CommandType.StoredProcedure);
+
+            RegisterUser(user.UserName, user.UserFirstName, user.UserMiddleName, user.UserLastName, user.FullName, user.Email, user.PhoneNumber, user.PasswordHash);
+            return IdentityResult.Success;
+        }
+        //same as above but with a different method name
+        //public Task<IdentityResult> CreateAsync(IdentityUser user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
+
+
+        public Task<string> GetPasswordHashAsync(UserRegistration user, CancellationToken cancellationToken) =>
+        Task.FromResult(user.PasswordHash);
+
+        public Task<bool> HasPasswordAsync(UserRegistration user, CancellationToken cancellationToken) =>
+            Task.FromResult(user.PasswordHash != null);
+        // Implement other required members, e.g.:
+        public Task<IdentityResult> DeleteAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
+        public Task<IdentityResult> UpdateAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
+        public Task<string> GetUserIdAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(user.Id);
+        public Task<string> GetUserNameAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(user.UserName);
+        public Task SetUserNameAsync(UserRegistration user, string userName, CancellationToken cancellationToken) { user.UserName = userName; return Task.CompletedTask; }
+        public Task SetNormalizedUserNameAsync(UserRegistration user, string normalizedName, CancellationToken cancellationToken) { user.NormalizedUserName = normalizedName; return Task.CompletedTask; }
+        public Task<string> GetNormalizedUserNameAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(user.NormalizedUserName);
+        public void Dispose() { }
+
+        public Task<UserRegistration?> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetPasswordHashAsync(UserRegistration user, string? passwordHash, CancellationToken cancellationToken)
+        {
+            user.PasswordHash = passwordHash;
+            return Task.CompletedTask;
+        }
+        public int RegisterUser(string username, string userFirstName, string userMName, string userLName, string userFullName, string userEmail, String userPhone, string password)
+        {
+            //string hashedPassword = PasswordHelper.HashPassword(password);
+            using var conn = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("sp_RegisterUser", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@UserName", username);
+            cmd.Parameters.AddWithValue("@UserFirstName", userFirstName);
+            cmd.Parameters.AddWithValue("@UserMiddleName", userMName);
+            cmd.Parameters.AddWithValue("@UserLastName", userLName);
+            cmd.Parameters.AddWithValue("@UserFullName", userFullName);
+            cmd.Parameters.AddWithValue("@UserEmail", userEmail);
+            cmd.Parameters.AddWithValue("@UserPhone", userPhone);
+            cmd.Parameters.AddWithValue("@PasswordHash", password);
+
+            conn.Open();
+            return (int)cmd.ExecuteNonQuery();
+        }
+
+    }
+}

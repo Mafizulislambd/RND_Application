@@ -1,5 +1,5 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
-using HomeRentTracker.Services;
+using HomeRentTracker.Services.Contract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,11 +1,13 @@
 ﻿@using HomeRentTracker.Models.LoginEntity
+@using HomeRentTracker.Models;
 @* Views/Account/_LoginModal.cshtml *@
-@model LoginModel
+@* @model LoginModel *@
+@model LoginViewModel
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-controller="LoginModel" asp-action="Login" method="post" id="loginForm">
+            <form id="loginForm" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="loginModalLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -13,13 +15,13 @@
                 <div class="modal-body">
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="mb-3">
-                        <label asp-for="userID" class="form-label"></label>
-                        <input asp-for="userID" class="form-control" />
-                        <span asp-validation-for="userID" class="text-danger"></span>
+                        <label asp-for="userName" class="form-label"></label>
+                        <input asp-for="userName" name="userName" class="form-control" />
+                        <span asp-validation-for="userName" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label asp-for="userPassword" class="form-label"></label>
-                        <input asp-for="userPassword" class="form-control" />
+                        <input asp-for="userPassword" name="userPassword" class="form-control" />
                         <span asp-validation-for="userPassword" class="text-danger"></span>
                     </div>
                     <div class="form-check">
@@ -30,13 +32,124 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Login</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <div id="loginError" class="text-danger mt-2"></div>
                 </div>
             </form>
         </div>
     </div>
-</div> 
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginForm = document.getElementById('loginForm');
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = {
+                    userName: document.querySelector("input[name=userName]").value,
+                    userPassword: document.querySelector("input[name=userPassword]").value,
+                    RememberMe: document.querySelector("input[name=RememberMe]")?.checked || false
+                };
+
+                fetch('/Account/Login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(formData)
+                }).then(res => {
+                    if (res.ok) {
+                        $('#loginModal').modal('hide');
+                        $("#headerContainer").load("/Shared/ReloadHeader");
+                    } else {
+                        return res.text().then(txt => {
+                            document.getElementById("loginError").textContent = txt || "Login failed";
+                        });
+                    }
+                }).catch(err => {
+                    document.getElementById("loginError").textContent = "Unexpected error occurred.";
+                    console.error(err);
+                });
+            });
+        }
+    });
+</script>
+@* 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $("#loginForm").submit(function (e) {
+            e.preventDefault();
+
+            var formData = {
+                username: $("input[name=userName]").val(),
+                password: $("input[name=userPassword]").val()
+            };
+
+            $.ajax({
+                debugger;
+                type: "POST",
+                url: "/Account/Login",
+                data: formData,
+                success: function () {
+                    // ✅ Close modal on success
+                    $('#loginModal').modal('hide');
+
+                    // Optional: reload or redirect
+                    location.reload(); // or window.location.href = "/Home/Index";
+                },
+                error: function (xhr) {
+                    $("#loginError").text(xhr.responseText || "Login failed");
+                }
+            });
+        });
+    </script>
+
+} *@
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@* 
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $("#loginForm").on("submit", function (e) {
+                e.preventDefault(); // Prevent default form submission
+                debugger;
+                
+                var formData = {
+                    userName: $("input[name='userName']").val(),
+                    userPassword: $("input[name='userPassword']").val(),
+                    RememberMe: $("input[name='RememberMe']").is(":checked")
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/Login",
+                    data: formData,
+                    success: function () {
+                        $('#loginModal').modal('hide');
+                        location.reload(); // or redirect as needed
+                    },
+                    error: function (xhr) {
+                        console.error(xhr);
+                        // You must have an element with id="loginError" for this to show
+                        $("#loginError").text(xhr.responseText || "Login failed");
+                    }
+                });
+            });
+        });
+                success: function () {
+            $('#loginModal').modal('hide');
+
+            // Reload header to reflect login status
+            $("#headerContainer").load("/Shared/ReloadHeader");
+        }
+    </script> *@
+    
+
 }
