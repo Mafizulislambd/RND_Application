@@ -1,0 +1,211 @@
+﻿@* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HomeRentTracker</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HomeRentTracker.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomeRentTracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - HomeRentTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html> *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Flat Rent Tracker</title>
+    <link href="~/lib/bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FlatRentTracker.styles.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent double scroll */
+        }
+
+        /* Fixed header height */
+        header {
+            height: 58px;
+            bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Fixed footer height */
+        footer {
+            height: 60px;
+        }
+
+        .layout-container {
+            position: fixed;
+            top: 50px; /* header height */
+            bottom: 60px; /* footer height */
+            left: 0;
+            right: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            overflow-y: auto;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .fx-l {
+            top: 0px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Fixed Header -->
+ @*    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Flat Rent</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img style="height:30px;width:30px;" alt="Home" src="~/images/Home.png" /></a>
+                        </li>
+
+                        @*  <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Flat" asp-action="Create">Flat Rent Receive Entry</a>
+                        </li> *@
+                    </ul>
+
+                    <!-- Right side login/profile -->
+@*                     <ul class="navbar-nav ms-auto">
+ *@                        <!-- If user not logged in -->
+                        @* <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                        </li> *@
+                      @*   <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img style="height:20px;width:20px;" alt="Contact" src="~/images/contact.jpg" />Contact</a>
+                            </li> *@
+                           @*  @if (User.Identity.IsAuthenticated)
+                            {<li class="nav-item">
+                                    <span class="nav-link text-dark">Welcome, @User.Identity.Name</span>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark"  asp-controller="Account" asp-action="LogoutNew">Logout</a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a href="/Admin">Admin Panel</a>
+                                } *@
+                                @*   <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Hello, @User.Identity.Name
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">Profile</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Settings">Settings</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            *@
+                           @*  }
+                            else
+                            {
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a> *@
+
+                                @*                                     <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+ *@                                @* </li>
+                                <li><a class="nav-link" asp-controller="Account" asp-action="Register">Register</a></li>
+                                
+                             
+                            }
+                        </ul>
+
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>  *@
+    <div id="headerContainer">
+        @await Html.PartialAsync("_HeaderPartial")
+    </div>
+    <div class="wrapper">
+        <div class="sidebar">
+            @await Html.PartialAsync("_Sidebar")
+        </div>
+        <div class="content">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <footer class="footer text-muted fixed-bottom bg-light border-top">
+        <div class="container text-center">
+            &copy; <label>2025</label> - Home Rent Tracker
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Html.PartialAsync("_LoginModal", new HomeRentTracker.Models.LoginEntity.LoginViewModel())
+
+
+</body>
+</html>

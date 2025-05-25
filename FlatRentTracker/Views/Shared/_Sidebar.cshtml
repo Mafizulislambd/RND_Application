@@ -1,0 +1,57 @@
+﻿@* Views/Shared/_Sidebar.cshtml *@
+
+<nav class="sidebar bg-light">
+    <ul class="nav flex-column pt-3">
+        <!-- Collapse 1 -->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#menuFlat" role="button" aria-expanded="false" aria-controls="menuFlat">
+                Flat Options ▼
+            </a>
+            <div class="collapse ps-3" id="menuFlat">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Flat" asp-action="Index">All Flat List</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Flat" asp-action="Create">Flat Rent Receive Entry</a>
+                    </li>
+
+                    <!-- Nested collapse -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#nestedFlatTools" role="button" aria-expanded="false" aria-controls="nestedFlatTools">
+                            Tools ▼
+                        </a>
+                        <div class="collapse ps-3" id="nestedFlatTools">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Add Tenant</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Lease Management</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Collapse 2 -->
+        <li class="nav-item mt-2">
+            <a class="nav-link" data-bs-toggle="collapse" href="#menuReports" role="button" aria-expanded="false" aria-controls="menuReports">
+                Reports ▼
+            </a>
+            <div class="collapse ps-3" id="menuReports">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Monthly Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Annual Summary</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>

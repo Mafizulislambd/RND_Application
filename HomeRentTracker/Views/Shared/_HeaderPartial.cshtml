@@ -1,0 +1,89 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var user = HttpContextAccessor.HttpContext?.User;
+}
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Flat Rent</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img style="height:30px;width:30px;" alt="Home" src="~/images/Home.png" />
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Right side -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img style="height:20px;width:20px;" alt="Contact" src="~/images/contact.jpg" />Contact
+                        </a>
+                    </li>
+
+                    @if (user?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link text-dark">Welcome, @user.Identity.Name</span>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" id="logoutButton" class="nav-link text-dark">Logout</a>
+                        </li>
+
+                        @if (user.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Admin">Admin Panel</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <form id="logoutForm" method="post" style="display:none;">
+        @Html.AntiForgeryToken()
+    </form>
+</header>
+<script>
+    $(document).ready(function () {
+        $("#logoutButton").click(function (e) {
+            e.preventDefault();
+            console.log("test");
+            const token = $('#logoutForm input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Account/Logout",
+                headers: {
+                    "RequestVerificationToken": token
+                },
+                success: function () {
+                    // ✅ Optionally reload header or redirect
+                   // location.reload(); // or replace with $("#headerContainer").load(...)
+                      $("#headerContainer").load("/Shared/ReloadHeader");
+                },
+                error: function () {
+                    alert("Logout failed.");
+                }
+            });
+        });
+    });
+</script>
+

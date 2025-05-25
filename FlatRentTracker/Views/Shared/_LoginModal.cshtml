@@ -1,0 +1,41 @@
+﻿@* Views/Account/_LoginModal.cshtml *@
+@model LoginModel
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-controller="LoginModel" asp-action="Login" method="post" id="loginForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="userID" class="form-label"></label>
+                        <input asp-for="userID" class="form-control" />
+                        <span asp-validation-for="userID" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="userPassword" class="form-label"></label>
+                        <input asp-for="userPassword" class="form-control" />
+                        <span asp-validation-for="userPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

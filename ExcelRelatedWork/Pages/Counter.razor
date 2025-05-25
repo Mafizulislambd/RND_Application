@@ -1,0 +1,43 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="DownloadExcelData">DownloadExcelData</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    private void DownloadExcelData()
+    {
+        
+    }
+    public class test1
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }    
+        public string userInfo { get; set; }
+    }
+    List<test1> listTest = new List<test1>
+    {
+        new test1{ID=1,Name="abc",userInfo="tetee" },
+        new test1{ID=1,Name="abc",userInfo="tetee" },
+        new test1{ID=2,Name="abc",userInfo="tetee" },
+        new test1{ID=2,Name="abc",userInfo="tetee" },
+        new test1{ID=4,Name="abc",userInfo="tetee" },
+        new test1{ID=5,Name="abc",userInfo="tetee" },
+        new test1{ID=6,Name="abc",userInfo="tetee" },
+        new test1{ID=7,Name="abc",userInfo="tetee" },
+        new test1{ID=8,Name="abc",userInfo="tetee" },
+        new test1{ID=9,Name="abc",userInfo="tetee" },
+        new test1{ID=10,Name="abc",userInfo="tetee" }
+    };
+}
