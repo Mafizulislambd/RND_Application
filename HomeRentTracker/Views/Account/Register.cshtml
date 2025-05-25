@@ -1,51 +1,289 @@
-﻿@model UserRegistration
+﻿@model UserInfo
+@* <style>
+    body {
+        position: relative;
+        max-width: 25rem;
+        margin: 2rem auto;
+    }
 
-<form asp-action="Register" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
+    a {
+        display: block;
+        padding: 10px;
+        position: absolute;
+        z-index: -1;
+        top: 1rem;
+        left: 100%;
+        margin-left: -62px;
+        transition: all .2s;
+    }
 
-    <div class="form-group">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" class="form-control" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
+        a:hover {
+            margin-left: 0;
+        }
 
-    <div class="form-group">
-        <label asp-for="UserFirstName"></label>
-        <input asp-for="UserFirstName" class="form-control" id="UserFirstName" />
-        <span asp-validation-for="UserFirstName" class="text-danger"></span>
-    </div>
+  </style> *@
+  <style>
+/*     .form-floating > .form-control:focus ~ label,
+    .form-floating > .form-control:not(:placeholder-shown) ~ label,
+    .form-floating > .form-select ~ label {
+        opacity: .65;
+        transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+    } */
+    /**
+     * Copyright (c) 2020. ExacTI Technology Solutions
+     * MIT License.
+     * https://exacti.com.br
+     * floating-labels - https://github.com/exacti/floating-labels
+     */
 
-    <div class="form-group">
-        <label asp-for="UserMiddleName"></label>
-        <input asp-for="UserMiddleName" class="form-control" id="UserMiddleName" />
-        <span asp-validation-for="UserMiddleName" class="text-danger"></span>
-    </div>
+   /*  .floating-label-input {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
 
-    <div class="form-group">
-        <label asp-for="UserLastName"></label>
-        <input asp-for="UserLastName" class="form-control" id="UserLastName" />
-        <span asp-validation-for="UserLastName" class="text-danger"></span>
-    </div>
+        .floating-label-input input {
+            width: 100%;
+            padding: 1rem 0.5rem 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
 
-    <div class="form-group">
-        <label asp-for="FullName"></label>
-        <input asp-for="FullName" class="form-control" id="FullName" readonly />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
+        .floating-label-input label {
+            position: absolute;
+            top: 50%;
+            left: 0.75rem;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 0.25rem;
+            color: #999;
+            transition: 0.2s ease all;
+            pointer-events: none;
+        }
 
-    <div class="form-group">
-        <label asp-for="UserEmail"></label>
-        <input asp-for="UserEmail" class="form-control" />
-        <span asp-validation-for="UserEmail" class="text-danger"></span>
-    </div>
+        .floating-label-input input:focus + label,
+        .floating-label-input input:not(:placeholder-shown):valid + label {
+            top: -0.6rem;
+            left: 0.5rem;
+            font-size: 0.75rem;
+            color: #007bff;
+        } */
+   /*  .border-label-input {
+        position: relative;
+        margin-bottom: 2rem;
+    }
 
-    <div class="form-group">
-        <label asp-for="UserPhone"></label>
-        <input asp-for="UserPhone" class="form-control" />
-        <span asp-validation-for="UserPhone" class="text-danger"></span>
-    </div>
+        .border-label-input input {
+            width: 100%;
+            padding: 1rem 0.75rem 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            background-color: white;
+        }
 
-   @*  <div class="form-group">
+        .border-label-input label {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 0.25rem;
+            color: #666;
+            font-size: 0.9rem;
+            pointer-events: none;
+            transition: 0.2s ease all;
+        }
+
+        /* Optional: animate on focus or filled */
+        /* .border-label-input input:focus + label,
+        .border-label-input input:not(:placeholder-shown) + label {
+            color: #007bff;
+        }
+
+.form-floating-border {
+        position: relative;
+        margin-top: 1.5rem;
+    }
+
+    .form-floating-border input.form-control {
+        width: 100%;
+        padding: 1rem 0.75rem 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: #fff;
+        outline: none;
+    }
+
+    .form-floating-border label {
+        position: absolute;
+        left: 12px;
+        top: 0;
+        transform: translateY(-50%);
+        background: #fff;
+        padding: 0 5px;
+        color: #666;
+        font-size: 0.85rem;
+        pointer-events: none;
+        transition: 0.2s ease all;
+    }
+
+    .form-floating-border input.form-control:focus + label,
+    .form-floating-border input.form-control:not(:placeholder-shown) + label {
+        color: #007bff;
+    }
+     *//*  .floating-label-border {
+        position: relative;
+        margin-top: 1.5rem;
+    }
+
+        .floating-label-border input {
+            padding: 1rem 0.75rem 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            background-color: white;
+        }
+
+        .floating-label-border label {
+            position: absolute;
+            top: 0;
+            left: 12px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 0 5px;
+            font-size: 0.85rem;
+            color: #777;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .floating-label-border input:focus + label,
+        .floating-label-border input:not(:placeholder-shown) + label {
+            color: #007bff;
+        }
+ */
+    .custom-floating {
+        position: relative;
+        margin-top: 2rem;
+    }
+
+        .custom-floating input {
+            width: 100%;
+            padding: 1rem 0.75rem 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .custom-floating label {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 5px;
+            transition: 0.2s ease all;
+            color: #666;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        /* When input is focused or has value */
+        .custom-floating input:focus + label,
+        .custom-floating input:not(:placeholder-shown) + label {
+            top: -8px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: #007bff;
+        }
+
+  </style>
+<div class="container">
+    <h1 style="text-align:center;background-color:antiquewhite">SignUp</h1>
+    <div class="row">
+        
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+        
+                <div class="row g-sm-3">
+                <div class="form-group col-md-12">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+              @*   <div class="floating-label-input">
+                    <input type="text" id="userName" required>
+                    <label for="userName">Username</label>
+                </div> *@
+            @*     <div class="form-floating-border col-md-4">
+                    <input asp-for="UserFirstName" class="form-control" id="UserFirstName" placeholder=" " />
+                    <label for="UserFirstName">@Html.DisplayNameFor(m => m.UserFirstName)</label>
+                    <span asp-validation-for="UserFirstName" class="text-danger"></span>
+                </div> *@
+              @*   <div class="form-group floating-label-border">
+                    <input asp-for="UserFirstName" class="form-control" placeholder=" " />
+                    <label asp-for="UserFirstName"></label>
+                    <span asp-validation-for="UserFirstName" class="text-danger"></span>
+                </div> *@
+                <div class="form-group custom-floating">
+                    <input asp-for="UserFirstName" class="form-control" placeholder=" " />
+                    <label asp-for="UserFirstName"></label>
+                    <span asp-validation-for="UserFirstName" class="text-danger"></span>
+                </div>
+              @*   <div class="form-group floating-label-border">
+                    <input type="text" class="form-control" id="UserFirstName" placeholder=" " />
+                    <label for="UserFirstName">First Name</label>
+                </div> *@
+            @*     <div class="form-label-group outline">
+                    <input type="text" id="tt8" class="form-control shadow-none" placeholder="Floating Label" />
+                    <span><label for="tt8">Floating Label</label></span>
+                </div> *@		<div class="form-floating-border">
+                    <input type="text" id="tt8" class="form-control shadow-none" placeholder="Floating Label" />
+                    <label for="tt8">Floating Label</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="UserFirstName"></label>
+                    <input asp-for="UserFirstName" class="form-control" id="UserFirstName" />
+                    <span asp-validation-for="UserFirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="UserMiddleName"></label>
+                    <input asp-for="UserMiddleName" class="form-control" id="UserMiddleName" />
+                    <span asp-validation-for="UserMiddleName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="UserLastName"></label>
+                    <input asp-for="UserLastName" class="form-control" id="UserLastName" />
+                    <span asp-validation-for="UserLastName" class="text-danger"></span>
+                </div>
+
+                    <div class="form-group col-md-12">
+                    <label asp-for="FullName"></label>
+                    <input asp-for="FullName" class="form-control" id="FullName" readonly />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                    <div class="form-group col-md-6">
+                    <label asp-for="UserEmail"></label>
+                    <input asp-for="UserEmail" class="form-control" />
+                    <span asp-validation-for="UserEmail" class="text-danger"></span>
+                </div>
+
+                    <div class="form-group col-md-6">
+                    <label asp-for="UserPhone"></label>
+                    <input asp-for="UserPhone" class="form-control" />
+                    <span asp-validation-for="UserPhone" class="text-danger"></span>
+                </div>
+
+                @*  <div class="form-group">
         <label asp-for="UserPassword"></label>
         <input asp-for="UserPassword" type="password" class="form-control" />
         <span asp-validation-for="UserPassword" class="text-danger"></span>
@@ -56,19 +294,63 @@
         <input asp-for="ConfirmPassword" type="password" class="form-control" />
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div> *@
-    <div class="form-group">
-        <label asp-for="UserPassword"></label>
-        <input asp-for="UserPassword" type="password" id="UserPassword" class="form-control" />
-        <span asp-validation-for="UserPassword" class="text-danger"></span>
-    </div>
+                    <div class="form-group col-md-6">
+                    <label asp-for="UserPassword"></label>
+                    <input asp-for="UserPassword" type="password" id="UserPassword" class="form-control" />
+                    <span asp-validation-for="UserPassword" class="text-danger"></span>
+                </div>
 
-    <div class="form-group">
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" type="password" id="ConfirmPassword" class="form-control" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+                    <div class="form-group col-md-6">
+                    <label asp-for="ConfirmPassword "></label>
+                    <input asp-for="ConfirmPassword" type="password" id="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+               @*  <div class="form-floating mb-3">
+                    <input asp-for="UserEmail" class="form-control" id="UserEmail" placeholder="Email" />
+                    <label for="UserEmail">Email</label>
+                </div> *@
+            </div>
+         @*    <div class="row">
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                        <input asp-for="UserFirstName" class="form-control" id="UserFirstName" placeholder="First Name" />
+                        <label for="UserFirstName">First Name</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                        <input asp-for="UserMiddleName" class="form-control" id="UserMiddleName" placeholder="Middle Name" />
+                        <label for="UserMiddleName">Middle Name</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                        <input asp-for="UserLastName" class="form-control" id="UserLastName" placeholder="Last Name" />
+                        <label for="UserLastName">Last Name</label>
+                    </div>
+                </div>
+            </div> *@
+        @*     <div class="form-group input-group">
+                <span class="has-float-label">
+                    <input class="form-control" id="first" type="text" placeholder="Name" />
+                    <label for="first">First</label>
+                </span>
+                <label class="has-float-label">
+                    <input class="form-control" type="text" placeholder="Surname" />
+                    <span>Last</span>
+                </label>
+            </div> *@
+          
+
+            <br />
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+            </form>
+        </div>
+   
+</div>
+
 @* @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

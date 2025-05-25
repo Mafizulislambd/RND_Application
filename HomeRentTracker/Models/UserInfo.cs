@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeRentTracker.Models
 {
-    public class UserRegistration:IdentityUser
+    public class UserInfo:IdentityUser
     {
         public bool IsSuccess { get; set; }        
         public string? UserId { get; set; }
@@ -13,31 +13,35 @@ namespace HomeRentTracker.Models
         [MaxLength(500)]
         public string? UserName { get; set; }
         [Required]
-        [DisplayName("User First Name")]
+        [DisplayName("First Name")]
         [MaxLength(50)]
         public string? UserFirstName { get; set; }
-        [DisplayName("User Middle Name")]
+        [DisplayName("Middle Name")]
         [MaxLength(50)]
         public string UserMiddleName { get; set; }
-        [DisplayName("User Last Name")]
+        [DisplayName("Last Name")]
         [MaxLength(50)]
         public string UserLastName { get; set; }
         [Required]
-        [DisplayName("User Full Name")]
+        [DisplayName("Full Name")]
         [MaxLength(100)]
         public string FullName { get; set; }
         [Required]
+        [DisplayName("Email")]
         public string? UserEmail { get; set; }
         [Required]
+        [DisplayName("Phone Number")]
         public string? UserPhone { get; set; }
         public int UserType { get; set; }  
         public int IsUserActive { get; set; }
         [Required]
         [DataType(DataType.Password)]
+        [DisplayName("Password")]
         public string UserPassword { get; set; } 
         [Required]
         [DataType(DataType.Password)]
         [Compare("UserPassword", ErrorMessage = "Passwords do not match.")]
+        [DisplayName("Confirm Password")]
         public string ConfirmPassword { get; set; }
         public string? ErrorMessage { get; set; }
     }
