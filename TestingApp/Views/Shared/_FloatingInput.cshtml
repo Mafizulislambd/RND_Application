@@ -1,0 +1,7 @@
+﻿@model FloatingInputModel
+
+<div class="form-floating-border mb-3">
+    <input asp-for="@Model.For" class="form-control" placeholder=" " type="@Model.Type" />
+    <label asp-for="@Model.For"></label>
+    <span asp-validation-for="@Model.For" class="text-danger"></span>
+</div>

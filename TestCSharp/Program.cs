@@ -477,25 +477,25 @@ Console.WriteLine(val3);
 Func<int, int> func = FuncDelegate.DoubleValue;
 
 #endregion
+#region ExtensionMethod 
+Console.WriteLine("Extension Method Example");
+ExtensionMethod ext = new ExtensionMethod();
+ext.M4();
+ext.M5(" is an extension method example.");
+#endregion
+#region Early Binding
+Console.WriteLine("Early Binding Example");
+EarlyBinding earlyBinding = new EarlyBinding();
+earlyBinding.details("Test", "test2");
+Console.WriteLine("Early Binding Example with Method Overloading");
+LateBinding lateBinding = new LateBinding();
+lateBinding.DataType();
+#endregion
+#region Reflection
+Console.WriteLine("Reflection Example");
+ReflactionDemo reflectionExample = new ReflactionDemo();
+reflectionExample.ReflectionType();
+reflectionExample.ReflectionMethodInfo();
+reflectionExample.ReflectionAssemblyTypes();
+#endregion
 Console.ReadKey();
-public class Student
-{
-    // Declare name field  
-    private string name = "GeeksforGeeks";
-
-    // Declare Name property  
-    public string Name
-    {
-        // 'get' is a contextual keyword 
-        get
-        {
-            return name;
-        }
-
-        // 'set' is a contextual keyword 
-        set
-        {
-            name = value;
-        }
-    }
-}
