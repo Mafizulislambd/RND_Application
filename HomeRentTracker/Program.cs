@@ -15,7 +15,10 @@ builder.Services.AddIdentity<UserInfo, IdentityRole>()
     .AddDefaultTokenProviders();
 builder.Services.AddScoped<IUserStore<UserInfo>, AuthRepos>();
 builder.Services.AddScoped<IPasswordHasher<UserInfo>, PasswordHasher<UserInfo>>();
-builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>();
+builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>(); 
+builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
+builder.Services.AddScoped<IFlatInfo, FlatInfoRepo>();
+builder.Services.AddScoped<ILocationService, LocationService>();
 
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddDefaultTokenProviders();

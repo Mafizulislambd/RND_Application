@@ -1,0 +1,67 @@
+﻿@using HomeRentTracker.Models.Owner
+@model OwnerInfo
+@{
+    ViewData["Title"] = "Edit Owner";
+}
+<h2>Edit Owner</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="OwnerID" />
+
+    <!-- Repeat same input structure as Create.cshtml -->
+    <div class="form-group">
+        <label asp-for="OwnerName"></label>
+        <input asp-for="OwnerName" class="form-control" />
+        <span asp-validation-for="OwnerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OwnerEmail"></label>
+        <input asp-for="OwnerEmail" class="form-control" />
+        <span asp-validation-for="OwnerEmail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OwnerPhone"></label>
+        <input asp-for="OwnerPhone" class="form-control" />
+        <span asp-validation-for="OwnerPhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OwnerNID"></label>
+        <input asp-for="OwnerNID" class="form-control" />
+        <span asp-validation-for="OwnerNID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OwnerAddress"></label>
+        <input asp-for="OwnerAddress" class="form-control" />
+        <span asp-validation-for="OwnerAddress" class="text-danger"></span>
+    </div>  
+        <input asp-for="OwernerImage" type="hidden" />
+@*     <div class="form-group">
+        <label>Upload Image</label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+    </div> *@
+  
+
+        <!-- Other fields -->
+
+        <div class="form-group">
+            <label>Upload New Image (optional)</label>
+            <input asp-for="ImageFile" type="file" class="form-control" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.OwernerImage))
+        {
+            <div class="form-group">
+                <label>Current Image</label><br />
+                <img src="@Model.OwernerImage" width="100" />
+            </div>
+        }      
+
+@*    @Html.EditorForModel()
+ *@
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

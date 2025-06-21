@@ -498,4 +498,32 @@ reflectionExample.ReflectionType();
 reflectionExample.ReflectionMethodInfo();
 reflectionExample.ReflectionAssemblyTypes();
 #endregion
+#region Chaining Constractor
+Console.WriteLine("Chaining Constractor");
+ChainingConstractor cConstractor = new ChainingConstractor("Sumon", 18, 18);
+Console.WriteLine(cConstractor.Volume()
+);
+#endregion
+#region CopyConstractor
+Console.WriteLine("Copy Constractor");
+CopyConstractor coConstractor = new CopyConstractor("Sumon");
+CopyConstractor ck = new CopyConstractor(coConstractor);
+Console.WriteLine(ck.p1);
+CopyConstractor cC = new CopyConstractor(123,20);
+CopyConstractor ccC = new CopyConstractor(cC, cC);
+Console.WriteLine(ccC.p3 +"To "+ccC.p4);
+#endregion
+#region Virtual Method
+Console.WriteLine("Virtual Method");
+Dogy d = new Dogy();
+d.Move();
+d.Eat();
+d.Bark();
+VirtualMethod virtualMethod = new VirtualMethod();
+d.show();
+virtualMethod.show();
+virtualMethod=new Dogy();
+virtualMethod.show();
+//virtualMethod.Move();
+#endregion
 Console.ReadKey();

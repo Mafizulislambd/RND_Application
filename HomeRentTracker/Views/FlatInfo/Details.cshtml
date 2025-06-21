@@ -1,0 +1,42 @@
+﻿@model HomeRentTracker.Models.FlatInfo.FlatInformation
+
+<h2>Address Details</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Road No</dt>
+        <dd class="col-sm-9">@Model.RoadNo</dd>
+
+        <dt class="col-sm-3">Block No</dt>
+        <dd class="col-sm-9">@Model.BlockNo</dd>
+
+        <dt class="col-sm-3">Building No</dt>
+        <dd class="col-sm-9">@Model.BuildingNo</dd>
+
+        <dt class="col-sm-3">Flat No</dt>
+        <dd class="col-sm-9">@Model.FlatNo</dd>
+
+        <dt class="col-sm-3">Place</dt>
+        <dd class="col-sm-9">@Model.PlaceName</dd>
+
+        <dt class="col-sm-3">Post Office</dt>
+        <dd class="col-sm-9">@Model.PostOfficeId</dd>
+
+        <dt class="col-sm-3">SubDistrict</dt>
+        <dd class="col-sm-9">@Model.SubDistrictId</dd>
+
+        <dt class="col-sm-3">District</dt>
+        <dd class="col-sm-9">@Model.DistrictId</dd>
+
+        <dt class="col-sm-3">Division</dt>
+        <dd class="col-sm-9">@Model.DivisionId</dd>
+
+        <dt class="col-sm-3">Country</dt>
+        <dd class="col-sm-9">@Model.CountryId</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>
+

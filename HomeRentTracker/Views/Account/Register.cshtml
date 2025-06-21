@@ -272,7 +272,7 @@
                     <span asp-validation-for="UserFirstName" class="text-danger"></span>
                 </div>   *@      
                 <div class="form-group floating-label col-md-4">                   
-                    <input asp-for="UserFirstName" class="form-control" id="UserFirstName" placeholder=" " />
+                    <input asp-for="UserFirstName" class="form-control" id="UserFirstName" placeholder=" "/>
                      <label asp-for="UserFirstName"></label>
                     <span asp-validation-for="UserFirstName" class="text-danger"></span>
                 </div>
@@ -392,7 +392,7 @@
                     message.classList.remove("text-danger");
                     message.classList.add("text-success");
                 } else {
-                     debugger;
+                   
                     message.textContent = "Passwords do not match ✘";
                     message.classList.remove("text-success");
                     message.classList.add("text-danger");

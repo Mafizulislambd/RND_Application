@@ -1,10 +1,13 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
+using HomeRentTracker.Models.Owner;
 
 namespace HomeRentTracker.Services.Contract
 {
     public interface IFlatService
     {
         Task<IEnumerable<Flat>> GetAllFlatsAsync();
+        Task<List<OwnerInfo>> GetOwnerList();
+
         Task<Flat> GetFlatByIdAsync(int id);
         Task InsertFlatAsync(Flat flat);
         Task UpdateFlatAsync(Flat flat);

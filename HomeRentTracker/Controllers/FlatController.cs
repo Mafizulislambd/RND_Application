@@ -1,7 +1,10 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
+using HomeRentTracker.Models.Owner;
 using HomeRentTracker.Services.Contract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol.Core.Types;
 
 namespace HomeRentTracker.Controllers
 {
@@ -32,9 +35,22 @@ namespace HomeRentTracker.Controllers
             return View(flat);
         }
 
-        public IActionResult Create()
+        public async Task< IActionResult> Create() // This method is for rendering the Create view.
         {
-            return View();
+            var owners = _flatService.GetOwnerList().Result; // Ensure the task is awaited or resolved
+            var viewModel = new FlatViewModel
+            {
+                OwnerList = owners.Select(o => new SelectListItem
+                {
+                    Value = o.OwnerName.ToString(),
+                    Text = o.OwnerName
+                }).ToList(),
+               
+
+            };
+            
+
+            return View(viewModel); // Pass the viewModel to the view
         }
 
         [HttpPost]

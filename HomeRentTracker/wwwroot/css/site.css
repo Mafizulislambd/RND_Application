@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -571,3 +571,60 @@ body {
     font-size: 0.75rem;
     color: #0d6efd;
 }
+/*form-Working 20-06-2025
+*/
+.floating-label {
+    position: relative;
+    margin-top: 1.2rem;
+}
+
+    .floating-label input,
+    .floating-label textarea,
+    .floating-label select {
+        width: 100%;
+        padding: 1rem 0.75rem 0.5rem;
+        font-size: 1rem;
+        border: 1px thin #ccc;
+        border-radius: 0px;
+        background: white;
+    }
+
+    .floating-label label {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        padding: 0 5px;
+        color: #6c757d;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        pointer-events: none;
+    }
+
+    /* When input is focused or has text */
+    .floating-label input:focus + label,
+    .floating-label input:not(:placeholder-shown) + label {
+        top: -5px;
+        left: 10px;
+        font-size: 1rem;
+        color: #0d6efd;
+    }
+select.form-control {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    -moz-appearance: auto !important;
+}
+/*.select-wrapper {
+    position: relative;
+}
+
+    .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #555;
+    }*/

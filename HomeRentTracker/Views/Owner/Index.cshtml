@@ -1,0 +1,62 @@
+﻿@using HomeRentTracker.Models.Owner
+@model OwnerFilterViewModel
+@{
+    ViewData["Title"] = "Owner List";
+}
+
+<h2>Owner List</h2>
+
+<form method="get">
+    <input type="text" name="searchText" value="@Model.SearchText" placeholder="Search..." />
+    <button type="submit">Search</button>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Owner</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>NID</th>
+            <th>Address</th>
+            <th>Image</th>
+            <th>Created</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var owner in Model.Owners)
+        {
+            <tr>
+                <td>@owner.OwnerName</td>
+                <td>@owner.OwnerEmail</td>
+                <td>@owner.OwnerPhone</td>
+                <td>@owner.OwnerNID</td>
+                <td>@owner.OwnerAddress</td>
+                <td> <img src="@owner.OwernerImage" width="20" height="20" /></td>
+                <td>@owner.CreatedDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@owner.OwnerID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@owner.OwnerID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@owner.OwnerID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    Page @Model.PageNumber of @(Math.Ceiling((double)Model.TotalCount / Model.PageSize))
+    @if (Model.PageNumber > 1)
+    {
+        <a asp-action="Index" asp-route-page="@(Model.PageNumber - 1)" asp-route-searchText="@Model.SearchText">Previous</a>
+    }
+    @if (Model.PageNumber * Model.PageSize < Model.TotalCount)
+    {
+        <a asp-action="Index" asp-route-page="@(Model.PageNumber + 1)" asp-route-searchText="@Model.SearchText">Next</a>
+    }
+</div>
