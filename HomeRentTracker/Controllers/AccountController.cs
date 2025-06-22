@@ -9,9 +9,9 @@ namespace HomeRentTracker.Controllers
     public class AccountController : Controller
     {
         private readonly IUserServices _userService;
-        private readonly UserManager<UserRegistration> _userManager;
-        private readonly SignInManager<UserRegistration> _signInManager;
-        public AccountController(IUserServices userServices, UserManager<UserRegistration> userManager, SignInManager<UserRegistration> signInManager)
+        private readonly UserManager<UserInfo> _userManager;
+        private readonly SignInManager<UserInfo> _signInManager;
+        public AccountController(IUserServices userServices, UserManager<UserInfo> userManager, SignInManager<UserInfo> signInManager)
         {
             _userService = userServices;
             _userManager = userManager;
@@ -30,7 +30,7 @@ namespace HomeRentTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserRegistration user = await _userManager.FindByNameAsync(model.userName);
+                UserInfo user = await _userManager.FindByNameAsync(model.userName);
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.userPassword))
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
@@ -62,12 +62,12 @@ namespace HomeRentTracker.Controllers
         public IActionResult Register() => View();
 
         [HttpPost]
-        public IActionResult Register(UserRegistration model)
+        public IActionResult Register(UserInfo model)
         {
             if (ModelState.IsValid)
             {
                 //int result = _userService.RegisterUser(model.UserName, model.UserFistName, model.UserMiddleName, model.UserLastName, model.FullName, model.UserEmail, model.UserPhone, model.UserPassword);
-                int result=_userManager.CreateAsync(new UserRegistration
+                int result=_userManager.CreateAsync(new UserInfo
                 {
                     Id = Guid.NewGuid().ToString(),
                     UserName = model.UserName,

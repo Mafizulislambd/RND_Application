@@ -1,0 +1,35 @@
+﻿@* Views/Renter/Index.cshtml *@
+@using HomeRentTracker.Models.RenterEntity
+@model IEnumerable<RenterInfo>
+
+<h2>Renter List</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Renter</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Renter Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Total Members</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MemberName</td>
+                <td>@item.MemberPhone</td>
+                <td>@item.MemberEmail</td>
+                <td>@item.TotalMember</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RenterID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RenterID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RenterID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

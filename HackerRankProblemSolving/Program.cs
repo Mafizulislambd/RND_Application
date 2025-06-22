@@ -13,9 +13,15 @@ using HackerRankProblemSolving;
 //int height = Result.lowestTriangle(trianglebase, area);
 
 //Console.WriteLine(height);
-Console.WriteLine(Result.ArmyGame());
+//Console.WriteLine(Result.ArmyGame());
 
+//GradingStudent.MainMethod();
+//Leonardo_Prime_Factors.MainMehod();
+//PasswordDecryption.MainMethod();
+//ActiveTraders.MainMethod();
+AppleNOrange.MainMetod();
 
+//Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
 
 //Console.Flush();

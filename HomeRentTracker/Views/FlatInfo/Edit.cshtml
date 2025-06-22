@@ -1,0 +1,21 @@
+﻿@model HomeRentTracker.Models.FlatInfoEntity.FlatInfoViewModel
+
+@{
+    ViewData["Title"] = "Edit Address";
+}
+
+<h2>Edit Address</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <partial name="_AddressFormFields" model="Model" />
+
+    <div class="form-group">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_AddressDropdownScripts" model="Model" />
+}

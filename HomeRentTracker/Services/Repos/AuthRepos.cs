@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace HomeRentTracker.Services.Repos
 {
-    public class AuthRepos : IUserStore<UserRegistration>, IUserPasswordStore<UserRegistration>
+    public class AuthRepos : IUserStore<UserInfo>, IUserPasswordStore<UserInfo>
     {
         private readonly string _connectionString;
         private readonly IConfiguration _config;
@@ -18,7 +18,7 @@ namespace HomeRentTracker.Services.Repos
             _config = config;
         }
         private IDbConnection Connection => new SqlConnection(_config.GetConnectionString("AppConnection"));
-        public async Task<UserRegistration?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<UserInfo?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             using var conn = new SqlConnection(_connectionString);
             using var cmd = new SqlCommand("[sp_GetUserInofByUsername]", conn)
@@ -32,7 +32,7 @@ namespace HomeRentTracker.Services.Repos
 
             if (await reader.ReadAsync())
             {
-                return new UserRegistration
+                return new UserInfo
                 {
                     Id = reader["UserId"].ToString(),
                     UserName = reader["UserName"].ToString(),
@@ -53,12 +53,12 @@ namespace HomeRentTracker.Services.Repos
         public async Task<IdentityUser> FindByNameAsyncByDepper(string normalizedUserName, CancellationToken cancellationToken)
         {
             using var conn = Connection;
-            return await conn.QuerySingleOrDefaultAsync<UserRegistration>(
+            return await conn.QuerySingleOrDefaultAsync<UserInfo>(
                 "sp_GetUserByUsername",
                 new { UserName = normalizedUserName },
                 commandType: CommandType.StoredProcedure);
         }
-        public async Task<IdentityResult> CreateAsync(UserRegistration user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(UserInfo user, CancellationToken cancellationToken)
         {
             //using var conn = Connection;
             //await conn.ExecuteAsync("sp_CreateUser", new
@@ -78,27 +78,28 @@ namespace HomeRentTracker.Services.Repos
         //public Task<IdentityResult> CreateAsync(IdentityUser user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
 
 
-        public Task<string> GetPasswordHashAsync(UserRegistration user, CancellationToken cancellationToken) =>
+        public Task<string> GetPasswordHashAsync(UserInfo user, CancellationToken cancellationToken) =>
         Task.FromResult(user.PasswordHash);
 
-        public Task<bool> HasPasswordAsync(UserRegistration user, CancellationToken cancellationToken) =>
+        public Task<bool> HasPasswordAsync(UserInfo user, CancellationToken cancellationToken) =>
             Task.FromResult(user.PasswordHash != null);
         // Implement other required members, e.g.:
-        public Task<IdentityResult> DeleteAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
-        public Task<IdentityResult> UpdateAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
-        public Task<string> GetUserIdAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(user.Id);
-        public Task<string> GetUserNameAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(user.UserName);
-        public Task SetUserNameAsync(UserRegistration user, string userName, CancellationToken cancellationToken) { user.UserName = userName; return Task.CompletedTask; }
-        public Task SetNormalizedUserNameAsync(UserRegistration user, string normalizedName, CancellationToken cancellationToken) { user.NormalizedUserName = normalizedName; return Task.CompletedTask; }
-        public Task<string> GetNormalizedUserNameAsync(UserRegistration user, CancellationToken cancellationToken) => Task.FromResult(user.NormalizedUserName);
+        public Task<IdentityResult> DeleteAsync(UserInfo user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
+        public Task<IdentityResult> UpdateAsync(UserInfo user, CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
+        public Task<string> GetUserIdAsync(UserInfo user, CancellationToken cancellationToken) => Task.FromResult(user.Id);
+        public Task<string> GetUserNameAsync(UserInfo user, CancellationToken cancellationToken) => Task.FromResult(user.UserName);
+        public Task SetUserNameAsync(UserInfo user, string userName, CancellationToken cancellationToken) { user.UserName = userName; return Task.CompletedTask; }
+        public Task SetNormalizedUserNameAsync(UserInfo user, string normalizedName, CancellationToken cancellationToken) { user.NormalizedUserName = normalizedName; return Task.CompletedTask; }
+        public Task<string> GetNormalizedUserNameAsync(UserInfo user, CancellationToken cancellationToken) => Task.FromResult(user.NormalizedUserName);
         public void Dispose() { }
 
-        public Task<UserRegistration?> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<UserInfo?> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            UserInfo user =await FindByNameAsync(userId, cancellationToken);
+            return user;
         }
 
-        public Task SetPasswordHashAsync(UserRegistration user, string? passwordHash, CancellationToken cancellationToken)
+        public Task SetPasswordHashAsync(UserInfo user, string? passwordHash, CancellationToken cancellationToken)
         {
             user.PasswordHash = passwordHash;
             return Task.CompletedTask;

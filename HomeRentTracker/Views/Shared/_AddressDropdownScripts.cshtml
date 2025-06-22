@@ -1,0 +1,30 @@
+﻿<script>
+    function loadDropdown(url, targetId) {
+        $.get(url, function (data) {
+            var dropdown = $('#' + targetId);
+            dropdown.empty().append('<option value="">-- Select --</option>');
+            $.each(data, function (i, item) {
+                dropdown.append($('<option>', {
+                    value: item.value,
+                    text: item.text
+                }));
+            });
+        });
+    }
+
+    $('#CountryId').change(function () {
+        loadDropdown('/FlatInfo/GetDivisions?countryId=' + $(this).val(), 'DivisionId');
+    });
+
+    $('#DivisionId').change(function () {
+        loadDropdown('/FlatInfo/GetDistricts?divisionId=' + $(this).val(), 'DistrictId');
+    });
+
+    $('#DistrictId').change(function () {
+        loadDropdown('/FlatInfo/GetSubDistricts?districtId=' + $(this).val(), 'SubDistrictId');
+    });
+
+    $('#SubDistrictId').change(function () {
+        loadDropdown('/FlatInfo/GetPostOffices?subDistrictId=' + $(this).val(), 'PostOfficeId');
+    });
+</script>
