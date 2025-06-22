@@ -1,0 +1,247 @@
+﻿@using HomeRentTracker.Models.FlatInfoEntity
+@model FlatInformation
+@* @{
+    ViewData["Title"] = "Create Flat Info";
+} *@
+@* 
+<h2>Create Address</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="RoadNo"></label>
+        <input asp-for="RoadNo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BlockNo"></label>
+        <input asp-for="BlockNo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BuildingNo"></label>
+        <input asp-for="BuildingNo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FlatNo"></label>
+        <input asp-for="FlatNo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PlaceName"></label>
+        <input asp-for="PlaceName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PostOfficeId"></label>
+        <select asp-for="PostOfficeId" asp-items="Model.PostOffices" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SubDistrictId"></label>
+        <select asp-for="SubDistrictId" asp-items="Model.SubDistricts" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="DistrictId"></label>
+        <select asp-for="DistrictId" asp-items="Model.Districts" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="DivisionId"></label>
+        <select asp-for="DivisionId" asp-items="Model.Divisions" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="CountryId"></label>
+        <select asp-for="CountryId" asp-items="Model.Countries" class="form-control"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form> *@
+
+@* @section Scripts {
+    <script>
+        $("#PostOfficeId").change(function () {
+            const postOfficeId = $(this).val();
+            $.get('/FlatInfo/GetSubDistricts?postOfficeId=' + postOfficeId, function (data) {
+                $("#SubDistrictId").empty();
+                $.each(data, function (i, item) {
+                    $("#SubDistrictId").append($('<option>', { value: item.value, text: item.text }));
+                });
+            });
+        });
+
+        $("#SubDistrictId").change(function () {
+            const subDistrictId = $(this).val();
+            $.get('/FlatInfo/GetDistricts?subDistrictId=' + subDistrictId, function (data) {
+                $("#DistrictId").empty();
+                $.each(data, function (i, item) {
+                    $("#DistrictId").append($('<option>', { value: item.value, text: item.text }));
+                });
+            });
+        });
+
+        $("#DistrictId").change(function () {
+            const districtId = $(this).val();
+            $.get('/FlatInfo/GetDivisions?districtId=' + districtId, function (data) {
+                $("#DivisionId").empty();
+                $.each(data, function (i, item) {
+                    $("#DivisionId").append($('<option>', { value: item.value, text: item.text }));
+                });
+            });
+        });
+
+        $("#DivisionId").change(function () {
+            const divisionId = $(this).val();
+            $.get('/FlatInfo/GetCountries?divisionId=' + divisionId, function (data) {
+                $("#CountryId").empty();
+                $.each(data, function (i, item) {
+                    $("#CountryId").append($('<option>', { value: item.value, text: item.text }));
+                });
+            });
+        });
+                $('#CountryId').change(function () {
+            var countryId = $(this).val();
+            $.get('/FlatInfo/GetDivisions?countryId=' + countryId, function (data) {
+                $('#DivisionId').empty();
+                $.each(data, function (i, item) {
+                    $('#DivisionId').append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+
+    </script>
+}
+ *@
+
+<h2>Create Falt Info</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="RoadNo" class="control-label"></label>
+        <input asp-for="RoadNo" class="form-control" />
+        <span asp-validation-for="RoadNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BlockNo" class="control-label"></label>
+        <input asp-for="BlockNo" class="form-control" />
+        <span asp-validation-for="BlockNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BuildingNo" class="control-label"></label>
+        <input asp-for="BuildingNo" class="form-control" />
+        <span asp-validation-for="BuildingNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FlatNo" class="control-label"></label>
+        <input asp-for="FlatNo" class="form-control" />
+        <span asp-validation-for="FlatNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PlaceName" class="control-label"></label>
+        <input asp-for="PlaceName" class="form-control" />
+        <span asp-validation-for="PlaceName" class="text-danger"></span>
+    </div>
+
+    <!-- Cascading Dropdowns -->
+
+    <div class="form-group">
+        <label>Country</label>
+        <select asp-for="CountryId" class="form-control" id="CountryId" asp-items="Model.Countries">
+            <option value="">-- Select Country --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Division</label>
+        <select asp-for="DivisionId" class="form-control" id="DivisionId">
+            <option value="">-- Select Division --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>District</label>
+        <select asp-for="DistrictId" class="form-control" id="DistrictId">
+            <option value="">-- Select District --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>SubDistrict</label>
+        <select asp-for="SubDistrictId" class="form-control" id="SubDistrictId">
+            <option value="">-- Select SubDistrict --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Post Office</label>
+        <select asp-for="PostOfficeId" class="form-control" id="PostOfficeId">
+            <option value="">-- Select PostOffice --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#CountryId').change(function () {
+            var countryId = $(this).val();
+            $('#DivisionId').empty().append('<option>Loading...</option>');
+            $.get('/FlatInfo/GetDivisions?countryId=' + countryId, function (data) {
+                $('#DivisionId').empty().append('<option value="">-- Select Division --</option>');
+                $.each(data, function (i, item) {
+                    $('#DivisionId').append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+
+        $('#DivisionId').change(function () {
+            var divisionId = $(this).val();
+            $('#DistrictId').empty().append('<option>Loading...</option>');
+            $.get('/FlatInfo/GetDistricts?divisionId=' + divisionId, function (data) {
+                $('#DistrictId').empty().append('<option value="">-- Select District --</option>');
+                $.each(data, function (i, item) {
+                    $('#DistrictId').append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+
+        $('#DistrictId').change(function () {
+            var districtId = $(this).val();
+            $('#SubDistrictId').empty().append('<option>Loading...</option>');
+            $.get('/FlatInfo/GetSubDistricts?districtId=' + districtId, function (data) {
+                $('#SubDistrictId').empty().append('<option value="">-- Select SubDistrict --</option>');
+                $.each(data, function (i, item) {
+                    $('#SubDistrictId').append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+
+        $('#SubDistrictId').change(function () {
+            var subDistrictId = $(this).val();
+            $('#PostOfficeId').empty().append('<option>Loading...</option>');
+            $.get('/FlatInfo/GetPostOffices?subDistrictId=' + subDistrictId, function (data) {
+                $('#PostOfficeId').empty().append('<option value="">-- Select PostOffice --</option>');
+                $.each(data, function (i, item) {
+                    $('#PostOfficeId').append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+    </script>
+}

@@ -1,4 +1,5 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
+using HomeRentTracker.Models.OwnerEntity;
 using HomeRentTracker.Services.Contract;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,13 +10,19 @@ namespace HomeRentTracker.Services.Repos
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
+        private readonly IOwnerRepository _ownerRepository;
 
-        public FlatService(IConfiguration configuration)
+        public FlatService(IConfiguration configuration, IOwnerRepository ownerRepository   )
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("AppConnection");
+            _ownerRepository = ownerRepository;
         }
-
+        public Task<List<OwnerInfo>> GetOwnerList()
+        {
+           
+            return _ownerRepository.GetOwnerList();
+        }
         public async Task<IEnumerable<Flat>> GetAllFlatsAsync()
         {
             List<Flat> flats = new List<Flat>();
@@ -137,5 +144,7 @@ namespace HomeRentTracker.Services.Repos
                 await cmd.ExecuteNonQueryAsync();
             }
         }
+
+     
     }
 }

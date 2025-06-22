@@ -477,25 +477,53 @@ Console.WriteLine(val3);
 Func<int, int> func = FuncDelegate.DoubleValue;
 
 #endregion
+#region ExtensionMethod 
+Console.WriteLine("Extension Method Example");
+ExtensionMethod ext = new ExtensionMethod();
+ext.M4();
+ext.M5(" is an extension method example.");
+#endregion
+#region Early Binding
+Console.WriteLine("Early Binding Example");
+EarlyBinding earlyBinding = new EarlyBinding();
+earlyBinding.details("Test", "test2");
+Console.WriteLine("Early Binding Example with Method Overloading");
+LateBinding lateBinding = new LateBinding();
+lateBinding.DataType();
+#endregion
+#region Reflection
+Console.WriteLine("Reflection Example");
+ReflactionDemo reflectionExample = new ReflactionDemo();
+reflectionExample.ReflectionType();
+reflectionExample.ReflectionMethodInfo();
+reflectionExample.ReflectionAssemblyTypes();
+#endregion
+#region Chaining Constractor
+Console.WriteLine("Chaining Constractor");
+ChainingConstractor cConstractor = new ChainingConstractor("Sumon", 18, 18);
+Console.WriteLine(cConstractor.Volume()
+);
+#endregion
+#region CopyConstractor
+Console.WriteLine("Copy Constractor");
+CopyConstractor coConstractor = new CopyConstractor("Sumon");
+CopyConstractor ck = new CopyConstractor(coConstractor);
+Console.WriteLine(ck.p1);
+CopyConstractor cC = new CopyConstractor(123,20);
+CopyConstractor ccC = new CopyConstractor(cC, cC);
+Console.WriteLine(ccC.p3 +"To "+ccC.p4);
+#endregion
+#region Virtual Method
+Console.WriteLine("Virtual Method");
+Dogy d = new Dogy();
+d.Move();
+d.Eat();
+d.Bark();
+VirtualMethod virtualMethod = new VirtualMethod();
+d.show();
+virtualMethod.show();
+virtualMethod=new Dogy();
+virtualMethod.show();
+//virtualMethod.Move();
+#endregion
 Console.ReadKey();
-public class Student
-{
-    // Declare name field  
-    private string name = "GeeksforGeeks";
-
-    // Declare Name property  
-    public string Name
-    {
-        // 'get' is a contextual keyword 
-        get
-        {
-            return name;
-        }
-
-        // 'set' is a contextual keyword 
-        set
-        {
-            name = value;
-        }
-    }
-}

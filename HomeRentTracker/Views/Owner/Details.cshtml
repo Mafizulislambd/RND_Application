@@ -1,0 +1,26 @@
+﻿@using HomeRentTracker.Models.OwnerEntity
+@model OwnerInfo
+@{
+    ViewData["Title"] = "Owner Details";
+}
+<h2>Owner Details</h2>
+
+<div>
+    <dl class="row">
+        <dt>Name</dt>
+        <dd>@Model.OwnerName</dd>
+        <dt>Email</dt>
+        <dd>@Model.OwnerEmail</dd>
+        <dt>Phone</dt>
+        <dd>@Model.OwnerPhone</dd>
+        <dt>NID</dt>
+        <dd>@Model.OwnerNID</dd>
+        <dt>Address</dt>
+        <dd>@Model.OwnerAddress</dd>
+        <dt>Created</dt>
+        <dd>@Model.CreatedDate</dd>
+    </dl>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.OwnerID" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>

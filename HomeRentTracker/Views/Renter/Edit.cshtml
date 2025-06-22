@@ -1,0 +1,10 @@
+﻿@using HomeRentTracker.Models.RenterEntity
+
+@model RenterInfo
+
+<h2>Edit Renter</h2>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="RenterID" />
+    @Html.Partial("_RenterForm", Model)
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

@@ -1,3 +1,6 @@
-﻿@{
+﻿@{ @if (User.IsInRole("Admin"))
+    {
+        Layout = "_DashBoardLayout";
+    }
     Layout = "_Layout";
 }

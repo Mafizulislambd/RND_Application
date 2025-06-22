@@ -123,9 +123,9 @@ namespace HomeRentTracker.Services.Repos
 
         //}
 
-        public UserRegistration ValidateUser(string username, string password)
+        public UserInfo ValidateUser(string username, string password)
         {
-            UserRegistration user = null;
+            UserInfo user = null;
             using var conn = new SqlConnection(_connectionString);
             //using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
             using var cmd = new SqlCommand("sp_LoginUser", conn)
@@ -144,7 +144,7 @@ namespace HomeRentTracker.Services.Repos
 
                 if (storedHash == inputHash)
                 {
-                    user = new UserRegistration
+                    user = new UserInfo
                     {
                         UserId = (reader["UserId"]).ToString(),
                         UserName = (reader["UserName"]).ToString(),

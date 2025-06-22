@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,7 +15,7 @@ namespace HomeRentTracker.Models.FlatEntity
         [DisplayName("Flat No")]
         [Required]
         public string FlatNo { get; set; }
-        [DisplayName("Owener")]
+        [DisplayName("Owner")]
         [Required]
         public string?FlatOwener { get; set; }
         [DisplayName("Rent")]
@@ -31,5 +32,6 @@ namespace HomeRentTracker.Models.FlatEntity
         public DateOnly ReceiveDate { get; set; }
         [DisplayName("Received Month")]
         public DateOnly RentMonth { get; set; }
+
     }
 }

@@ -1,0 +1,196 @@
+﻿@using HomeRentTracker.Models.RenterEntity
+@model RenterInfo
+@* 
+<h2>Create Renter</h2>
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="GuradianName"></label>
+        <input asp-for="GuradianName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuradianPhone"></label>
+        <input asp-for="GuradianPhone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuradianEmail"></label>
+        <input asp-for="GuradianEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuardialNID"></label>
+        <input asp-for="GuardialNID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuardialProfession"></label>
+        <input asp-for="GuardialProfession" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuradianAddress"></label>
+        <input asp-for="GuradianAddress" class="form-control" />
+    </div>
+    <hr />
+    <div class="form-group">
+        <label asp-for="RenterName"></label>
+        <input asp-for="RenterName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RenterPhone"></label>
+        <input asp-for="RenterPhone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RenterEmail"></label>
+        <input asp-for="RenterEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RenterNID"></label>
+        <input asp-for="RenterNID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RenterAddress"></label>
+        <input asp-for="RenterAddress" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalMember"></label>
+        <input asp-for="TotalMember" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+ *@
+
+
+<h2>Create Renter</h2>
+<div class="container">
+    <div class="row table-primary">
+        <div class="row g-3">
+            <form asp-action="Create">
+                <div class="row g-3 border pb-3 mb-2">
+                    <div class="row g-3">
+                        <div class="form-group col-md-4">
+                            <label asp-for="RenterName"></label>
+                            <input asp-for="RenterName" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="RenterPhone"></label>
+                            <input asp-for="RenterPhone" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="RenterEmail"></label>
+                            <input asp-for="RenterEmail" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="RenterNID"></label>
+                            <input asp-for="RenterNID" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="RenterProfession"></label>
+                            <input asp-for="RenterProfession" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="RenterAddress"></label>
+                            <input asp-for="RenterAddress" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MemberName"></label>
+                            <input asp-for="MemberName" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MemberPhone"></label>
+                            <input asp-for="MemberPhone" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MemberEmail"></label>
+                            <input asp-for="MemberEmail" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MemberNID"></label>
+                            <input asp-for="MemberNID" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MemberAddress"></label>
+                            <input ase-for="MemberAddress" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TotalMember"></label>
+                            <input asp-for="TotalMember" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Member Info</h4>
+                <div id="memberList"></div>
+                <button type="button" class="btn btn-secondary" id="addMemberBtn">+ Add Member</button>
+
+                <br /><br />
+                <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        let memberIndex = 0;
+        document.getElementById('addMemberBtn').addEventListener('click', function () {
+            const container = document.createElement('div');
+            container.classList.add('member-item', 'border', 'p-3', 'mb-2');
+                container.innerHTML = `
+            <div  class="row g-3">
+                <div class="form-group col-md-2">
+                    <label>Member Name</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberName" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Member Age</label>
+                    <input type="number" name="MemberInfo[${memberIndex}].MemberAge" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Phone</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberPhone" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Email</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberEmail" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>NID</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberNID" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Address</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberAddress" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Profession</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberProfession" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Guardian ID</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].GuardianID" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Guardian NID</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].GuardialNID" class="form-control" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Relation With Guardian</label>
+                    <input type="text" name="MemberInfo[${memberIndex}].RelationWithGuardian" class="form-control" />
+                </div><div class="form-group col-md-2">
+                        <button type="button" class="btn btn-danger remove-member">Remove</button>
+                        </div>
+
+        </div>
+            `;
+
+            document.getElementById('memberList').appendChild(container);
+            memberIndex++;
+        });
+
+        document.getElementById('memberList').addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-member')) {
+                e.target.closest('.member-item').remove();
+            }
+        });
+    </script>
+}

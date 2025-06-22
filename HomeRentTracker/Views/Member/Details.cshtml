@@ -1,0 +1,30 @@
+﻿@using HomeRentTracker.Models.RenterEntity
+
+@* Details.cshtml *@
+@model MemberInfo
+
+<h2>Member Details</h2>
+<dl class="row">
+    <dt class="col-sm-2">Name</dt>
+    <dd class="col-sm-10">@Model.MemberName</dd>
+    <dt class="col-sm-2">Age</dt>
+    <dd class="col-sm-10">@Model.MemberAge</dd>
+    <dt class="col-sm-2">Phone</dt>
+    <dd class="col-sm-10">@Model.MemberPhone</dd>
+    <dt class="col-sm-2">Email</dt>
+    <dd class="col-sm-10">@Model.MemberEmail</dd>
+    <dt class="col-sm-2">NID</dt>
+    <dd class="col-sm-10">@Model.MemberNID</dd>
+    <dt class="col-sm-2">Address</dt>
+    <dd class="col-sm-10">@Model.MemberAddress</dd>
+    <dt class="col-sm-2">Profession</dt>
+    <dd class="col-sm-10">@Model.MemberProfession</dd>
+    <dt class="col-sm-2">Guardian ID</dt>
+    <dd class="col-sm-10">@Model.GuardianID</dd>
+    <dt class="col-sm-2">Guardian NID</dt>
+    <dd class="col-sm-10">@Model.GuardialNID</dd>
+    <dt class="col-sm-2">Relation</dt>
+    <dd class="col-sm-10">@Model.RelationWithGuardian</dd>
+</dl>
+<a asp-action="Edit" asp-route-id="@Model.MemberId" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back</a>

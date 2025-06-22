@@ -10,12 +10,17 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddUserStore<CustomUserStore>() // Use your custom store
 //    .AddDefaultTokenProviders();
-builder.Services.AddIdentity<UserRegistration, IdentityRole>()
+builder.Services.AddIdentity<UserInfo, IdentityRole>()
     .AddUserStore<AuthRepos>() // Use your custom store
     .AddDefaultTokenProviders();
-builder.Services.AddScoped<IUserStore<UserRegistration>, AuthRepos>();
-builder.Services.AddScoped<IPasswordHasher<UserRegistration>, PasswordHasher<UserRegistration>>();
-builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>();
+builder.Services.AddScoped<IUserStore<UserInfo>, AuthRepos>();
+builder.Services.AddScoped<IPasswordHasher<UserInfo>, PasswordHasher<UserInfo>>();
+builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>(); 
+builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
+builder.Services.AddScoped<IFlatInfo, FlatInfoRepo>();
+builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+builder.Services.AddScoped<IRenterService, RenterRepos>();
 
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddDefaultTokenProviders();
