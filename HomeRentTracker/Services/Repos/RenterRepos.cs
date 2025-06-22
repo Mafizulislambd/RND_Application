@@ -32,17 +32,17 @@ namespace HomeRentTracker.Services.Repos
         {
             await _db.ExecuteAsync("sp_AddRenter", new
             {
-                renter.GuradianName,
-                renter.GuradianPhone,
-                renter.GuradianEmail,
-                renter.GuardialNID,
-                renter.GuardialProfession,
-                renter.GuradianAddress,
                 renter.RenterName,
                 renter.RenterPhone,
                 renter.RenterEmail,
                 renter.RenterNID,
+                renter.RenterProfession,
                 renter.RenterAddress,
+                renter.MemberName,
+                renter.MemberPhone,
+                renter.MemberEmail,
+                renter.MemberNID,
+                renter.MemberAddress,
                 renter.TotalMember
             }, commandType: CommandType.StoredProcedure);
             if (renter.MemberInfo.Count() > 0) 
@@ -59,17 +59,17 @@ namespace HomeRentTracker.Services.Repos
             await _db.ExecuteAsync("sp_UpdateRenter", new
             {
                 renter.RenterID,
-                renter.GuradianName,
-                renter.GuradianPhone,
-                renter.GuradianEmail,
-                renter.GuardialNID,
-                renter.GuardialProfession,
-                renter.GuradianAddress,
                 renter.RenterName,
                 renter.RenterPhone,
                 renter.RenterEmail,
                 renter.RenterNID,
+                renter.RenterProfession,
                 renter.RenterAddress,
+                renter.MemberName,
+                renter.MemberPhone,
+                renter.MemberEmail,
+                renter.MemberNID,
+                renter.MemberAddress,
                 renter.TotalMember
             }, commandType: CommandType.StoredProcedure);
         }

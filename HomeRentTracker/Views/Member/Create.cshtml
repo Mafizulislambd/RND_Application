@@ -1,0 +1,47 @@
+﻿@using HomeRentTracker.Models.RenterEntity
+@model MemberInfo
+
+<h2>Create Member</h2>
+<form asp-action="Create" asp-controller="Member">
+    <div class="form-group">
+        <label asp-for="MemberName"></label>
+        <input asp-for="MemberName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MemberAge"></label>
+        <input asp-for="MemberAge" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MemberPhone"></label>
+        <input asp-for="MemberPhone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MemberEmail"></label>
+        <input asp-for="MemberEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MemberNID"></label>
+        <input asp-for="MemberNID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MemberAddress"></label>
+        <input asp-for="MemberAddress" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MemberProfession"></label>
+        <input asp-for="MemberProfession" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuardianID"></label>
+        <input asp-for="GuardianID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GuardialNID"></label>
+        <input asp-for="GuardialNID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RelationWithGuardian"></label>
+        <input asp-for="RelationWithGuardian" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
