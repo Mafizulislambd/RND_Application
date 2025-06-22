@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HomeRentTracker.Models.Owner
+namespace HomeRentTracker.Models.OwnerEntity
 {
     public class OwnerInfo
     {

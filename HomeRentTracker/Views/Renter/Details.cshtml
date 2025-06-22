@@ -1,0 +1,25 @@
+﻿@using HomeRentTracker.Models.RenterEntity
+
+@* Views/Renter/Details.cshtml *@
+@model RenterInfo
+
+<h2>Renter Details</h2>
+<dl class="row">
+    <dt class="col-sm-2">Renter</dt>
+    <dd class="col-sm-10">@Model.RenterName</dd>
+
+    <dt class="col-sm-2">Phone</dt>
+    <dd class="col-sm-10">@Model.RenterPhone</dd>
+
+    <dt class="col-sm-2">Email</dt>
+    <dd class="col-sm-10">@Model.RenterEmail</dd>
+
+    <dt class="col-sm-2">Guardian</dt>
+    <dd class="col-sm-10">@Model.GuradianName</dd>
+
+    <dt class="col-sm-2">Profession</dt>
+    <dd class="col-sm-10">@Model.GuardialProfession</dd>
+
+    <dt class="col-sm-2">Total Members</dt>
+    <dd class="col-sm-10">@Model.TotalMember</dd>
+</dl>

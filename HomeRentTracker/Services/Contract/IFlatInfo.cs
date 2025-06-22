@@ -1,4 +1,4 @@
-﻿using HomeRentTracker.Models.FlatInfo;
+﻿using HomeRentTracker.Models.FlatInfoEntity;
 using System.Net;
 
 namespace HomeRentTracker.Services.Contract

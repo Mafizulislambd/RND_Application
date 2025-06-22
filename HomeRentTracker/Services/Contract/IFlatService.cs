@@ -1,5 +1,5 @@
 ﻿using HomeRentTracker.Models.FlatEntity;
-using HomeRentTracker.Models.Owner;
+using HomeRentTracker.Models.OwnerEntity;
 
 namespace HomeRentTracker.Services.Contract
 {

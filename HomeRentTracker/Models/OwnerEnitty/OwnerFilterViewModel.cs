@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace HomeRentTracker.Models.Owner
+namespace HomeRentTracker.Models.OwnerEntity
 {
     public class OwnerFilterViewModel
     {

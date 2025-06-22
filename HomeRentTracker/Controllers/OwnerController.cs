@@ -1,4 +1,4 @@
-﻿using HomeRentTracker.Models.Owner;
+﻿using HomeRentTracker.Models.OwnerEntity;
 using HomeRentTracker.Services.Contract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

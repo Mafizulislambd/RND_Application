@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using System.Net;
-using HomeRentTracker.Models.FlatInfo;
+using HomeRentTracker.Models.FlatInfoEntity;
 using HomeRentTracker.Services.Contract;
 
 namespace HomeRentTracker.Services.Repos

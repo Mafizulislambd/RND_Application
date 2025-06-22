@@ -1,4 +1,4 @@
-﻿using HomeRentTracker.Models.FlatInfo;
+﻿using HomeRentTracker.Models.FlatInfoEntity;
 using HomeRentTracker.Services.Contract;
 using HomeRentTracker.Services.Repos;
 using Microsoft.AspNetCore.Mvc;

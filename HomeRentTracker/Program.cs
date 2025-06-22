@@ -19,6 +19,8 @@ builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>();
 builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
 builder.Services.AddScoped<IFlatInfo, FlatInfoRepo>();
 builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+builder.Services.AddScoped<IRenterService, RenterRepos>();
 
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddDefaultTokenProviders();

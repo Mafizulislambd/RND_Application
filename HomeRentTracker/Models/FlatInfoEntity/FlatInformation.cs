@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace HomeRentTracker.Models.FlatInfo
+namespace HomeRentTracker.Models.FlatInfoEntity
 {
     public class FlatInformation
     {
