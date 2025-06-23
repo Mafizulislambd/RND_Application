@@ -8,7 +8,7 @@ namespace HomeRentTracker.Models.OwnerEntity
     {
         [Key]
         [Display(Name = "Owner ID")]
-        public int OwnerID { get; set; }
+        public int? OwnerID { get; set; }
         [Required(ErrorMessage = "Name is required")]
         [Display(Name = "Name")]
         public string OwnerName { get; set; }
