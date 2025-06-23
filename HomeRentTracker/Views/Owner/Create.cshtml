@@ -29,7 +29,7 @@
             <label asp-for="OwnerNID" class="control-label"></label>
             <span asp-validation-for="OwnerNID" class="text-danger"></span>
         </div>
-      
+
         <div class="col-sm-6 form-group floating-label">          
             <input asp-for="OwnerAddress" class="form-control" placeholder="" />
             <label asp-for="OwnerAddress" class="control-label"></label>
@@ -54,11 +54,70 @@
 </div> *@
 @model OwnerInfo
 @{
-    ViewData["Title"] = "Create Owner";
+    ViewData["Title"] = "Owner Info";
 }
-<h2>Create Owner</h2>
+<div class="container" style="background-color:white">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="header-style">Owner Info Entry</h1>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div style="font-size:small; box-sizing:initial" class="row g-3">
+                    <div hidden class="col-sm-6 form-group">
+                        <input asp-for="OwnerID" class="form-control" hidden />
+                    </div>
+                    <div class="form-group floating-label col-md-3">
+                        <input asp-for="OwnerName" class="form-control" placeholder="" />
+                        <label asp-for="OwnerName"></label>
+                        <span asp-validation-for="OwnerName" class="text-danger"></span>
+                    </div>
+                    @* <select asp-for="OwnerName" asp-items="">
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
+                    </select> *@
+
+                    <div class="form-group floating-label col-md-3">
+                        <input asp-for="OwnerEmail" class="form-control" placeholder="" />
+                        <label asp-for="OwnerEmail"></label>
+
+                        <span asp-validation-for="OwnerEmail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group  floating-label col-md-3">
+                        <input asp-for="OwnerPhone" class="form-control" placeholder="" />
+                        <label asp-for="OwnerPhone"></label>
+                        <span asp-validation-for="OwnerPhone" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group floating-label col-md-3">
+                        <input asp-for="OwnerNID" class="form-control" placeholder="" />
+                        <label asp-for="OwnerNID"></label>
+                        <span asp-validation-for="OwnerNID" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group floating-label col-md-3">
+                        <input asp-for="OwnerAddress" class="form-control" placeholder="" />
+                        <label asp-for="OwnerAddress"></label>
+                        <span asp-validation-for="OwnerAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label>Upload Image</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input asp-for="ImageFile" type="file" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-1">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                    @*       <div class="form-group col-md-2">
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div> *@
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@* <h2>Owner Info</h2>
+ *@@* <form asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="OwnerName"></label>
         <input asp-for="OwnerName" class="form-control" />
@@ -95,3 +154,4 @@
     <button type="submit" class="btn btn-success">Save</button>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>
+ *@
