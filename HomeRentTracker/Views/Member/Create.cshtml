@@ -1,47 +1,125 @@
 ﻿@using HomeRentTracker.Models.RenterEntity
+@using HomeRentTracker.Models.Enumation
 @model MemberInfo
+<title></title>
+@{
+    ViewData["Title"] = "Create Member";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Create Member</h2>
+            <form asp-action="Create" asp-controller="Member">
+                <div class="row g-1">
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberName" class="form-control" placeholder="" />
+                        <label asp-for="MemberName"></label>
+                    </div>
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberAge" class="form-control" value="0" placeholder="" />
+                        <label asp-for="MemberAge"></label>
+                    </div>
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberPhone" class="form-control" placeholder="" />
+                        <label asp-for="MemberPhone"></label>
 
-<h2>Create Member</h2>
-<form asp-action="Create" asp-controller="Member">
-    <div class="form-group">
-        <label asp-for="MemberName"></label>
-        <input asp-for="MemberName" class="form-control" />
+                    </div>
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberEmail" class="form-control" placeholder="" />
+                        <label asp-for="MemberEmail"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberNID" class="form-control" placeholder=""/>
+                        <label asp-for="MemberNID"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberAddress" class="form-control" placeholder="" />
+                        <label asp-for="MemberAddress"></label>
+                    </div>
+                @*     <div class="form-group floating-label col-md-4">
+                        <input asp-for="MemberProfession" class="form-control" placeholder=""/>
+                        <label asp-for="MemberProfession"></label>
+
+                    </div> *@
+                    <div class="form-group form-label-group floating-label in-border col-md-4">                      
+                            <select asp-for="MemberProfession" class="form-control"
+                                    asp-items="Html.GetEnumSelectList<Profession>()">
+                                <option value="">-- Select Profession --</option>
+                            </select>
+                            <label asp-for="MemberProfession"></label>                        
+                    </div>
+                   
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="GuardianID" class="form-control" placeholder="" />
+                        <label asp-for="GuardianID"></label>
+                    </div>
+                    <div class="form-group floating-label col-md-4">
+                        <input asp-for="GuardialNID" class="form-control" placeholder=""/>
+                        <label asp-for="GuardialNID"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-md-4">                       
+                        <input asp-for="RelationWithGuardian" class="form-control" placeholder="" />
+                        <label asp-for="RelationWithGuardian"></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="MemberAge"></label>
-        <input asp-for="MemberAge" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="MemberPhone"></label>
-        <input asp-for="MemberPhone" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="MemberEmail"></label>
-        <input asp-for="MemberEmail" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="MemberNID"></label>
-        <input asp-for="MemberNID" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="MemberAddress"></label>
-        <input asp-for="MemberAddress" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="MemberProfession"></label>
-        <input asp-for="MemberProfession" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="GuardianID"></label>
-        <input asp-for="GuardianID" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="GuardialNID"></label>
-        <input asp-for="GuardialNID" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="RelationWithGuardian"></label>
-        <input asp-for="RelationWithGuardian" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+</div>
+<style>
+    /* .floating-label {
+        position: relative;
+    }
+
+        .floating-label input {
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .floating-label label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            color: #007bff;
+        } */
+  /*   .floating-label-group {
+        position: relative;
+        margin-top: 1.5rem;
+    }
+
+    .floating-label {
+        position: absolute;
+        top: -0.6rem;
+        left: 0.75rem;
+        background: white;
+        padding: 0 5px;
+        font-size: 0.85rem;
+        color: #666;
+        pointer-events: none;
+        transition: 0.2s ease all;
+        z-index: 1;
+    }
+
+    .floating-select {
+        padding-top: 1.25rem;
+        position: relative;
+        z-index: 0;
+    } */
+
+</style>
