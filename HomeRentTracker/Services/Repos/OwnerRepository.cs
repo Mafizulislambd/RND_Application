@@ -32,6 +32,34 @@ namespace HomeRentTracker.Services.Repos
             }
             return owners;
         }
+        public async Task<List<OwnerInfo>> GetOwnerListAll()
+        {
+            List<OwnerInfo> owners = new List<OwnerInfo>();
+            using var conn = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("GetOwnersWithAdvancedFilters", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            await conn.OpenAsync();
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                owners.Add(new OwnerInfo
+                {
+                    OwnerID = (int)reader.GetInt32(1),
+                    OwnerName = reader.GetString(2),
+                    OwnerEmail = reader.GetString(3),
+                    OwnerPhone = reader.GetString(4),
+                    OwnerNID = reader.GetString(5),
+                    OwnerAddress = reader.GetString(6),
+                    OwernerImage = reader.IsDBNull(7) ? null : reader.GetString(7),
+                    CreatedDate = reader.GetDateTime(8),
+                    UpdatedDate = reader.GetDateTime(9)
+                });
+            }
+         
+            return owners;
+        }   
         public async Task<List<OwnerInfo>> GetAllOwnersAsync(OwnerFilterViewModel filter)
         {
             List<OwnerInfo> owners = new List<OwnerInfo>();

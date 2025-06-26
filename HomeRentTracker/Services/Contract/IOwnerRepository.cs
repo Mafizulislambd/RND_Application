@@ -9,5 +9,6 @@ namespace HomeRentTracker.Services.Contract
         Task<bool> CreateOwnerAsync(OwnerInfo owner);
         Task<bool> UpdateOwnerAsync(OwnerInfo owner);
         Task<bool> DeleteOwnerAsync(int id);
+        Task<List<OwnerInfo>> GetOwnerListAll();
     }
 }

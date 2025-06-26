@@ -1,0 +1,126 @@
+﻿@using HomeRentTracker.Models.OwnerEntity
+@model List<OwnerInfo>
+<h1 class="header-style" >Owner List</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr style="border-block-color:aqua;color:blue">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>NID</th>
+            <th>Address</th>
+            <th>Image</th>
+            <th>Created</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var owner in Model)
+        {
+            <tr>
+                <td>@owner.OwnerName</td>
+                <td>@owner.OwnerEmail</td>
+                <td>@owner.OwnerPhone</td>
+                <td>@owner.OwnerNID</td>
+                <td>@owner.OwnerAddress</td>
+                <td>
+                    <img src="@owner.OwernerImage"
+                         width="25" height="25"
+                         class="zoom-img img-thumbnail"
+                         style="cursor: pointer;"
+                         onclick="openImageModal(this)" />
+
+                   @*  <img src="@owner.OwernerImage"
+                         width="20" height="20"
+                         class="zoom-img img-thumbnail"
+                         style="cursor: pointer;"
+                         data-bs-toggle="modal"
+                         data-bs-target="#imageModal"
+                         onclick="openImageModal(this)" /> *@@*  <img src="@owner.OwernerImage" width="60" height="60" class="zoom-img" /> *@
+                </td>
+                <td>@owner.CreatedDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@owner.OwnerID"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+@*                     <a asp-action="Details" asp-route-id="@owner.OwnerID">Details</a> |
+ *@                    <a asp-action="Delete" style="color:red" asp-route-id="@owner.OwnerID"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@* <style>
+    .zoom-img {
+        transition: transform 0.3s ease;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+        .zoom-img:hover {
+            transform: scale(1.2);
+            cursor: zoom-in;
+        }
+</style> *@
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid" style="max-height: 500px;" />
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .zoom-img {
+        transition: transform 0.3s ease;
+    }
+
+        .zoom-img:hover {
+            transform: scale(1.5); /* Zoom scale (adjust as needed) */
+            cursor: zoom-in;
+            z-index: 10;
+            position: relative;
+        }
+</style>
+@* <script>
+    function openImageModal(img) {
+        var modalImg = document.getElementById("modalImage");
+        modalImg.src = img.src; // set modal image src to clicked image
+    }
+</script> *@
+@* <script>
+    function openImageModal(img) {
+        var modalImg = document.getElementById("modalImage");
+        modalImg.src = img.src;
+
+        // Show the modal (Bootstrap handles this via data attributes, but we add the timeout here)
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+
+        // Auto-hide the modal after 10 seconds (10000 ms)
+        setTimeout(function () {
+            modal.hide();
+        }, 5000);
+    }
+</script> *@
+<script>
+    let currentModal; // Store modal instance globally
+
+    function openImageModal(img) {
+        const modalImg = document.getElementById("modalImage");
+        modalImg.src = img.src;
+
+        const modalElement = document.getElementById("imageModal");
+
+        // Create or reuse Bootstrap modal instance
+        currentModal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+        currentModal.show();
+
+        // Close after 10 seconds
+        setTimeout(() => {
+            currentModal.hide();
+        }, 3000);
+    }
+</script>

@@ -1,57 +1,4 @@
 ﻿@using HomeRentTracker.Models.OwnerEntity
-@* @using HomeRentTracker.Models.Owner
-@model OwnerInfo
-<h1 class="header-style">Owner Info Entry</h1>
-<div class="row col-sm-12">
-    <form asp-action="Create" class="row g-3">
-        <div hidden class="col-sm-6 form-group">
-            <input asp-for="OwnerID" class="form-control" />
-        </div>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="col-sm-6 form-group  floating-label">
-            <input asp-for="OwnerName" class="form-control" placeholder=""/>
-            <label asp-for="OwnerName"></label>
-            <span asp-validation-for="OwnerName" class="text-danger"></span>
-        </div>
-        <div class="col-sm-6 form-group  floating-label">           
-            <input asp-for="OwnerEmail" class="form-control" placeholder=" " />
-            <label asp-for="OwnerEmail" class="control-label"></label>
-            <span asp-validation-for="OwnerEmail" class="text-danger"></span>
-        </div>
-
-        <div class="col-sm-6 form-group  floating-label">           
-            <input asp-for="OwnerPhone" class="form-control" placeholder=" " />
-            <label asp-for="OwnerPhone" class="control-label"></label>
-            <span asp-validation-for="OwnerPhone" class="text-danger"></span>
-        </div>
-        <div class="col-sm-6 form-group  floating-label">           
-            <input asp-for="OwnerNID" class="form-control" placeholder="" />
-            <label asp-for="OwnerNID" class="control-label"></label>
-            <span asp-validation-for="OwnerNID" class="text-danger"></span>
-        </div>
-
-        <div class="col-sm-6 form-group floating-label">          
-            <input asp-for="OwnerAddress" class="form-control" placeholder="" />
-            <label asp-for="OwnerAddress" class="control-label"></label>
-            <span asp-validation-for="OwnerAddress" class="text-danger"></span>
-        </div>
-
-        <div class="col-sm-6 form-group floating-label">           
-            <input asp-for="CreatedDate" class="form-control" type="date" placeholder="" />
-            <label asp-for="CreatedDate" class="control-label"></label>
-            <span asp-validation-for="CreatedDate" class="text-danger"></span>
-        </div>
-        <div class="col-sm-6 form-group  floating-label">           
-            <input asp-for="UpdatedDate" class="form-control" type="date" placeholder="" />
-            <label asp-for="UpdatedDate" class="control-label"></label>
-            <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-        </div>
-    </form>
-
-</div> *@
 @model OwnerInfo
 @{
     ViewData["Title"] = "Owner Info";
@@ -64,50 +11,85 @@
             <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div style="font-size:small; box-sizing:initial" class="row g-3">
                     <div hidden class="col-sm-6 form-group">
-                        <input asp-for="OwnerID" class="form-control" hidden />
+                        <input asp-for="OwnerID" class="form-control-sm" hidden />
+                        <input asp-for="CreatedDate" class="form-control-sm" hidden />
                     </div>
-                    <div class="form-group floating-label col-md-3">
-                        <input asp-for="OwnerName" class="form-control" placeholder="" />
+                    @*  <div class="form-floating form-floating-sm col-md-3">
+                        <input asp-for="OwnerName" class="form-control" placeholder="Owner Name" />
+                        <label asp-for="OwnerName"></label>
+                    </div> *@
+                    <div class="floating-label form-floating-sm col-md-3">
+                        <input asp-for="OwnerName" class="form-control input-small" placeholder="" />
                         <label asp-for="OwnerName"></label>
                         <span asp-validation-for="OwnerName" class="text-danger"></span>
                     </div>
                     @* <select asp-for="OwnerName" asp-items="">
 
                     </select> *@
+                    @*   <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example"> *@
 
                     <div class="form-group floating-label col-md-3">
-                        <input asp-for="OwnerEmail" class="form-control" placeholder="" />
+                        <input asp-for="OwnerEmail" class="form-control input-small" placeholder="" />
                         <label asp-for="OwnerEmail"></label>
 
                         <span asp-validation-for="OwnerEmail" class="text-danger"></span>
                     </div>
 
                     <div class="form-group  floating-label col-md-3">
-                        <input asp-for="OwnerPhone" class="form-control" placeholder="" />
-                        <label asp-for="OwnerPhone"></label>
+                        <input asp-for="OwnerPhone" class="form-control input-small" placeholder="" />
+                        <label asp-for="OwnerPhone" class="label-no-top-space"></label>
                         <span asp-validation-for="OwnerPhone" class="text-danger"></span>
                     </div>
 
                     <div class="form-group floating-label col-md-3">
-                        <input asp-for="OwnerNID" class="form-control" placeholder="" />
+                        <input asp-for="OwnerNID" class="form-control input-small" placeholder="" />
                         <label asp-for="OwnerNID"></label>
                         <span asp-validation-for="OwnerNID" class="text-danger"></span>
                     </div>
 
                     <div class="form-group floating-label col-md-3">
-                        <input asp-for="OwnerAddress" class="form-control" placeholder="" />
+                        <input asp-for="OwnerAddress" class="form-control input-small" placeholder="" />
                         <label asp-for="OwnerAddress"></label>
                         <span asp-validation-for="OwnerAddress" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-1">
-                        <label>Upload Image</label>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <input asp-for="ImageFile" type="file" class="form-control" />
-                    </div>
-                    <div class="form-group col-md-1">
+
+                    @if (Model.OwnerID > 0)
+                    {
+                        <div class="form-group col-md-2">
+                            <label>Upload New Image (optional)</label>
+                        </div>
+                            <div class="form-group col-md-2">
+                            <input asp-for="ImageFile" type="file" class="form-control" />
+                        </div>
+                        <input asp-for="OwernerImage" type="hidden" />
+                        @if (!string.IsNullOrEmpty(Model.OwernerImage))
+                        {
+                            <div class="form-group col-md-2">
+                                <label>Current Image</label><br />
+                                <img src="@Model.OwernerImage" class="img-thumbnail zoom-img" width="100" />
+                            </div>
+                        }
+                        <div class="form-group col-md-1">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    }
+                    else{
+
+                        <div class="form-group col-md-1">
+                            <label class="form-label small">Upload Image</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input asp-for="ImageFile" type="file" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-1">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    }
+                    
+                  
+                    @* <div class="form-group col-md-1">
                         <button type="submit" class="btn btn-success">Save</button>
-                    </div>
+                    </div> *@
                     @*       <div class="form-group col-md-2">
                         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
                     </div> *@
@@ -116,42 +98,22 @@
         </div>
     </div>
 </div>
-@* <h2>Owner Info</h2>
- *@@* <form asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="OwnerName"></label>
-        <input asp-for="OwnerName" class="form-control" />
-        <span asp-validation-for="OwnerName" class="text-danger"></span>
+<div class="container" style="margin-top:10px">
+    <div class="row">
+        <div class="col-md-12">
+            @await Html.PartialAsync("_OwnerInfoList", Model.OwnerInfoList)
+        </div>
     </div>
+</div>
+<style>
+    .zoom-img {
+        transition: transform 0.3s ease;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
 
-    <div class="form-group">
-        <label asp-for="OwnerEmail"></label>
-        <input asp-for="OwnerEmail" class="form-control" />
-        <span asp-validation-for="OwnerEmail" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OwnerPhone"></label>
-        <input asp-for="OwnerPhone" class="form-control" />
-        <span asp-validation-for="OwnerPhone" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OwnerNID"></label>
-        <input asp-for="OwnerNID" class="form-control" />
-        <span asp-validation-for="OwnerNID" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="OwnerAddress"></label>
-        <input asp-for="OwnerAddress" class="form-control" />
-        <span asp-validation-for="OwnerAddress" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label>Upload Image</label>
-        <input asp-for="ImageFile" type="file" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-success">Save</button>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</form>
- *@
+        .zoom-img:hover {
+            transform: scale(1.2);
+            cursor: zoom-in;
+        }
+</style>
