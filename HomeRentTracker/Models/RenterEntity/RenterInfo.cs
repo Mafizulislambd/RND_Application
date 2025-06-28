@@ -27,7 +27,7 @@ namespace HomeRentTracker.Models.RenterEntity
         public string? MemberNID { get; set; }
         [Display(Name = "Membar Address")]
         public string? MemberAddress { get; set; }
-        public int TotalMember { get; set; }      
+        public int? TotalMember { get; set; }      
         //public  string? RenterName { get; set; }
         //public string? RenterPhone { get; set; }
         //public string? RenterEmail { get; set; }

@@ -1,68 +1,70 @@
 ﻿@using HomeRentTracker.Models.RenterEntity
 @model RenterInfo
-
-<h2>Create Renter</h2>
 <div class="container">
     <div class="row table-primary">
         <div class="row g-3">
             <form asp-action="Create">
-                <div class="row g-3 border pb-3 mb-2">
-                    <div class="row g-3">
-                        <div class="form-group col-md-4">
-                            <label asp-for="RenterName"></label>
-                            <input asp-for="RenterName" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="RenterPhone"></label>
-                            <input asp-for="RenterPhone" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="RenterEmail"></label>
-                            <input asp-for="RenterEmail" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="RenterNID"></label>
-                            <input asp-for="RenterNID" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="RenterProfession"></label>
-                            <input asp-for="RenterProfession" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="RenterAddress"></label>
-                            <input asp-for="RenterAddress" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="MemberName"></label>
-                            <input asp-for="MemberName" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="MemberPhone"></label>
-                            <input asp-for="MemberPhone" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="MemberEmail"></label>
-                            <input asp-for="MemberEmail" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="MemberNID"></label>
-                            <input asp-for="MemberNID" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="MemberAddress"></label>
-                            <input ase-for="MemberAddress" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="TotalMember"></label>
-                            <input asp-for="TotalMember" class="form-control" />
-                        </div>
+                <h1 class="header-style">Renter Info</h1>
+                <div class="row g-3">
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterName" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterName"></label>
                     </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterPhone" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterPhone"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterEmail" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterEmail"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterNID" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterNID"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterProfession" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterProfession"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterAddress" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterAddress"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="MemberName" class="form-control input-small" placeholder="" />
+                        <label asp-for="MemberName"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="MemberPhone" class="form-control input-small" placeholder="" />   
+                        <label asp-for="MemberPhone"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="MemberEmail" class="form-control input-small" placeholder=""/>
+                        <label asp-for="MemberEmail"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="MemberNID" class="form-control input-small" placeholder="" />      
+                        <label asp-for="MemberNID"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input ase-for="MemberAddress" class="form-control input-small" placeholder="" />   
+                        <label asp-for="MemberAddress"></label>
+
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="TotalMember" class="form-control input-small" placeholder="" />      
+                        <label asp-for="TotalMember"></label>
+
+                    </div>
+                </div> 
+                <br />
+                <div id="memberList">
                 </div>
-
-                <h4>Member Info</h4>
-                <div id="memberList"></div>
                 <button type="button" class="btn btn-secondary" id="addMemberBtn">+ Add Member</button>
-
                 <br /><br />
                 <button type="submit" class="btn btn-success">Save</button>
             </form>
@@ -80,46 +82,47 @@
             container.classList.add('member-item', 'border', 'p-3', 'mb-2');
                 container.innerHTML = `
             <div  class="row g-3">
-                <div class="form-group col-md-2">
+                <div class="form-group floating-label col-md-2">
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberName" class="form-control input-small" placeholder="" />
                     <label>Member Name</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].MemberName" class="form-control" />
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group floating-label col-md-2">
+                    <input type="number" name="MemberInfo[${memberIndex}].MemberAge" class="form-control input-small" placeholder="" />
                     <label>Member Age</label>
-                    <input type="number" name="MemberInfo[${memberIndex}].MemberAge" class="form-control" />
                 </div>
-                <div class="form-group col-md-2">
-                    <label>Phone</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].MemberPhone" class="form-control" />
+                <div class="form-group floating-label col-md-2">                   
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberPhone" class="form-control input-small" placeholder=""/>
+                     <label>Phone</label>
                 </div>
-                <div class="form-group col-md-2">
-                    <label>Email</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].MemberEmail" class="form-control" />
+                <div class="form-group floating-label col-md-2">                  
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberEmail" class="form-control input-small" placeholder=""/>
+                      <label>Email</label>
                 </div>
-                <div class="form-group col-md-2">
-                    <label>NID</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].MemberNID" class="form-control" />
+                <div class="form-group floating-label col-md-2">                   
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberNID" class="form-control input-small" placeholder=""/>
+                     <label>NID</label>
                 </div>
-                <div class="form-group col-md-2">
-                    <label>Address</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].MemberAddress" class="form-control" />
+                <div class="form-group floating-label col-md-2">
+                  
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberAddress" class="form-control input-small" placeholder=""/>
+                      <label>Address</label>
                 </div>
-                <div class="form-group col-md-2">
-                    <label>Profession</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].MemberProfession" class="form-control" />
+                <div class="form-group floating-label col-md-2">                   
+                    <input type="text" name="MemberInfo[${memberIndex}].MemberProfession" class="form-control input-small" placeholder=""/>
+                     <label>Profession</label>
                 </div>
-                <div class="form-group col-md-2">
-                    <label>Guardian ID</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].GuardianID" class="form-control" />
+                <div class="form-group floating-label col-md-2">                  
+                    <input type="text" name="MemberInfo[${memberIndex}].GuardianID" class="form-control input-small" placeholder=""/>
+                      <label>Guardian ID</label>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group floating-label col-md-2">
+                    <input type="text" name="MemberInfo[${memberIndex}].GuardialNID" class="form-control input-small" placeholder=""/> 
                     <label>Guardian NID</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].GuardialNID" class="form-control" />
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group floating-label col-md-2">
+                    <input type="text" name="MemberInfo[${memberIndex}].RelationWithGuardian" class="form-control input-small" placeholder=""/> 
                     <label>Relation With Guardian</label>
-                    <input type="text" name="MemberInfo[${memberIndex}].RelationWithGuardian" class="form-control" />
-                </div><div class="form-group col-md-2">
+                </div><div class="form-group floating-label col-md-2">
                         <button type="button" class="btn btn-danger remove-member">Remove</button>
                         </div>
 

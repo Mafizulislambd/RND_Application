@@ -9,7 +9,7 @@
             <h1 class="header-style">Owner Info Entry</h1>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <form asp-action="Create" method="post" enctype="multipart/form-data">
-                <div style="font-size:small; box-sizing:initial" class="row g-3">
+                <div class="row g-3">
                     <div hidden class="col-sm-6 form-group">
                         <input asp-for="OwnerID" class="form-control-sm" hidden />
                         <input asp-for="CreatedDate" class="form-control-sm" hidden />
@@ -18,7 +18,7 @@
                         <input asp-for="OwnerName" class="form-control" placeholder="Owner Name" />
                         <label asp-for="OwnerName"></label>
                     </div> *@
-                    <div class="floating-label form-floating-sm col-md-3">
+                    <div class="form-group floating-label col-md-3">
                         <input asp-for="OwnerName" class="form-control input-small" placeholder="" />
                         <label asp-for="OwnerName"></label>
                         <span asp-validation-for="OwnerName" class="text-danger"></span>
@@ -55,37 +55,38 @@
 
                     @if (Model.OwnerID > 0)
                     {
-                        <div class="form-group col-md-2">
-                            <label>Upload New Image (optional)</label>
+                        <div class="form-group floating-label col-md-1">
+                            <label class="non-floating-label">Upload New Image (optional)</label>
                         </div>
-                            <div class="form-group col-md-2">
+                        <div class="form-group floating-label col-md-2">
                             <input asp-for="ImageFile" type="file" class="form-control" />
                         </div>
                         <input asp-for="OwernerImage" type="hidden" />
                         @if (!string.IsNullOrEmpty(Model.OwernerImage))
                         {
-                            <div class="form-group col-md-2">
-                                <label>Current Image</label><br />
+                            <div class="form-group floating-label col-md-1">
+                                <label class="non-floating-label">Current Image</label>
+                            </div>
+                            <div class="form-group floating-label col-md-1">                                
                                 <img src="@Model.OwernerImage" class="img-thumbnail zoom-img" width="100" />
                             </div>
                         }
-                        <div class="form-group col-md-1">
+                        <div class="form-group floating-label col-md-1">
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>
                     }
                     else{
 
-                        <div class="form-group col-md-1">
-                            <label class="form-label small">Upload Image</label>
+                        <div class="form-group floating-label  col-md-1">
+                            <label class="non-floating-label">Upload Image</label>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group floating-label col-md-2">
                             <input asp-for="ImageFile" type="file" class="form-control" />
                         </div>
-                        <div class="form-group col-md-1">
+                        <div class="form-groupn floating-label col-md-1">
                             <button type="submit" class="btn btn-success">Save</button>
                         </div>
-                    }
-                    
+                    }                  
                   
                     @* <div class="form-group col-md-1">
                         <button type="submit" class="btn btn-success">Save</button>
@@ -111,9 +112,19 @@
         border-radius: 8px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
-
-        .zoom-img:hover {
+    .zoom-img:hover {
             transform: scale(1.2);
             cursor: zoom-in;
         }
+
+    .non-floating-label {
+        color: black !important;
+        font-size: 0.75rem !important; /* or use 12px */
+        position: static !important; /* disable absolute positioning */
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        background: none !important;
+        padding: 0 !important;
+    }
 </style>

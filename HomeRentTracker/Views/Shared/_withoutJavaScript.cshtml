@@ -1,0 +1,37 @@
+﻿<div class="center-screen">
+    <h1 class="typing-text">
+        <span style="--i:0;">M</span>
+        <span style="--i:1;">&nbsp;</span>
+        <span style="--i:2;">T</span>
+        <span style="--i:3;">E</span>
+        <span style="--i:4;">C</span>
+        <span style="--i:5;">H</span>
+        <span style="--i:6;">&nbsp;</span>
+        <span style="--i:7;">B</span>
+        <span style="--i:8;">D</span>
+    </h1>
+</div>
+
+<style>
+    .center-screen {
+        margin: 19% 19% 19% 19%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .typing-text span {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: dropIn 0.5s ease-out forwards;
+        animation-delay: calc(var(--i) * 0.3s);
+    }
+
+    @@keyframes dropIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
