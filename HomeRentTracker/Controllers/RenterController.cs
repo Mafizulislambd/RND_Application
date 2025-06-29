@@ -21,15 +21,48 @@ namespace HomeRentTracker.Controllers
         }
 
 
-        public IActionResult Create() => View();
+        public   IActionResult Create(int id)
+        {
+            RenterInfo objRenterInfo = new RenterInfo();
+           
+            if (id > 0)
+            {
+                objRenterInfo =  _service.GetByIdAsync(id).Result;
+            }
+            //var model = new RenterInfo
+            //{
+            //  //  RenterName = "Default Name", // ✅ Set required property
+            //   // RenterPhone = "000-000-0000", // ✅ Set required property
+            //    MemberInfo = new MemberInfo(), // Ensure it's not null
+            //    MemberInfoList = new List<MemberInfo>(),
+            //    RenterList = renters?.ToList() // Fetch existing renters for the dropdown
 
+            //};
+            objRenterInfo.RenterList = _service.GetAllAsync().Result.ToList();
+            return View(objRenterInfo); // Pass the model to the view
+        }
+        [HttpPost]
+        public IActionResult AddMember(RenterInfo renter)
+        {
+            // Add the new member to the list
+            if (renter.MemberInfo != null)
+            {
+                renter.MemberInfoList.Add(renter.MemberInfo);
+                renter.MemberInfo = new MemberInfo(); // Reset input
+         
+            }
+            ModelState.Clear();
+            renter.RenterList = _service.GetAllAsync().Result.ToList();
+            return View("Create", renter);
+        }
         [HttpPost]
         public async Task<IActionResult> Create(RenterInfo renter)
         {
+            int renterID;
             if (ModelState.IsValid)
             {
-                await _service.AddAsync(renter);
-                return RedirectToAction(nameof(Index));
+               renterID= await _service.AddAsync(renter);
+                return RedirectToAction("Create",0);
             }
             return View(renter);
         }

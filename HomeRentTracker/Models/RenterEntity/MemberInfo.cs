@@ -1,4 +1,4 @@
-﻿using HomeRentTracker.Models.Enumation;
+﻿using HomeRentTracker.Models.CommonEntity;
 using System.ComponentModel.DataAnnotations;
 
 namespace HomeRentTracker.Models.RenterEntity
@@ -8,7 +8,7 @@ namespace HomeRentTracker.Models.RenterEntity
         [Key]
         public int MemberId { get; set; }
         [Display(Name = "Name")]
-        public string MemberName { get; set; } = string.Empty;
+        public string? MemberName { get; set; } = string.Empty;
         [Display(Name = "Age")]
         public int? MemberAge { get; set; }
         [Display(Name = "Phone")]
@@ -22,10 +22,11 @@ namespace HomeRentTracker.Models.RenterEntity
         [Display(Name = "Profession")]
         public Profession MemberProfession { get; set; }
         //    public string MemberProfession { get; set; } = string.Empty;
-        [Display(Name = "Guardian ID")]
-        public string GuardianID { get; set; } = string.Empty;
-        [Display(Name = "Guardian NID")]
-        public string? GuardialNID { get; set; }
-        public string? RelationWithGuardian { get; set; }
+        [Display(Name = "Member ID")]
+        public string RenterID { get; set; } = string.Empty;
+        [Display(Name = "Member NID")]
+        public string? RenterNID { get; set; }
+        [Display(Name = "Relation with Renter")]
+        public RelationEntity? RelationWithRenter { get; set; }
     }
 }

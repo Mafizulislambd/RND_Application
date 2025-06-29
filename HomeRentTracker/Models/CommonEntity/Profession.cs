@@ -1,4 +1,4 @@
-﻿namespace HomeRentTracker.Models.Enumation
+﻿namespace HomeRentTracker.Models.CommonEntity
 {
 
     public enum Profession

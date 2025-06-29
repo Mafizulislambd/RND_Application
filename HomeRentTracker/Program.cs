@@ -2,6 +2,8 @@ using HomeRentTracker.Models;
 using HomeRentTracker.Services.Contract;
 using HomeRentTracker.Services.Repos;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
+using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddUserStore<CustomUserStore>() // Use your custom store
-//    .AddDefaultTokenProviders();
+//    .AddDefaultTokenProviders();builder.Services.AddSingleton<IDbConnection>(sp =>
+builder.Services.AddSingleton<IDbConnection>(sp =>
+    new SqlConnection(builder.Configuration.GetConnectionString("AppConnection")));
+
 builder.Services.AddIdentity<UserInfo, IdentityRole>()
     .AddUserStore<AuthRepos>() // Use your custom store
     .AddDefaultTokenProviders();
+
 builder.Services.AddScoped<IUserStore<UserInfo>, AuthRepos>();
 builder.Services.AddScoped<IPasswordHasher<UserInfo>, PasswordHasher<UserInfo>>();
 builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>(); 

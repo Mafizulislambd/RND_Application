@@ -1,6 +1,9 @@
 ﻿@using HomeRentTracker.Models.RenterEntity
 @* Index.cshtml *@
 @model IEnumerable<MemberInfo>
+@{
+    ViewData["Title"] = "Member List";
+}
 
 <h2>Member List</h2>
 <p>
@@ -25,9 +28,9 @@
                 <td>@item.MemberEmail</td>
                 <td>@item.MemberNID</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-sm btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-sm btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.MemberId" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.MemberId" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                    @* <a asp-action="Details" asp-route-id="@item.MemberId" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.MemberId" class="btn btn-sm btn-danger">Delete</a> *@
                 </td>
             </tr>
         }

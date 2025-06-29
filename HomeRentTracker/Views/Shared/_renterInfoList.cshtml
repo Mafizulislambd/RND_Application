@@ -1,0 +1,54 @@
+﻿@using HomeRentTracker.Models.RenterEntity
+@model IEnumerable<RenterInfo>
+<h3 class="header-styl" >Renter List</h3>
+@* <p>
+    <a asp-action="Create" class="btn btn-primary">Add New Renter</a>
+</p> *@
+<table class="table-header table table-bordered">
+    <thead>
+        <tr>
+            <th>Renter Name</th>
+            <th>Phone</th>
+            <th>NID</th>
+            <th>Date of Birth</th>
+            <th>Profession</th>
+            <th>Total Members</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RenterName</td>
+                <td>@item.RenterPhone</td>
+                <td>@item.RenterNID</td>
+                <td>@item.RenterDOB</td>
+                <td>@item.RenterProfession</td>
+                <td>@item.TotalMember</td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@item.RenterID"><i class="fa-solid fa-pen-to-square"></i></a> @* |
+                    <a asp-action="Details" asp-route-id="@item.RenterID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RenterID">Delete</a> *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    .table-header {
+        border-collapse: collapse;
+        accent-color: #007bff;
+        }
+
+    .header-styl{   
+        margin:0;
+        padding: 0px;
+        text-align: center;
+        background-color: cornflowerblue;
+
+    }
+   
+
+    
+    </style>

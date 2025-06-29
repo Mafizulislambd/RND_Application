@@ -6,7 +6,7 @@ namespace HomeRentTracker.Services.Contract
     {
         Task<IEnumerable<RenterInfo>> GetAllAsync();
         Task<RenterInfo?> GetByIdAsync(int id);
-        Task AddAsync(RenterInfo renter);
+        Task<int> AddAsync(RenterInfo renter);
         Task UpdateAsync(RenterInfo renter);
         Task DeleteAsync(int id);
     }

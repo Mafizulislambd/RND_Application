@@ -26,23 +26,54 @@ namespace HomeRentTracker.Services.Repos
             return await _db.QueryFirstOrDefaultAsync<MemberInfo>("sp_GetMemberById", parameters, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task AddAsync(MemberInfo member)
+        public async Task<int> AddAsync(MemberInfo member,int renterID,string renterNID)
         {
-            var parameters = new
+            if (string.IsNullOrEmpty(member.RenterID) || string.IsNullOrEmpty(member.RenterNID))
             {
-                member.MemberName,
-                member.MemberAge,
-                member.MemberPhone,
-                member.MemberEmail,
-                member.MemberNID,
-                member.MemberAddress,
-                member.MemberProfession,
-                member.GuardianID,
-                member.GuardialNID,
-                member.RelationWithGuardian
-            };
+                member.RenterID = renterID.ToString();
+                member.RenterNID = renterNID;
+            }         
+
+            var parameters = new DynamicParameters();
+            parameters.Add("MemberName", member.MemberName);
+            parameters.Add("MemberAge", member.MemberAge);
+            parameters.Add("MemberPhone", member.MemberPhone);
+            parameters.Add("MemberEmail", member.MemberEmail);
+            parameters.Add("MemberNID", member.MemberNID);
+            parameters.Add("MemberAddress", member.MemberAddress);
+            parameters.Add("MemberProfession", member.MemberProfession);
+            parameters.Add("RenterID", member.RenterID);
+            parameters.Add("RenterNID", member.RenterNID);
+            parameters.Add("RelationWithRenter", member.RelationWithRenter);
+
+            // Add output parameter
+            parameters.Add("MemberID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             await _db.ExecuteAsync("sp_AddMember", parameters, commandType: CommandType.StoredProcedure);
+
+            int newMemberId = parameters.Get<int>("MemberID");
+            return newMemberId;
+            //return newMemberId;
+            //member.RenterID = renterID.ToString();
+            //member.RenterNID = renterNID;
+            //int memberId;
+
+            //var parameters = new
+            //{
+            //    member.MemberName,
+            //    member.MemberAge,
+            //    member.MemberPhone,
+            //    member.MemberEmail,
+            //    member.MemberNID,
+            //    member.MemberAddress,
+            //    member.MemberProfession,
+            //    member.RenterID,
+            //    member.RenterNID,
+            //    member.RelationWithRenter,
+            //    memberId
+            //};
+
+            //await _db.ExecuteAsync("sp_AddMember", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public async Task UpdateAsync(MemberInfo member)
@@ -57,9 +88,9 @@ namespace HomeRentTracker.Services.Repos
                 member.MemberNID,
                 member.MemberAddress,
                 member.MemberProfession,
-                member.GuardianID,
-                member.GuardialNID,
-                member.RelationWithGuardian
+                member.RenterID,
+                member.RenterNID,
+                member.RelationWithRenter
             };
 
             await _db.ExecuteAsync("sp_UpdateMember", parameters, commandType: CommandType.StoredProcedure);

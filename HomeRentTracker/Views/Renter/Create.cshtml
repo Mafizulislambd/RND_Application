@@ -1,5 +1,10 @@
-﻿@using HomeRentTracker.Models.RenterEntity
+﻿@using HomeRentTracker.Models.CommonEntity
+@using HomeRentTracker.Models.RenterEntity
 @model RenterInfo
+@{
+    ViewData["Title"] = "Renter Entry";
+}
+}
 <div class="container">
     <div class="row table-primary">
         <div class="row g-3">
@@ -9,7 +14,54 @@
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="RenterName" class="form-control input-small" placeholder="" />
                         <label asp-for="RenterName"></label>
+                        @*                         <span asp-validation-for="RenterName" class="text-danger"></span>
+ *@                    </div>
+                    <div hidden class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterImage" hidden class="form-control input-small" type="file" placeholder="" />
+                        <label asp-for="RenterImage"></label>
                     </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterFatherName" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterFatherName"></label>
+                        <span asp-validation-for="RenterFatherName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterDOB" class="form-control input-small" type="date" placeholder="" />
+                        <label asp-for="RenterDOB"></label>
+                        <span asp-validation-for="RenterDOB" class="text-danger"></span>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <select asp-for="RenterMaritialStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()" class="form-control input-small" placeholder="">
+                            <option value="" selected>-- Select --</option>
+                        </select>
+                        <label asp-for="RenterMaritialStatus"></label>
+                        <span asp-validation-for="RenterMaritialStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="RenterAddress" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterAddress"></label>
+                        <span asp-validation-for="RenterAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <select asp-for="RenterProfession" asp-items="Html.GetEnumSelectList<Profession>()">
+                            <option value="" selected>-- Select Profession --</option>
+                        </select>
+                        <label asp-for="RenterProfession"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="OfficeAddress" class="form-control input-small" placeholder="" />
+                        <label asp-for="OfficeAddress"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <select asp-for="Religion" asp-items="Html.GetEnumSelectList<ReligionEntity>()">
+                            <option value="" selected>-- Select Profession --</option>
+                        </select>
+                        <label asp-for="Religion"></label>
+                    </div>
+                    <div class="form-group floating-label col-sm-3">
+                        <input asp-for="EducationalBackground" class="form-control input-small" placeholder="" />
+                        <label asp-for="EducationalBackground"></label>
+                    </div>  
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="RenterPhone" class="form-control input-small" placeholder="" />
                         <label asp-for="RenterPhone"></label>
@@ -21,59 +73,151 @@
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="RenterNID" class="form-control input-small" placeholder="" />
                         <label asp-for="RenterNID"></label>
-
                     </div>
                     <div class="form-group floating-label col-sm-3">
-                        <input asp-for="RenterProfession" class="form-control input-small" placeholder="" />
-                        <label asp-for="RenterProfession"></label>
+                        <input asp-for="PassportNo" class="form-control input-small" placeholder="" />
+                        <label asp-for="PassportNo"></label>
+                    </div>
+                    <div style="margin:0;padding:0" class="row g-3">
+                        <h5 style="margin:5px 0 0 6px ;padding:0"><strong>Emergency Contract:</strong> </h5>
+                        <div class="form-group floating-label col-sm-3">
+                            <input asp-for="EmergencyContact.contractName" class="form-control input-small" placeholder="" />
+                            <label asp-for="EmergencyContact.contractName"></label>
+                        </div>
+                        <div class="form-group floating-label col-sm-3">
+                            <select asp-for="EmergencyContact.Relation" asp-items="Html.GetEnumSelectList<RelationEntity>()" class="form-control input-small" placeholder="">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <label asp-for="EmergencyContact.Relation"></label>
+                        </div>     <div class="form-group floating-label col-sm-3">
+                            <input asp-for="EmergencyContact.Address" class="form-control input-small" placeholder="" />
+                            <label asp-for="EmergencyContact.Address"></label>
+                        </div>     <div class="form-group floating-label col-sm-3">
+                            <input asp-for="EmergencyContact.contractPhone" class="form-control input-small" placeholder="" />
+                            <label asp-for="EmergencyContact.contractPhone"></label>
+                        </div>
+                    </div>
+                    <div style="margin:0;padding:0" class="row g-3">
+                        <h5><strong>Family/Mess Member Descriptions:</strong></h5>
 
+                        <div class="form-group floating-label col-sm-3">
+                            <input asp-for="MemberInfo.MemberName" class="form-control input-small" placeholder="" />
+                            <label asp-for="MemberInfo.MemberName"></label>
+                        </div>
+                        <div class="form-group floating-label col-sm-3">
+                            <input asp-for="MemberInfo.MemberAge" class="form-control input-small" placeholder="" />
+                            <label asp-for="MemberInfo.MemberAge"></label>
+                        </div>
+                        <div class="form-group floating-label col-sm-3">
+                            <select asp-for="MemberInfo.MemberProfession" asp-items="Html.GetEnumSelectList<Profession>()" class="form-control input-small">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <label asp-for="MemberInfo.MemberProfession"></label>
+                        </div>
+                        <div class="form-group floating-label col-sm-2">
+                            <input asp-for="MemberInfo.MemberPhone" class="form-control input-small" placeholder="" value="0" />
+                            <label asp-for="MemberInfo.MemberPhone"></label>
+                        </div>
+
+                        <div class="form-group floating-label col-sm-1">
+                                @for (int i = 0; i < Model.MemberInfoList.Count; i++)
+                                {
+                                    <input type="hidden" name="MemberInfoList[@i].MemberName" value="@Model.MemberInfoList[i].MemberName" />
+                                    <input type="hidden" name="MemberInfoList[@i].MemberAge" value="@Model.MemberInfoList[i].MemberAge" />
+                                    <input type="hidden" name="MemberInfoList[@i].MemberProfession" value="@((int)Model.MemberInfoList[i].MemberProfession)" />
+                                    <input type="hidden" name="MemberInfoList[@i].MemberPhone" value="@Model.MemberInfoList[i].MemberPhone" />
+                                }
+
+                            <button type="submit" asp-controller="Renter" asp-action="AddMember" class="btn btn-secondary" name="action" value="AddMember">Add</button>
+                        </div>
                     </div>
-                    <div class="form-group floating-label col-sm-3">
-                        <input asp-for="RenterAddress" class="form-control input-small" placeholder="" />
-                        <label asp-for="RenterAddress"></label>
+
+                    <div>
+                        <table class="table table-bordered">
+                            <thead class="border border-primary text-black" style="background-color:cadetblue">
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Age</th>
+                                    <th>Profession</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.MemberInfoList != null && Model.MemberInfoList.Count > 0)
+                                {
+                                    foreach (var member in Model.MemberInfoList)
+                                    {
+                                        <tr>
+                                            <td>@member.MemberName</td>
+                                            <td>@member.MemberAge</td>
+                                            <td>@member.MemberProfession</td>
+                                            <td>@member.MemberPhone</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
                     </div>
+      
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="MemberName" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberName"></label>
                     </div>
                     <div class="form-group floating-label col-sm-3">
-                        <input asp-for="MemberPhone" class="form-control input-small" placeholder="" />   
-                        <label asp-for="MemberPhone"></label>
-
-                    </div>
-                    <div class="form-group floating-label col-sm-3">
-                        <input asp-for="MemberEmail" class="form-control input-small" placeholder=""/>
-                        <label asp-for="MemberEmail"></label>
-
-                    </div>
-                    <div class="form-group floating-label col-sm-3">
-                        <input asp-for="MemberNID" class="form-control input-small" placeholder="" />      
+                        <input asp-for="MemberNID" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberNID"></label>
+                    </div><div class="form-group floating-label col-sm-3">
+                        <input asp-for="MemberPhone" class="form-control input-small" placeholder="" />
+                        <label asp-for="MemberPhone"></label>
                     </div>
                     <div class="form-group floating-label col-sm-3">
-                        <input ase-for="MemberAddress" class="form-control input-small" placeholder="" />   
+                        <input asp-for="MemberAddress" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberAddress"></label>
-
                     </div>
-                    <div class="form-group floating-label col-sm-3">
-                        <input asp-for="TotalMember" class="form-control input-small" placeholder="" />      
+                    @*  <div class="form-group floating-label col-sm-3">
+                        <input asp-for="MemberEmail" class="form-control input-small" placeholder="" />
+                        <label asp-for="MemberEmail"></label>
+                    </div>   *@  
+                    <div style="margin:0;padding:0" class="row g-3">
+                        <h5 style="margin:5px 0 0 6px ;padding:0">Driver info</h5>
+                        <div class="form-group floating-label col-sm-3">
+                            <input asp-for="DriverName" class="form-control input-small" placeholder="" />
+                            <label asp-for="DriverName"></label>
+                        </div>   <div class="form-group floating-label col-sm-3">
+                            <input asp-for="DriverNID" class="form-control input-small" placeholder="" />
+                            <label asp-for="DriverNID"></label>
+                        </div>   <div class="form-group floating-label col-sm-3">
+                            <input asp-for="DriverPhone" class="form-control input-small" placeholder="" />
+                            <label asp-for="DriverPhone"></label>
+                        </div>   <div class="form-group floating-label col-sm-3">
+                            <input asp-for="DriverAddress" class="form-control input-small" placeholder="" />
+                            <label asp-for="DriverAddress"></label>
+                        </div>
+                    </div>
+                    <div hidden class="form-group floating-label col-sm-3">
+                        <input asp-for="TotalMember" hidden class="form-control input-small" placeholder="" />
                         <label asp-for="TotalMember"></label>
-
                     </div>
-                </div> 
+                    <div  class="form-group floating-label col-sm-3">
+                        <button type="submit" class="btn btn-success">Save</button>
+                </div> </div>
                 <br />
-                <div id="memberList">
+                @* <div id="memberList">
                 </div>
                 <button type="button" class="btn btn-secondary" id="addMemberBtn">+ Add Member</button>
-                <br /><br />
-                <button type="submit" class="btn btn-success">Save</button>
+                <br /><br /> *@
+             
             </form>
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        @await Html.PartialAsync("_renterInfoList", Model.RenterList)
+    </div>
+</div>
 
-
-
+@* 
 @section Scripts {
     <script>
         let memberIndex = 0;
@@ -82,6 +226,7 @@
             container.classList.add('member-item', 'border', 'p-3', 'mb-2');
                 container.innerHTML = `
             <div  class="row g-3">
+            <h1 class="header-style">Member Info</h1>
                 <div class="form-group floating-label col-md-2">
                     <input type="text" name="MemberInfo[${memberIndex}].MemberName" class="form-control input-small" placeholder="" />
                     <label>Member Name</label>
@@ -90,37 +235,37 @@
                     <input type="number" name="MemberInfo[${memberIndex}].MemberAge" class="form-control input-small" placeholder="" />
                     <label>Member Age</label>
                 </div>
-                <div class="form-group floating-label col-md-2">                   
+                <div class="form-group floating-label col-md-2">
                     <input type="text" name="MemberInfo[${memberIndex}].MemberPhone" class="form-control input-small" placeholder=""/>
                      <label>Phone</label>
                 </div>
-                <div class="form-group floating-label col-md-2">                  
+                <div class="form-group floating-label col-md-2">
                     <input type="text" name="MemberInfo[${memberIndex}].MemberEmail" class="form-control input-small" placeholder=""/>
                       <label>Email</label>
                 </div>
-                <div class="form-group floating-label col-md-2">                   
+                <div class="form-group floating-label col-md-2">
                     <input type="text" name="MemberInfo[${memberIndex}].MemberNID" class="form-control input-small" placeholder=""/>
                      <label>NID</label>
                 </div>
                 <div class="form-group floating-label col-md-2">
-                  
+
                     <input type="text" name="MemberInfo[${memberIndex}].MemberAddress" class="form-control input-small" placeholder=""/>
                       <label>Address</label>
                 </div>
-                <div class="form-group floating-label col-md-2">                   
+                <div class="form-group floating-label col-md-2">
                     <input type="text" name="MemberInfo[${memberIndex}].MemberProfession" class="form-control input-small" placeholder=""/>
                      <label>Profession</label>
                 </div>
-                <div class="form-group floating-label col-md-2">                  
+                <div class="form-group floating-label col-md-2">
                     <input type="text" name="MemberInfo[${memberIndex}].GuardianID" class="form-control input-small" placeholder=""/>
                       <label>Guardian ID</label>
                 </div>
                 <div class="form-group floating-label col-md-2">
-                    <input type="text" name="MemberInfo[${memberIndex}].GuardialNID" class="form-control input-small" placeholder=""/> 
+                    <input type="text" name="MemberInfo[${memberIndex}].GuardialNID" class="form-control input-small" placeholder=""/>
                     <label>Guardian NID</label>
                 </div>
                 <div class="form-group floating-label col-md-2">
-                    <input type="text" name="MemberInfo[${memberIndex}].RelationWithGuardian" class="form-control input-small" placeholder=""/> 
+                    <input type="text" name="MemberInfo[${memberIndex}].RelationWithGuardian" class="form-control input-small" placeholder=""/>
                     <label>Relation With Guardian</label>
                 </div><div class="form-group floating-label col-md-2">
                         <button type="button" class="btn btn-danger remove-member">Remove</button>
@@ -138,5 +283,5 @@
                 e.target.closest('.member-item').remove();
             }
         });
-    </script>
-}
+    </script> 
+}*@

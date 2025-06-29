@@ -3,8 +3,7 @@
 @{
     ViewBag.Title = "Flat Information Entry";
 }
-<div class="container" style="background-color:white; padding: 20px; border-radius: 10px;">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <div class="row g-3">
         <div class="col-md-12">
             <h2 class="header-style">Flat Information Entry</h2>
@@ -21,11 +20,9 @@
                         <label asp-for="BlockNo" class="control-label"></label>
                         <span asp-validation-for="BlockNo" class="text-danger"></span>
                     </div>
-
                     <div class="form-group floating-label col-md-3">
                         <input asp-for="BuildingNo" class="form-control input-small" placeholder="" />
                         <label asp-for="BuildingNo" class="control-label"></label>
-
                         <span asp-validation-for="BuildingNo" class="text-danger"></span>
                     </div>
 
@@ -89,7 +86,7 @@
 
         </div>
     </div>
-</div>
+
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

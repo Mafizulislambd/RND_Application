@@ -1,64 +1,57 @@
 ﻿@using HomeRentTracker.Models.FlatEntity
 @model FlatViewModel
-
-<h1 class="header-style">Flat Rent Recveive Entry</h1>
-<hr />
 <div class="row">
-    <form asp-action="Create" class="row g-3">
-        <div hidden class="form-group floating-label col-sm-3">
-            <input asp-for="Flat.FlatId" class="form-control" />
-        </div>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group floating-label col-sm-3">
-            <input asp-for="Flat.FlatNo" class="form-control input-small" placeholder="" />
-            <label asp-for="Flat.FlatNo" class="control-labe"></label>
-            <span asp-validation-for="Flat.FlatNo" class="text-danger"></span>
-        </div>
-        <div class="form-group floating-label col-sm-3">           
-            <select asp-for="Flat.FlatOwener" class="form-control" asp-items="Model.OwnerList">
-                <option value="" selected>---Select---</option>              
-            </select>  
-            <label asp-for="Flat.FlatOwener" class="control-label"></label>
-            <span asp-validation-for="Flat.FlatOwener" class="text-danger"></span>
-        </div>
-        <div class="form-group floating-label col-sm-3">            
-            <input asp-for="Flat.FlatRent" class="form-control input-small"  placeholder="" />
-            <label asp-for="Flat.FlatRent" class="control-label"></label>
-            <span asp-validation-for="Flat.FlatRent" class="text-danger"></span>
-        </div>
-        <div class="form-group floating-label col-sm-3">            
-            <input asp-for="Flat.RentPaidBy" class="form-control" placeholder=""/>
-            <label asp-for="Flat.RentPaidBy" class="control-label"></label>
-            <span asp-validation-for="Flat.RentPaidBy" class="text-danger"></span>
-        </div>
-        @*         <div class="col-md-2 form-group form-check">
-        <label class="form-check-label">
-        <input class="form-check-input" asp-for="RentReceive" />
-        @Html.DisplayNameFor(model => model.RentReceive)
-        </label>
-        </div> *@
-        <div class=" form-group floating-label col-sm-3">
-            <input asp-for="Flat.RentReceiverName" class="form-control" placeholder="" />
-            <label asp-for="Flat.RentReceiverName" class="control-label"></label>
-            <span asp-validation-for="Flat.RentReceiverName" class="text-danger"></span>
-        </div>
+    <div class="col-md-12">
+        <h2 class="header-style">Flat Rent Receive Entry</h2>
+        <form asp-action="Create" class="row g-3">
+            <div hidden class="form-group floating-label col-sm-3">
+                <input asp-for="Flat.FlatId" class="form-control" />
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group floating-label col-sm-3">
+                <input asp-for="Flat.FlatNo" class="form-control input-small" placeholder="" />
+                <label asp-for="Flat.FlatNo" class="control-labe"></label>
+                <span asp-validation-for="Flat.FlatNo" class="text-danger"></span>
+            </div>
+            <div class="form-group floating-label col-sm-3">
+                <select asp-for="Flat.FlatOwener" class="form-control" asp-items="Model.OwnerList">
+                    <option value="" selected>---Select---</option>
+                </select>
+                <label asp-for="Flat.FlatOwener" class="control-label"></label>
+                <span asp-validation-for="Flat.FlatOwener" class="text-danger"></span>
+            </div>
+            <div class="form-group floating-label col-sm-3">
+                <input asp-for="Flat.FlatRent" class="form-control input-small" placeholder="" />
+                <label asp-for="Flat.FlatRent" class="control-label"></label>
+                <span asp-validation-for="Flat.FlatRent" class="text-danger"></span>
+            </div>
+            <div class="form-group floating-label col-sm-3">
+                <input asp-for="Flat.RentPaidBy" class="form-control" placeholder="" />
+                <label asp-for="Flat.RentPaidBy" class="control-label"></label>
+                <span asp-validation-for="Flat.RentPaidBy" class="text-danger"></span>
+            </div>          
+            <div class=" form-group floating-label col-sm-3">
+                <input asp-for="Flat.RentReceiverName" class="form-control" placeholder="" />
+                <label asp-for="Flat.RentReceiverName" class="control-label"></label>
+                <span asp-validation-for="Flat.RentReceiverName" class="text-danger"></span>
+            </div>
 
-        <div class=" form-group floating-label col-sm-3">
-            <input asp-for="Flat.RentMonth" type="month" class="form-control" placeholder=""/>
-            <label asp-for="Flat.RentMonth" class="form-label"></label>
-            <span asp-validation-for="Flat.RentMonth" class="text-danger"></span>
-        </div>
-        <div class="form-group floating-label col-sm-3">
-            <input asp-for="Flat.ReceiveDate" class="form-control" type="date" placeholder=""/>
-            <label asp-for="Flat.ReceiveDate" class="control-label"></label>
-            <span asp-validation-for="Flat.ReceiveDate" class="text-danger"></span>
-        </div>
-        <div class="floating-label col-sm-3">
-            <button type="submit" value="Save" class="btn btn-primary" >Save</button>
-        </div>
-    </form>
-
-</div>
+            <div class=" form-group floating-label col-sm-3">
+                <input asp-for="Flat.RentMonth" type="month" class="form-control" placeholder="" />
+                <label asp-for="Flat.RentMonth" class="form-label"></label>
+                <span asp-validation-for="Flat.RentMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group floating-label col-sm-3">
+                <input asp-for="Flat.ReceiveDate" class="form-control" type="date" placeholder="" />
+                <label asp-for="Flat.ReceiveDate" class="control-label"></label>
+                <span asp-validation-for="Flat.ReceiveDate" class="text-danger"></span>
+            </div>
+            <div class="floating-label col-sm-3">
+                <button type="submit" value="Save" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+    </div>
 
 @* <div>
     <a asp-action="Index">Back to List</a>

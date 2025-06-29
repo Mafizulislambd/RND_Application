@@ -1,7 +1,6 @@
-﻿@using HomeRentTracker.Models.RenterEntity
-@using HomeRentTracker.Models.Enumation
+﻿@using HomeRentTracker.Models.CommonEntity
+@using HomeRentTracker.Models.RenterEntity
 @model MemberInfo
-<title></title>
 @{
     ViewData["Title"] = "Member Entry";
 }
@@ -22,17 +21,14 @@
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="MemberPhone" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberPhone"></label>
-
                     </div>
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="MemberEmail" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberEmail"></label>
-
                     </div>
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="MemberNID" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberNID"></label>
-
                     </div>
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="MemberAddress" class="form-control input-small" placeholder="" />
@@ -44,17 +40,19 @@
 
                     </div> *@   
                     <div class="form-group floating-label col-sm-3">
-                        <input asp-for="GuardianID" class="form-control input-small" placeholder="" />
-                        <label asp-for="GuardianID"></label>
+                        <input asp-for="RenterID" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterID"></label>
                     </div>
                     <div class="form-group floating-label col-sm-3">
-                        <input asp-for="GuardialNID" class="form-control input-small" placeholder="" />
-                        <label asp-for="GuardialNID"></label>
+                        <input asp-for="RenterNID" class="form-control input-small" placeholder="" />
+                        <label asp-for="RenterNID"></label>
 
                     </div>
                     <div class="form-group floating-label col-sm-3">
-                        <input asp-for="RelationWithGuardian" class="form-control input-small" placeholder="" />
-                        <label asp-for="RelationWithGuardian"></label>
+                        <select asp-for="RelationWithRenter" class="form-control input-small" asp-items="Html.GetEnumSelectList<RelationEntity>()" >
+                            <option value="" selected>-- Select Relation --</option>
+                        </select>
+                        <label asp-for="RelationWithRenter"></label>
                     </div>
                     <div class="form-group floating-label col-sm-3">
                         <select asp-for="MemberProfession"  asp-items="Html.GetEnumSelectList<Profession>()" class="input-small" required></select>

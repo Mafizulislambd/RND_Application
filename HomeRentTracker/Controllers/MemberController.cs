@@ -31,9 +31,18 @@ namespace HomeRentTracker.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(MemberInfo member)
         {
+            int renterID = 0;
+            string renterNID = string.Empty;
+
+            if (renterID == 0|| string.IsNullOrEmpty(renterNID))
+            {  renterID=member.RenterID != null ? Convert.ToInt32(member.RenterID) : 0;
+                renterNID = member.RenterNID ?? string.Empty;
+                // Assuming you have a way to get the current renter ID, e.g., from session or user context
+                // renterID = GetCurrentRenterId(); // Implement this method as per your logic
+            }
             if (ModelState.IsValid)
             {
-                await _memberService.AddAsync(member);
+              int memberID=  await _memberService.AddAsync(member, renterID, renterNID);
                 return RedirectToAction(nameof(Index));
             }
             return View(member);
