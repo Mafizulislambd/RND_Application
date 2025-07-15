@@ -86,7 +86,7 @@ namespace HomeRentTracker.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _flatInfo.DeleteAsync(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         public async Task<IActionResult> Details(int id)
@@ -94,13 +94,62 @@ namespace HomeRentTracker.Controllers
             var model = await _flatInfo.GetByIdAsync(id);
             return View(model);
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int id)
         {
-            var model = new FlatInformation
+            FlatInformation flatInformation = new FlatInformation();
+            if (id > 0)
             {
-                Countries = await _locationService.GetCountriesAsync()
-            };
-            return View(model);
+                var model1 = await _flatInfo.GetByIdAsync(id);
+                if (model1 == null)
+                    return NotFound();
+
+                //var viewModel = new FlatInfoViewModel
+                //{
+                //    Id = model1.Id,
+                //    RoadNo = model1.RoadNo,
+                //    FlatNo = model1.FlatNo,
+                //    PlaceName = model1.PlaceName,
+                //    BuildingNo = model1.BuildingNo,
+                //    BlockNo = model1.BlockNo,
+                //    // ... other fields
+                //    CountryId = model1.CountryId,
+                //    DivisionId = model1.DivisionId,
+                //    DistrictId = model1.DistrictId,
+                //    SubDistrictId = model1.SubDistrictId,
+                //    PostOfficeId = model1.PostOfficeId,
+
+                //    // Fetch dropdownss
+                //    Countries = await _locationService.GetCountriesAsync(),
+                //    Divisions = await _locationService.GetDivisionsByCountryIdAsync(int.Parse(model1.CountryId)), // Fix: Convert string to int
+                //    Districts = await _locationService.GetDistrictsByDivisionIdAsync(int.Parse(model1.DivisionId)), // Fix: Convert string to int
+                //    SubDistricts = await _locationService.GetSubDistrictsByDistrictIdAsync(int.Parse(model1.DistrictId)), // Fix: Convert string to int
+                //    PostOffices = await _locationService.GetPostOfficesBySubDistrictIdAsync(int.Parse(model1.SubDistrictId)) // Fix: Convert string to int
+                //};
+                model1.FlatInformations = await _flatInfo.GetAllAsync();
+                model1.Countries = await _locationService.GetCountriesAsync();
+
+                //flatInformation.DivisionId = await _locationService.GetDivisionsByCountryIdAsync(int.Parse(model1.CountryId)), // Fix: Convert string to int
+                //    Districts = await _locationService.GetDistrictsByDivisionIdAsync(int.Parse(model1.DivisionId)), // Fix: Convert string to int
+                //    SubDistricts = await _locationService.GetSubDistrictsByDistrictIdAsync(int.Parse(model1.DistrictId)), // Fix: Convert string to int
+                //    PostOffices = await _locationService.GetPostOfficesBySubDistrictIdAsync(int.Parse(model1.SubDistrictId)) // Fix: Convert string to int
+                flatInformation = model1;
+            }
+            else
+            {
+                var viewModel = new FlatInformation
+                {
+                    Countries = await _locationService.GetCountriesAsync(),
+                    FlatInformations = await _flatInfo.GetAllAsync()
+                };
+                flatInformation = viewModel;
+                return View(viewModel);
+            }
+            //var model = new FlatInformation
+            //{
+            //    Countries = await _locationService.GetCountriesAsync(),
+            //    FlatInformations = await _flatInfo.GetAllAsync()
+            //};
+            return View(flatInformation);
         }
 
         [HttpPost]
@@ -108,10 +157,19 @@ namespace HomeRentTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _flatInfo.AddAsync(model);
-                return RedirectToAction("Index");
+                if (model.Id > 0)
+                {
+                    await _flatInfo.UpdateAsync(model);
+                }
+                else
+                {
+
+                    await _flatInfo.AddAsync(model);
+                }
+                model.FlatInformations = await _flatInfo.GetAllAsync();
+                //return RedirectToAction("Create",model.Id=0);
             }
-            return View(model);
+            return RedirectToAction("Create", new {id=0});
         }
         [HttpGet]
         public async Task<IActionResult> GetDivisions(int countryId)

@@ -27,6 +27,7 @@ namespace HomeRentTracker.Models.FlatInfoEntity
         [Display(Name = "Country")]
         public string? CountryId { get; set; }
         public List<SelectListItem> Countries { get; set; } = new();
+        public List<FlatInformation> FlatInformations { get; set; } = new();
 
 
     }

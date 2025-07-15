@@ -34,6 +34,13 @@ namespace ConsoleApp
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(input);
         }
     }
+    class ResourceHandler
+    {
+        ~ResourceHandler()
+        {
+            Console.WriteLine("Finalizer called by GC.");
+        }
+    }
 
 
 
