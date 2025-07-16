@@ -1,5 +1,6 @@
 ﻿using HomeRentTracker.Models.CommonEntity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeRentTracker.Models.RenterEntity
 {
@@ -9,7 +10,8 @@ namespace HomeRentTracker.Models.RenterEntity
         [Display(Name ="Renter Name")]
         public  string? RenterName { get; set; }
         public string? RenterImage { get; set; }
-
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
         [Display(Name = "Father Name")]
         public string? RenterFatherName { get; set; }
         [Display(Name = "Mother Name")]
@@ -65,5 +67,7 @@ namespace HomeRentTracker.Models.RenterEntity
         public string? DriverAddress { get; set; }
         public int? TotalMember { get; set; }     
         public List<RenterInfo>? RenterList { get; set; } = new List<RenterInfo>();
+    
+
     }
 }

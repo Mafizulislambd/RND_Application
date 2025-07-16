@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<HomeRentTracker.Models.FlatInfoEntity.FlatInformation>
-
 @{
     ViewData["Title"] = "Flat Address";
 }
@@ -27,7 +26,6 @@
                 <td>@item.DistrictId</td>
                 <td>@item.PostOfficeId</td>
                 <td>
-                    <!--  <a asp-action="Details" asp-route-id="@item.Id">Details</a> -->
                     <a asp-action="Create" asp-route-id="@item.Id"><i class="fa-solid fa-pen-nib"></i></a>&nbsp;&nbsp;
                     <a asp-action="Delete" style="color:red" asp-route-id="@item.Id"><i class="fa-regular fa-trash-can"></i></a>
                 </td>

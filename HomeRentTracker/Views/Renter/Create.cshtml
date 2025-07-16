@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row table-primary">
         <div class="row g-3">
-            <form asp-action="Create">
+            <form asp-action="Create" enctype="multipart/form-data">
                 <h1 class="header-style">Renter Info</h1>
                 <div class="row g-3">
                     <div class="form-group floating-label col-sm-3">
@@ -61,7 +61,7 @@
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="EducationalBackground" class="form-control input-small" placeholder="" />
                         <label asp-for="EducationalBackground"></label>
-                    </div>  
+                    </div>
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="RenterPhone" class="form-control input-small" placeholder="" />
                         <label asp-for="RenterPhone"></label>
@@ -77,6 +77,16 @@
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="PassportNo" class="form-control input-small" placeholder="" />
                         <label asp-for="PassportNo"></label>
+                    </div>
+                    <div class="form-group floating-label col-md-1">
+                        <label class="non-floating-label">Image Upload</label>
+                    </div>
+                    <div class="form-group floating-label col-md-2">
+                        <input asp-for="ImageFile" id="ImageFile" type="file" class="form-control" accept="image/*" onchange="previewImage(event)" />
+
+                    </div>
+                    <div class="form-group floating-label col-md-3">
+                        <img id="imagePreview" src="#" alt="Image Preview" style="height:40px;width:40px; display: none;" onclick="zoomImage" />
                     </div>
                     <div style="margin:0;padding:0" class="row g-3">
                         <h5 style="margin:5px 0 0 6px ;padding:0"><strong>Emergency Contract:</strong> </h5>
@@ -120,13 +130,13 @@
                         </div>
 
                         <div class="form-group floating-label col-sm-1">
-                                @for (int i = 0; i < Model.MemberInfoList.Count; i++)
-                                {
-                                    <input type="hidden" name="MemberInfoList[@i].MemberName" value="@Model.MemberInfoList[i].MemberName" />
-                                    <input type="hidden" name="MemberInfoList[@i].MemberAge" value="@Model.MemberInfoList[i].MemberAge" />
-                                    <input type="hidden" name="MemberInfoList[@i].MemberProfession" value="@((int)Model.MemberInfoList[i].MemberProfession)" />
-                                    <input type="hidden" name="MemberInfoList[@i].MemberPhone" value="@Model.MemberInfoList[i].MemberPhone" />
-                                }
+                            @for (int i = 0; i < Model.MemberInfoList.Count; i++)
+                            {
+                                <input type="hidden" name="MemberInfoList[@i].MemberName" value="@Model.MemberInfoList[i].MemberName" />
+                                <input type="hidden" name="MemberInfoList[@i].MemberAge" value="@Model.MemberInfoList[i].MemberAge" />
+                                <input type="hidden" name="MemberInfoList[@i].MemberProfession" value="@((int)Model.MemberInfoList[i].MemberProfession)" />
+                                <input type="hidden" name="MemberInfoList[@i].MemberPhone" value="@Model.MemberInfoList[i].MemberPhone" />
+                            }
 
                             <button type="submit" asp-controller="Renter" asp-action="AddMember" class="btn btn-secondary" name="action" value="AddMember">Add</button>
                         </div>
@@ -158,7 +168,7 @@
                             </tbody>
                         </table>
                     </div>
-      
+
                     <div class="form-group floating-label col-sm-3">
                         <input asp-for="MemberName" class="form-control input-small" placeholder="" />
                         <label asp-for="MemberName"></label>
@@ -198,15 +208,16 @@
                         <input asp-for="TotalMember" hidden class="form-control input-small" placeholder="" />
                         <label asp-for="TotalMember"></label>
                     </div>
-                    <div  class="form-group floating-label col-sm-3">
+                    <div class="form-group floating-label col-sm-3">
                         <button type="submit" class="btn btn-success">Save</button>
-                </div> </div>
+                    </div>
+                </div>
                 <br />
                 @* <div id="memberList">
                 </div>
                 <button type="button" class="btn btn-secondary" id="addMemberBtn">+ Add Member</button>
                 <br /><br /> *@
-             
+
             </form>
         </div>
     </div>
@@ -216,7 +227,21 @@
         @await Html.PartialAsync("_renterInfoList", Model.RenterList)
     </div>
 </div>
+<script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('imagePreview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
 
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 @* 
 @section Scripts {
     <script>

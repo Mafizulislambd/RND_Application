@@ -44,15 +44,32 @@ namespace HomeRentTracker.Controllers
         [HttpPost]
         public IActionResult AddMember(RenterInfo renter)
         {
+            //// Add the new member to the list
+            //if (renter.MemberInfo != null)
+            //{
+            //    renter.MemberInfoList.Add(renter.MemberInfo);
+            //    renter.MemberInfo = new MemberInfo(); // Reset input
+         
+            //}
+            //ModelState.Clear();
+            //renter.RenterList = _service.GetAllAsync().Result.ToList();
+            //return View("Create", renter);
+
+
+            if (renter.MemberInfoList == null)
+            {
+                renter.MemberInfoList = new List<MemberInfo>();
+            }
+
             // Add the new member to the list
             if (renter.MemberInfo != null)
             {
                 renter.MemberInfoList.Add(renter.MemberInfo);
                 renter.MemberInfo = new MemberInfo(); // Reset input
-         
             }
+
             ModelState.Clear();
-            renter.RenterList = _service.GetAllAsync().Result.ToList();
+            renter.RenterList = _service.GetAllAsync().Result?.ToList() ?? new List<RenterInfo>();
             return View("Create", renter);
         }
         [HttpPost]
@@ -61,7 +78,38 @@ namespace HomeRentTracker.Controllers
             int renterID;
             if (ModelState.IsValid)
             {
-               renterID= await _service.AddAsync(renter);
+                if (renter.ImageFile != null && renter.ImageFile.Length > 0)
+                {
+
+                    string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(renter.ImageFile.FileName);
+
+                    string imageFile = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/");
+                    Directory.CreateDirectory(imageFile);
+
+                    string filePath = Path.Combine(imageFile, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        renter.ImageFile.CopyToAsync(stream);
+                    }
+                    renter.RenterImage = "images/" + uniqueFileName;
+
+
+                    //string fileName = Path.GetFileNameWithoutExtension(owner.ImageFile.FileName);
+                    //string extension = Path.GetExtension(owner.ImageFile.FileName);
+                    //fileName = fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", fileName);
+
+                    //using (var stream = new FileStream(path, FileMode.Create))
+                    //{
+                    //    await owner.ImageFile.CopyToAsync(stream);
+                    //}
+
+                    //owner.OwernerImage = "/images/" + fileName;
+
+
+                }
+                renterID = await _service.AddAsync(renter);
                 return RedirectToAction("Create",0);
             }
             return View(renter);
