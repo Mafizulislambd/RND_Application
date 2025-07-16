@@ -6,9 +6,9 @@ namespace HomeRentTracker.Controllers
 {
     public class MemberController : Controller
     {
-        private readonly IMemberService _memberService;
+        private readonly IMemberContract _memberService;
 
-        public MemberController(IMemberService memberService)
+        public MemberController(IMemberContract memberService)
         {
             _memberService = memberService;
         }

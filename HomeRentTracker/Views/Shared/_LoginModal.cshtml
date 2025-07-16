@@ -13,26 +13,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="mb-3">
-                        <label asp-for="userName" class="form-label"></label>
-                        <input asp-for="userName" name="userName" class="form-control" />
-                        <span asp-validation-for="userName" class="text-danger"></span>
+                    <div class="row g-3">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group floating-label col-sm-12">
+                            <input asp-for="userName" name="userName" class="form-control input-small" placeholder="" />
+                            <label asp-for="userName"></label>
+                                                        <span asp-validation-for="userName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group floating-label col-sm-12">
+                            <input asp-for="userPassword" name="userPassword" class="form-control input-small" placeholder="" />
+                            <label asp-for="userPassword"></label>
+                                                        <span asp-validation-for="userPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label"></label>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Not Yet SignUp</label>
+                            <a href="/Account/Register" class="btn btn-link">Register</a>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label asp-for="userPassword" class="form-label"></label>
-                        <input asp-for="userPassword" name="userPassword" class="form-control" />
-                        <span asp-validation-for="userPassword" class="text-danger"></span>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <div id="loginError" class="text-danger mt-2"></div>
                     </div>
-                    <div class="form-check">
-                        <input asp-for="RememberMe" class="form-check-input" />
-                        <label asp-for="RememberMe" class="form-check-label"></label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <div id="loginError" class="text-danger mt-2"></div>
                 </div>
             </form>
         </div>
@@ -45,7 +51,6 @@
         if (loginForm) {
             loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-
                 const formData = {
                     userName: document.querySelector("input[name=userName]").value,
                     userPassword: document.querySelector("input[name=userPassword]").value,
@@ -113,14 +118,14 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-@* 
+    @* 
     <script>
         $(document).ready(function () {
             debugger;
             $("#loginForm").on("submit", function (e) {
                 e.preventDefault(); // Prevent default form submission
                 debugger;
-                
+
                 var formData = {
                     userName: $("input[name='userName']").val(),
                     userPassword: $("input[name='userPassword']").val(),
@@ -150,6 +155,6 @@
             $("#headerContainer").load("/Shared/ReloadHeader");
         }
     </script> *@
-    
+
 
 }

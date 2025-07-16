@@ -7,9 +7,9 @@ namespace HomeRentTracker.Controllers
 
     public class RenterController : Controller
     {
-        private readonly IRenterService _service;
+        private readonly IRenterInfoContract _service;
 
-        public RenterController(IRenterService service)
+        public RenterController(IRenterInfoContract service)
         {
             _service = service;
         }

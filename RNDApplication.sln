@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingApp", "TestingApp\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfManagementTest", "SelfManagementTest\SelfManagementTest.csproj", "{75987A0D-6AD4-4192-BD7D-6987D6F9E82C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDataIntigrity", "AppDataIntigrity\AppDataIntigrity.csproj", "{37501E7E-EC10-45AA-BC57-9C4197267B59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +195,10 @@ Global
 		{75987A0D-6AD4-4192-BD7D-6987D6F9E82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75987A0D-6AD4-4192-BD7D-6987D6F9E82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75987A0D-6AD4-4192-BD7D-6987D6F9E82C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37501E7E-EC10-45AA-BC57-9C4197267B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37501E7E-EC10-45AA-BC57-9C4197267B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37501E7E-EC10-45AA-BC57-9C4197267B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37501E7E-EC10-45AA-BC57-9C4197267B59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

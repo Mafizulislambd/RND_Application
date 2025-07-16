@@ -1,0 +1,17 @@
+﻿@model AccountViewModel
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Customer</label>
+        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.Customers"></select>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="InitialBalance"></label>
+        <input asp-for="InitialBalance" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="InitialBalance" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>

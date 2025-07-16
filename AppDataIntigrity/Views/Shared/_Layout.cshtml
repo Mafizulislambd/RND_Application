@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="d-flex" style="min-height: 100vh;">
+        @* Sidebar *@
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="bg-dark text-white p-3" style="width: 250px;">
+                <h4>Dashboard</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Customer" asp-action="Create">Add Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Account" asp-action="Create">Add Account</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+        @* Main content *@
+        <div class="flex-grow-1">
+            @* Topbar *@
+            <nav class="navbar navbar-expand navbar-light bg-light border-bottom mb-3">
+                <div class="container-fluid">
+                    <span class="navbar-text me-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <span>
+                                Hello, @UserManager.GetUserName(User)! (@(User.IsInRole("Admin") ? "Admin" : "User"))
+                            </span>
+                                    
+                        }
+                    </span>
+                    <ul class="navbar-nav ms-auto">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-sm" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="container">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

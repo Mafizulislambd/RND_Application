@@ -3,10 +3,11 @@ using System.Data;
 using System.Net;
 using HomeRentTracker.Models.FlatInfoEntity;
 using HomeRentTracker.Services.Contract;
+using HomeRentTracker.Models;
 
 namespace HomeRentTracker.Services.Repos
 {
-    public class FlatInfoRepo : IFlatInfo
+    public class FlatInfoRepo : IFlatInfoContract
     {
         private readonly string _connectionString;
         public FlatInfoRepo(IConfiguration configuration)
@@ -135,6 +136,26 @@ namespace HomeRentTracker.Services.Repos
             cmd.Parameters.AddWithValue("@Id", id);
             await conn.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
+        }
+        public async Task<List<SelectValueList>> GetFlatInfoList(string userId,string owenerId)
+        {
+            var list = new List<SelectValueList>();
+            using var conn = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("GetFlatList", conn) { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("@userId", userId);
+            cmd.Parameters.AddWithValue("@OwenerID", owenerId);
+            await conn.OpenAsync();
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync()) { 
+            list.Add(new SelectValueList
+            {
+                Text = reader["Text"].ToString(),
+                Value = reader["Value"].ToString()
+            });
+
+            }
+           return list;
+
         }
     }
 }

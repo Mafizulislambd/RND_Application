@@ -8,10 +8,10 @@ namespace HomeRentTracker.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUserServices _userService;
+        private readonly IUserContract _userService;
         private readonly UserManager<UserInfo> _userManager;
         private readonly SignInManager<UserInfo> _signInManager;
-        public AccountController(IUserServices userServices, UserManager<UserInfo> userManager, SignInManager<UserInfo> signInManager)
+        public AccountController(IUserContract userServices, UserManager<UserInfo> userManager, SignInManager<UserInfo> signInManager)
         {
             _userService = userServices;
             _userManager = userManager;

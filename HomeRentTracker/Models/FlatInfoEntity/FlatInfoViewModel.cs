@@ -22,5 +22,8 @@ namespace HomeRentTracker.Models.FlatInfoEntity
         public List<SelectListItem> Districts { get; set; } = new();
         public List<SelectListItem> Divisions { get; set; } = new();
         public List<SelectListItem> Countries { get; set; } = new();
+        public string Text { get; set; }
+        public string Value { get; set; }
+
     }
 }

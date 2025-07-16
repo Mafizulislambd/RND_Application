@@ -8,10 +8,10 @@ namespace HomeRentTracker.Controllers
 {
     public class FlatInfoController : Controller
     {
-        private readonly IFlatInfo _flatInfo;
-        private readonly ILocationService _locationService;
+        private readonly IFlatInfoContract _flatInfo;
+        private readonly ILocationContract _locationService;
 
-        public FlatInfoController(IFlatInfo flatInfo, ILocationService locationService)
+        public FlatInfoController(IFlatInfoContract flatInfo, ILocationContract locationService)
         {
             _flatInfo = flatInfo;
             _locationService = locationService;

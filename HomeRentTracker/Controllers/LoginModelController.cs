@@ -7,8 +7,8 @@ namespace FlatRentTracker.Controllers
 {
     public class LoginModelController : Controller
     {
-         private readonly IUserServices _userRepository;
-        public LoginModelController(IUserServices userRepository)
+         private readonly IUserContract _userRepository;
+        public LoginModelController(IUserContract userRepository)
         {
             _userRepository = userRepository;
         }
