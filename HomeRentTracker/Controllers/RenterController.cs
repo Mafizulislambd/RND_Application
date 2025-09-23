@@ -8,6 +8,7 @@ namespace HomeRentTracker.Controllers
     public class RenterController : Controller
     {
         private readonly IRenterInfoContract _service;
+        private string ImagePath;
 
         public RenterController(IRenterInfoContract service)
         {
@@ -132,10 +133,22 @@ namespace HomeRentTracker.Controllers
             }
             return View(renter);
         }
+        public void DeleteImageFromServer(string relativePath)
+        {
+            if (!string.IsNullOrEmpty(relativePath))
+            {
+                string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath);
 
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+        }
         public async Task<IActionResult> Delete(int id)
         {
             var renter = await _service.GetByIdAsync(id);
+            ImagePath = renter.RenterImage;
             if (renter == null) return NotFound();
             return View(renter);
         }
@@ -144,6 +157,8 @@ namespace HomeRentTracker.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _service.DeleteAsync(id);
+            // Delete the image file from the server
+            DeleteImageFromServer(string.IsNullOrEmpty(ImagePath) ? string.Empty : ImagePath);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Details(int id)

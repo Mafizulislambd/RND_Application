@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "unpkg",
+      "library": "@syncfusion/blazor-themes@26.2.14",
+      "destination": "wwwroot/_content/syncfusion/blazor-themes/"
+    }
+  ]
+}

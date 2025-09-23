@@ -1,0 +1,8 @@
+﻿namespace AscWebApp.Configuration
+{
+    public class ApplicationSettings
+    {
+        public string ApplicationTitle { get; set; }
+
+    }
+}

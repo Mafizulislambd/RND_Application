@@ -1,8 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleApp;
+using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage;
 using System;
 using System.Collections;
 using System.Reflection;
+using System.Diagnostics;
 Console.WriteLine("Hello, World!");
 //for (int j = 1; j <= 115; j = j + 10)
 //{
@@ -159,6 +162,35 @@ method.Invoke(null, new object[] { "Hello, Reflection!" });
 int num = 10;
 object boxed = num; // Boxing (value → object)
 int unboxed = (int)boxed; // Unboxing (object → value)
+#region Azure Storage
+Debugger.Break();
+// Azure Storage Account and Table Service Instances
+CloudStorageAccount storageAccount;
+CloudTableClient tableClient;
+
+// Connnect to Storage Account
+storageAccount = CloudStorageAccount.Parse("UseDevelopmentStorage=true");
+// Create the Table 'Book', if it not exists
+tableClient = storageAccount.CreateCloudTableClient();
+CloudTable table = tableClient.GetTableReference("Book");
+table.CreateIfNotExistsAsync();
+// Create a Book instance
+Book book = new Book()
+{
+    Author = "Rami",
+    BookName = "ASP.NET Core With Azure",
+    Publisher = "APress"
+};
+book.BookId = 1;
+book.RowKey = book.BookId.ToString();
+book.PartitionKey = book.Publisher;
+book.CreatedDate = DateTime.UtcNow;
+book.UpdatedDate = DateTime.UtcNow;
+// Insert and execute operations
+TableOperation insertOperation = TableOperation.Insert(book);
+table.ExecuteAsync(insertOperation);
+
+#endregion
 
 
 Console.ReadKey();
