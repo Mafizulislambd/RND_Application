@@ -38,8 +38,12 @@ namespace HomeRentTracker.Controllers
                     HttpContext.Session.SetString("FullName", user.FullName);
                     return Ok(new { message = "Success" });
                 }
+                else
+                {
+                    return BadRequest("Invalid credentials");
 
-                return BadRequest("Invalid credentials");
+                }
+
 
                 //var user = _userService.ValidateUser(model.Username, model.Password);
                 //if (user != null)
@@ -56,7 +60,7 @@ namespace HomeRentTracker.Controllers
                 //ModelState.AddModelError("", "Invalid credentials");
             }
 
-            return View(model);
+            return  RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult Register() => View();
