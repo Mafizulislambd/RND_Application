@@ -1,8 +1,582 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+<html>
+<head>
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+</head>
+<body>
+@*     <div class="center-screen text-center">
+        <h1 class="display-4 slide-in-left">M TECH BD</h1>
+    </div> *@
+    @* <div class="center-screen">
+        <h1 class="typewriter">M TECH BD</h1>
+    </div> *@
+    <div class="center-screen">
+        <h1 id="typewriter" class="typing-text"></h1>
+    </div>
+@*     @await Html.PartialAsync("_withoutJavaScript")
+ *@
+</body>
+</html>
+@* 
+<style>
+  /*   body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 2.5rem;
+        font-family: monospace;
+        border-right: 2px solid black;
+         padding-right: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+    } */
+   /*  body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 2.5rem;
+        font-family: monospace;
+        white-space: nowrap;
+        overflow: hidden;
+        color: burlywood;
+    }
+ *//* 
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 2.5rem;
+        font-family: monospace;
+        white-space: nowrap;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: none;
+    }
+
+    .slide-down {
+        animation: slideDownFade 0.5s ease-out forwards;
+    }
+
+    @@keyframes slideDownFade {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    } */
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 2.5rem;
+        font-family: monospace;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    /* Letter-by-letter slide from top */
+    /* .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: dropIn 0.4s forwards ease-out;
+    } */
+    .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: dropIn 0.4s forwards ease-out;
+        min-width: 0.6ch; /* Helps ensure even spacing */
+    }
+    @@keyframes dropIn {
+        to
+
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+    /* modificate script is set alway Down*/
+</style> *@
+@* <style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background: #f8f9fa;
+    }
+
+    .center-screen {
+/*         height: 100vh;
+ */
+        margin-top: 19%; /* Adjusted to center vertically */
+  display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 2.5rem;
+        font-family: monospace;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+</style> *@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .center-screen {
+        margin-top:19%;        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 4rem;
+        font-family: monospace;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    /* Slide from top animation per letter */
+    .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: dropIn 0.4s forwards ease-out;
+    }
+
+    @@keyframes dropIn {
+        to
+
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+</style>
+
+@* @{
+    Layout = "_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="center-screen">
+    <h1 id="typewriter" class="typing-text"></h1>
 </div>
+ *@
+ @* modificate script is set alway up*@
+
+@section Scripts {
+    <script>
+        const texts = ["M TECH BD", "Home Rental System", "Smart Rent App"];
+        let textIndex = 0;
+        const el = document.getElementById("typewriter");
+
+        function typePhrase(text, callback) {
+            el.innerHTML = "";  // clear before typing
+            let charIndex = 0;
+
+            function typeNextChar() {
+                if (charIndex < text.length) {
+                    const span = document.createElement("span");
+                    span.textContent = text.charAt(charIndex) === " " ? "\u00A0" : text.charAt(charIndex);
+                    span.className = "letter";
+                    span.style.animationDelay = `${charIndex * 0.3}s`; // slower letter slide
+                    el.appendChild(span);
+
+                    charIndex++;
+                    setTimeout(typeNextChar, 150);
+                } else {
+                    // Wait before callback (next phrase)
+                    setTimeout(callback, 6000);
+                }
+            }
+
+            typeNextChar();
+        }
+
+        function cyclePhrases() {
+            typePhrase(texts[textIndex], () => {
+                textIndex = (textIndex + 1) % texts.length;
+                cyclePhrases();
+            });
+        }
+
+        window.onload = cyclePhrases;
+    </script>
+}
+@* @section Scripts {
+    <script>
+        const texts = ["M TECH BD", "Home Rental System", "Smart Rent App"];
+        let textIndex = 0;    // which phrase
+        let charIndex = 0;    // which letter
+
+        const el = document.getElementById("typewriter");
+
+        function typeNextChar() {
+            const currentText = texts[textIndex];
+
+            if (charIndex < currentText.length) {
+                el.textContent += currentText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeNextChar, 200); // letter typing speed (slow)
+            } else {
+                // full phrase typed, pause before next phrase
+                setTimeout(() => {
+                    el.textContent = "";          // clear text
+                    charIndex = 0;                // reset letter index
+                    textIndex = (textIndex + 1) % texts.length; // next phrase
+                    typeNextChar();               // start typing next phrase
+                }, 4000); // pause 4 seconds on full phrase
+            }
+        }
+
+        window.onload = typeNextChar;
+    </script>
+} *@
+@* 
+@section Scripts {
+    <script>
+        const texts = ["M TECH BD", "Home Rental System", "Smart Rent App"];
+        let textIndex = 0;
+
+        function typePhrase(text) {
+            const el = document.getElementById("typewriter");
+            el.innerHTML = ""; // Clear previous content
+
+            // [...text].forEach((char, i) => {
+            //     const span = document.createElement("span");
+            //     span.textContent = char;
+            //     span.className = "letter";
+            //     span.style.animationDelay = `${i * 0.1}s`;
+            //     el.appendChild(span);
+            // });
+                    [...text].forEach((char, i) => {
+            const span = document.createElement("span");
+            span.className = "letter";
+            span.style.animationDelay = `${i * 0.6}s`;
+
+            // 🧠 Fix: use non-breaking space for " " characters
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+
+            el.appendChild(span);
+        });
+
+
+            // After full word + wait, move to next
+            // setTimeout(() => {
+            //     textIndex = (textIndex + 1) % texts.length;
+            //     typePhrase(texts[textIndex]);
+            // }, text.length * 100 + 3000); // typing time + pause
+                    setTimeout(() => {
+            textIndex = (textIndex + 1) % texts.length;
+            charIndex = 0;
+            el.textContent = "";
+            setTimeout(typeNextChar, 500);
+        }, 6000);  // <-- longer pause here
+
+        }
+
+        window.onload = () => typePhrase(texts[textIndex]);
+    </script>
+} *@
+@* 
+@section Scripts {
+    <script>
+        const texts = ["M TECH BD", "Home Rental System", "Smart Rent App"];
+        let textIndex = 0;
+        let charIndex = 0;
+
+        const el = document.getElementById("typewriter");
+
+        function typeNextChar() {
+            const currentText = texts[textIndex];
+
+            if (charIndex === 0) {
+                el.classList.remove("slide-down"); // reset animation
+                void el.offsetWidth; // force reflow to restart animation
+                el.classList.add("slide-down");
+            }
+
+            if (charIndex <= currentText.length) {
+                el.textContent = currentText.substring(0, charIndex++);
+                setTimeout(typeNextChar, 100); // typing speed
+            } else {
+                setTimeout(() => {
+                    textIndex = (textIndex + 1) % texts.length;
+                    charIndex = 0;
+                    el.textContent = "";
+                    setTimeout(typeNextChar, 500); // short pause before next
+                }, 3000); // pause after full text
+            }
+        }
+
+        window.onload = typeNextChar;
+    </script>
+} *@
+@* @section Scripts {
+    <script>
+        const texts = ["M TECH BD", "Home Rental System", "Smart Rent App"];
+        let textIndex = 0;
+        let charIndex = 0;
+
+        const el = document.getElementById("typewriter");
+
+        function typeNextChar() {
+            const currentText = texts[textIndex];
+
+            if (charIndex <= currentText.length) {
+                el.textContent = currentText.substring(0, charIndex++);
+                setTimeout(typeNextChar, 100); // typing speed
+            } else {
+                setTimeout(() => {
+                    // move to next phrase after delay
+                    textIndex = (textIndex + 1) % texts.length;
+                    charIndex = 0;
+                    el.textContent = ""; // clear before next typing
+                    setTimeout(typeNextChar, 500); // short pause before next
+                }, 3000); // pause after full text is typed
+            }
+        }
+
+        window.onload = typeNextChar;
+    </script>
+}
+ *@
+
+@* @section Scripts {
+    <script>
+        const texts = ["M TECH BD", "Smart Rent App", "Home Rental System"];
+        const speed = 100;       // typing speed (ms)
+        const eraseSpeed = 50;   // erasing speed
+        const delay = 1000;      // delay between phrases
+        let index = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const el = document.getElementById("typewriter");
+
+        function type() {
+            const currentText = texts[index];
+            if (!isDeleting) {
+                el.textContent = currentText.substring(0, charIndex++);
+                if (charIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(type, delay);
+                } else {
+                    setTimeout(type, speed);
+                }
+            } else {
+                el.textContent = currentText.substring(0, charIndex--);
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    index = (index + 1) % texts.length;
+                    setTimeout(type, delay);
+                } else {
+                    setTimeout(type, eraseSpeed);
+                }
+            }
+        }
+
+        window.onload = type;
+    </script>
+} *@
+
+@* 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Typing effect */
+    .typewriter {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 0.15em solid #000;
+        font-size: 2.5rem;
+        font-family: monospace;
+        width: 0;
+        animation: typing 3s steps(10, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @@keyframes typing {
+        from
+
+    {
+        width: 0
+    }
+
+    to {
+        width: 10ch
+    }
+    /* Adjust based on text length */
+    }
+
+    @@keyframes blink {
+        50%
+
+    {
+        border-color: transparent
+    }
+
+    }
+</style> *@
+
+@* <style>
+ /*    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        height: 100%;
+    }
+
+    .center-screen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .center-screen h1 {
+        margin: 0;
+        } */ body.home-page {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .center-screen {
+        margin-top:20%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+  /*   .animated-title {
+        font-size: 3rem;
+        font-weight: bold;
+        animation: fadeZoomIn 2s ease-in-out forwards;
+        opacity: 0;
+    } */
+
+    /* Animation keyframes */
+
+    /* 🔁 Slide in from left */
+    .slide-in-left {
+        opacity: 0;
+        transform: translateX(-100%);
+        animation: slideFromLeft 1s ease-out forwards;
+    }
+
+    /* 🔁 Slide in from right */
+    .slide-in-right {
+        opacity: 0;
+        transform: translateX(100%);
+        animation: slideFromRight 1s ease-out forwards;
+    }
+
+    /* ✅ Keyframes */
+    @@keyframes slideFromLeft {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @@keyframes slideFromRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+
+</style> *@

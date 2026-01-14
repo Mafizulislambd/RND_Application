@@ -36,5 +36,6 @@ namespace HomeRentTracker.Models.OwnerEntity
         [Display(Name = "Updated Date")]
         public DateTime UpdatedDate { get; set; }
         public bool IsActive{ get; set;}
+        public List<OwnerInfo>? OwnerInfoList { get; set; }
     }
 }

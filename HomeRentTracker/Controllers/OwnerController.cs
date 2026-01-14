@@ -2,6 +2,7 @@
 using HomeRentTracker.Services.Contract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HomeRentTracker.Controllers
@@ -37,18 +38,31 @@ namespace HomeRentTracker.Controllers
 
         // The error CS0111 occurs because there are two methods named 'Create' in the OwnerController class with the same parameter types.
         // To fix this, we need to rename one of the methods or differentiate their parameter types.
+        [HttpGet]
+        public async Task<IActionResult> Create(int id)
+        {
+            OwnerInfo own = new OwnerInfo();
 
+            if (id > 0)
+            {
+                own = await _repository.GetOwnerByIdAsync(id);
 
+            }           
+           own.OwnerInfoList = _repository.GetOwnerListAll().Result; // Ensure the task is awaited or resolved
+            
+            return View(own); // Pass the viewModel to the view
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(OwnerInfo owner) // This method is for handling form submission.
         {
+            OwnerInfo obj = new OwnerInfo();
             if (!ModelState.IsValid)
                 return View(owner);
 
-            owner.CreatedDate = DateTime.Now;
-            owner.UpdatedDate = DateTime.Now;
-
+            //owner.CreatedDate = DateTime.Now;
+            //owner.UpdatedDate = DateTime.Now;
+            bool success;
             if (owner.ImageFile != null && owner.ImageFile.Length > 0)
             {
                 string fileName = Path.GetFileNameWithoutExtension(owner.ImageFile.FileName);
@@ -63,35 +77,30 @@ namespace HomeRentTracker.Controllers
 
                 owner.OwernerImage = "/images/" + fileName;
             }
+            if (owner.OwnerID > 0)
+            {
+                owner.UpdatedDate = DateTime.Now;
+                success = await _repository.UpdateOwnerAsync(owner);
+                owner = obj;
 
-            var success = await _repository.CreateOwnerAsync(owner);
-            return success ? RedirectToAction("Index") : View(owner);
-        }
+            }
+            else
+            {
+                owner.CreatedDate = DateTime.Now;
+                owner.UpdatedDate = DateTime.Now;
+                success = await _repository.CreateOwnerAsync(owner);
+                //owner= obj;
 
-
-      //  [HttpPost]
-        //public async Task<IActionResult> Create(OwnerInfo owner)
-        //{
-        //    if (!ModelState.IsValid) return View(owner);
-        //    owner.CreatedDate = DateTime.Now;
-        //    owner.UpdatedDate = DateTime.Now;
-        //    var success = await _repository.CreateOwnerAsync(owner);
-        //    return success ? RedirectToAction("Index") : View(owner);
-        //}
-        [HttpGet]
-        public IActionResult Create()
-        {
-            //var owners = _repository.GetOwnerList().Result; // Ensure the task is awaited or resolved
-            //var viewModel = new OwnerFilterViewModel
-            //{
-            //    OwnerList = owners.Select(o => new SelectListItem
-            //    {
-            //        Value = o.OwnerID.ToString(),
-            //        Text = o.OwnerName
-            //    }).ToList()
-            //};
-
-            return View(); // Pass the viewModel to the view
+            }
+            if (success)
+            {
+                return RedirectToAction("Create",new {id=0});
+            }
+            else
+            {
+                return View(owner);
+            }
+            //return success ? RedirectToAction("Create") : View(owner);
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -99,15 +108,6 @@ namespace HomeRentTracker.Controllers
             var owner = await _repository.GetOwnerByIdAsync(id);
             return View(owner);
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(OwnerInfo owner)
-        //{
-        //    if (!ModelState.IsValid) return View(owner);
-        //    owner.UpdatedDate = DateTime.Now;
-        //    var success = await _repository.UpdateOwnerAsync(owner);
-        //    return success ? RedirectToAction("Index") : View(owner);
-        //}
         [HttpPost]
         public async Task<IActionResult> Edit(OwnerInfo owner)
         {
@@ -132,6 +132,7 @@ namespace HomeRentTracker.Controllers
             owner.UpdatedDate = DateTime.Now;
             var success = await _repository.UpdateOwnerAsync(owner);
             return success ? RedirectToAction("Index") : View(owner);
+       
         }
 
 

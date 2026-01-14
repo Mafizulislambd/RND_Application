@@ -1,0 +1,35 @@
+﻿@model IEnumerable<HomeRentTracker.Models.FlatInfoEntity.FlatInformation>
+@{
+    ViewData["Title"] = "Flat Address";
+}
+<h2 class="header-style">Flat Address</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Road No</th>
+            <th>Flat</th>
+            <th>Place</th>
+            <th>Country</th>
+            <th>District</th>
+            <th>Post Office</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RoadNo</td>
+                <td>@item.FlatNo</td>
+                <td>@item.PlaceName</td>
+                <td>@item.CountryId</td>
+                <td>@item.DistrictId</td>
+                <td>@item.PostOfficeId</td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@item.Id"><i class="fa-solid fa-pen-nib"></i></a>&nbsp;&nbsp;
+                    <a asp-action="Delete" style="color:red" asp-route-id="@item.Id"><i class="fa-regular fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

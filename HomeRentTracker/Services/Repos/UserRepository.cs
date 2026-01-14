@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace HomeRentTracker.Services.Repos
 {
-    public class UserRepository : IUserServices
+    public class UserRepository : IUserContract
     {
         //private readonly DapperContext _context;
         private readonly string _connectionString;

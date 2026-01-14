@@ -2,6 +2,9 @@ using HomeRentTracker.Models;
 using HomeRentTracker.Services.Contract;
 using HomeRentTracker.Services.Repos;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json.Serialization;
+using System.Data;
+using System.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,25 +12,35 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddUserStore<CustomUserStore>() // Use your custom store
-//    .AddDefaultTokenProviders();
+//    .AddDefaultTokenProviders();builder.Services.AddSingleton<IDbConnection>(sp =>
+builder.Services.AddSingleton<IDbConnection>(sp =>
+    new SqlConnection(builder.Configuration.GetConnectionString("AppConnection")));
+
 builder.Services.AddIdentity<UserInfo, IdentityRole>()
     .AddUserStore<AuthRepos>() // Use your custom store
     .AddDefaultTokenProviders();
+
 builder.Services.AddScoped<IUserStore<UserInfo>, AuthRepos>();
 builder.Services.AddScoped<IPasswordHasher<UserInfo>, PasswordHasher<UserInfo>>();
-builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>(); 
-builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
-builder.Services.AddScoped<IFlatInfo, FlatInfoRepo>();
-builder.Services.AddScoped<ILocationService, LocationService>();
-builder.Services.AddScoped<IMemberService, MemberService>();
-builder.Services.AddScoped<IRenterService, RenterRepos>();
+builder.Services.AddScoped<IRoleStore<IdentityRole>, RoleStore>();
+builder.Services.AddScoped<IOwnerRepository, OwnerInfoRepos>();
+builder.Services.AddScoped<IFlatInfoContract, FlatInfoRepo>();
+builder.Services.AddScoped<ILocationContract, LocationRepos>();
+builder.Services.AddScoped<IMemberContract, MemberInfoRepos>();
+builder.Services.AddScoped<IRenterInfoContract, RenterInfoRepos>();
 
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 //    .AddDefaultTokenProviders();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-builder.Services.AddScoped<IFlatService, FlatService>();
-builder.Services.AddScoped<IUserServices, UserRepository>();
+builder.Services.AddScoped<IFlatRentContract, FlatRentRepos>();
+builder.Services.AddScoped<IUserContract, UserRepository>();
+
+
+
+// Replace the problematic code with the following:
+//builder.Services.Scan(scan => scan.FromAssemblyOf<FlatInfoRepo>().AddClasses().AsMatchingInterface().WithScopedLifetime());
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Accont/Login";
